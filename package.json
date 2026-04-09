@@ -1,0 +1,50 @@
+{
+  "name": "react-native-salt",
+  "version": "1.0.0",
+  "description": "React Native UI component library with 119 themed components — layout, forms, navigation, charts, and more",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "files": [
+    "src/",
+    "README.md",
+    "LICENSE"
+  ],
+  "private": true,
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-native": ">=0.72.0",
+    "@expo/vector-icons": ">=13.0.0",
+    "react-native-vector-icons": ">=9.0.0",
+    "@react-native-async-storage/async-storage": ">=1.19.0"
+  },
+  "peerDependenciesMeta": {
+    "@expo/vector-icons": { "optional": true },
+    "react-native-vector-icons": { "optional": true }
+  },
+  "keywords": [
+    "react-native",
+    "ui-kit",
+    "components",
+    "expo",
+    "theme",
+    "design-system",
+    "typescript"
+  ],
+  "author": "TODO",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "TODO",
+    "directory": "packages/ui-kit"
+  },
+  "type": "commonjs"
+}
