@@ -39,11 +39,14 @@
     "design-system",
     "typescript"
   ],
-  "author": "TODO",
+  "author": {
+    "name": "SaltUI Team",
+    "email": "hasanmathju@gmail.com"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "TODO",
+    "url": "https://github.com/esaltbd/react-native-salt.git",
     "directory": "packages/ui-kit"
   },
   "type": "commonjs"
