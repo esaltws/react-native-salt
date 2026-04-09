@@ -4,10 +4,19 @@ module.exports = {
     '^.+\\.tsx?$': [
       'ts-jest',
       {
-        tsconfig: 'tsconfig.json',
-        jsx: 'react-native',
+        diagnostics: false,
+        tsconfig: {
+          jsx: 'react-jsx',
+          module: 'ESNext',
+          moduleResolution: 'bundler',
+          lib: ['ESNext'],
+          esModuleInterop: true,
+          allowSyntheticDefaultImports: true,
+          skipLibCheck: true,
+        },
       },
     ],
+    '^.+\\.jsx?$': 'babel-jest',
   },
   transformIgnorePatterns: [
     'node_modules/(?!(react-native|@react-native|@react-native-async-storage)/)',

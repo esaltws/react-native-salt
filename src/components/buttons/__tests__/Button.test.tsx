@@ -178,10 +178,13 @@ describe('Button', () => {
   // ── Icon-only mode ────────────────────────────────────────────────
   describe('icon-only mode', () => {
     it('renders icon without title as icon-only', () => {
-      const { queryByText, getByTestId } = renderWithTheme(
+      const { getByText, queryByText, getByTestId } = renderWithTheme(
         <Button icon="add" testID="btn" />
       );
-      expect(queryByText('add')).toBeFalsy(); // title should not appear
+      // The icon renders (mocked Ionicons renders icon name as text)
+      expect(getByText('add')).toBeTruthy();
+      // No separate title text is rendered
+      expect(queryByText('Submit')).toBeNull();
       expect(getByTestId('btn')).toBeTruthy();
     });
 

@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx jest src/components/buttons/__tests__/Button.test.tsx --no-coverage)",
+      "Bash(npx jest --no-coverage --maxWorkers=2 src/theme/__tests__/ src/components/typography/__tests__/)"
+    ]
+  }
+}

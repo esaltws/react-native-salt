@@ -131,35 +131,45 @@ describe('SaltProvider', () => {
   });
 
   it('toggleTheme switches from light to dark', async () => {
-    const { getByTestId } = render(
-      <SaltProvider initialPreference="light">
-        <ToggleConsumer />
-      </SaltProvider>
-    );
-
-    expect(getByTestId('mode').props.children).toBe('light');
-
+    let result: ReturnType<typeof render>;
     await act(async () => {
-      fireEvent.press(getByTestId('toggle'));
+      result = render(
+        <SaltProvider initialPreference="light">
+          <ToggleConsumer />
+        </SaltProvider>
+      );
     });
 
-    expect(getByTestId('mode').props.children).toBe('dark');
+    expect(result!.getByTestId('mode').props.children).toBe('light');
+
+    await act(async () => {
+      fireEvent.press(result!.getByTestId('toggle'));
+    });
+
+    await waitFor(() => {
+      expect(result!.getByTestId('mode').props.children).toBe('dark');
+    });
   });
 
   it('toggleTheme switches from dark to light', async () => {
-    const { getByTestId } = render(
-      <SaltProvider initialPreference="dark">
-        <ToggleConsumer />
-      </SaltProvider>
-    );
-
-    expect(getByTestId('mode').props.children).toBe('dark');
-
+    let result: ReturnType<typeof render>;
     await act(async () => {
-      fireEvent.press(getByTestId('toggle'));
+      result = render(
+        <SaltProvider initialPreference="dark">
+          <ToggleConsumer />
+        </SaltProvider>
+      );
     });
 
-    expect(getByTestId('mode').props.children).toBe('light');
+    expect(result!.getByTestId('mode').props.children).toBe('dark');
+
+    await act(async () => {
+      fireEvent.press(result!.getByTestId('toggle'));
+    });
+
+    await waitFor(() => {
+      expect(result!.getByTestId('mode').props.children).toBe('light');
+    });
   });
 
   it('isThemeLoaded becomes true after mount', async () => {
