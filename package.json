@@ -58,6 +58,7 @@
   "type": "commonjs",
   "devDependencies": {
     "@react-native-async-storage/async-storage": "^3.0.2",
+    "@react-native/jest-preset": "^0.85.0",
     "@testing-library/jest-native": "^5.4.3",
     "@testing-library/react-native": "^13.3.3",
     "@types/jest": "^30.0.0",
