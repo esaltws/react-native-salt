@@ -7,7 +7,7 @@ import {
   ViewStyle,
 } from "react-native";
 import { useTheme } from "../../theme/ThemeContext";
-import { Size, SizeToken } from "../../types";
+import { Size } from "../../types";
 import Text from "../typography/Text";
 import Label from "../typography/Label";
 import Caption from "../typography/Caption";
@@ -37,7 +37,7 @@ export default function Input({
   const { theme } = useTheme();
   const { colors, radius, spacing } = theme;
 
-  const sizeStyles: Record<SizeToken, ViewStyle> = {
+  const sizeStyles: Record<Size, ViewStyle> = {
   sm: {
     paddingVertical: spacing.sm,
     paddingHorizontal: spacing.md,
@@ -76,7 +76,7 @@ export default function Input({
             borderWidth: 1,
             borderRadius: radius.md,
           },
-          typeof size === "number" ? { paddingVertical: size, paddingHorizontal: size } : sizeStyles[size] ?? sizeStyles.md,
+          sizeStyles[size],
           !editable && {
                         backgroundColor: colors.border,
                         opacity: 0.7,
