@@ -2,7 +2,7 @@ import React from "react";
 import { Pressable, Text, View, ViewStyle, StyleProp, TextStyle, ActivityIndicator } from "react-native";
 import { useTheme } from "../../theme/ThemeContext";
 import { resolveIntentColor } from "../../theme/intent";
-import { Variant, Intent, SizeToken, Size } from "../../types";
+import { Variant, Intent, Size } from "../../types";
 import Icon, { IconName } from "../theme-settings/Icon";
 
 
@@ -24,7 +24,7 @@ type Props = {
 };
 
 
-const ICON_SIZES: Record<SizeToken, number> = { sm: 16, md: 20, lg: 24 };
+const ICON_SIZES: Record<Size, number> = { sm: 16, md: 20, lg: 24 };
 
 export default function Button({
     title,
@@ -46,9 +46,8 @@ export default function Button({
     const { colors, spacing, radius } = theme;
 
     const isIconOnly = !!icon && !title;
-    const iconSize = typeof size === "number" ? size : ICON_SIZES[size] ?? 20;
 
-    const sizeStyles: Record<SizeToken, ViewStyle> = {
+    const sizeStyles: Record<Size, ViewStyle> = {
       sm: {
         paddingVertical: spacing.sm,
         paddingHorizontal: spacing.md,
@@ -63,7 +62,7 @@ export default function Button({
       },
     };
 
-    const iconOnlySizeStyles: Record<SizeToken, ViewStyle> = {
+    const iconOnlySizeStyles: Record<Size, ViewStyle> = {
       sm: { padding: spacing.sm },
       md: { padding: spacing.md },
       lg: { padding: spacing.lg },
@@ -75,8 +74,8 @@ export default function Button({
     const containerStyles: StyleProp<ViewStyle> = [
       { borderRadius: radius.md, alignItems: "center", justifyContent: "center", flexDirection: "row" },
       isIconOnly
-        ? (typeof size === "number" ? { padding: size } : iconOnlySizeStyles[size] ?? iconOnlySizeStyles.md)
-        : (typeof size === "number" ? { paddingVertical: size, paddingHorizontal: size } : sizeStyles[size] ?? sizeStyles.md),
+        ? iconOnlySizeStyles[size] ?? iconOnlySizeStyles.md
+        : sizeStyles[size] ?? sizeStyles.md,
       fullWidth && { width: "100%" },
       variant === "outline" && { borderWidth: 1, backgroundColor: "transparent" },
       variant === "outline" && { borderColor: intentColor },
@@ -116,12 +115,12 @@ export default function Button({
             color={iconColor}
           />
         ) : isIconOnly ? (
-          <Icon name={icon} size={iconSize} color={iconColor} />
+          <Icon name={icon} size={ICON_SIZES[size]} color={iconColor} />
         ) : (
           <>
-            {iconLeft && <Icon name={iconLeft} size={iconSize} color={iconColor} style={{ marginRight: spacing.xs }} />}
+            {iconLeft && <Icon name={iconLeft} size={ICON_SIZES[size]} color={iconColor} style={{ marginRight: spacing.xs }} />}
             {title && <Text style={labelStyles}>{title}</Text>}
-            {iconRight && <Icon name={iconRight} size={iconSize} color={iconColor} style={{ marginLeft: spacing.xs }} />}
+            {iconRight && <Icon name={iconRight} size={ICON_SIZES[size]} color={iconColor} style={{ marginLeft: spacing.xs }} />}
           </>
         )}
       </Pressable>
