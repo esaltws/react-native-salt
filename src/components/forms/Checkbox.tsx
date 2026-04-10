@@ -10,7 +10,7 @@ import { useTheme } from "../../theme/ThemeContext";
 import Text from "../typography/Text";
 import Label from "../typography/Label";
 import Caption from "../typography/Caption";
-import { SizeToken } from "../../types";
+import { Size } from "../../types";
 
 const BOX_SIZE = { sm: 18, md: 22, lg: 28 };
 
@@ -19,7 +19,7 @@ type Props = {
   onToggle: (checked: boolean) => void;
   label?: string;
   description?: string;
-  size?: SizeToken;
+  size?: Size;
   disabled?: boolean;
   style?: StyleProp<ViewStyle>;
   testID?: string;

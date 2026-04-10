@@ -11,7 +11,7 @@ import {
 import { useTheme } from "../../theme/ThemeContext";
 import Text from "../typography/Text";
 import Icon from "../theme-settings/Icon";
-import { SizeToken } from "../../types";
+import { Size } from "../../types";
 
 type DropdownOption = {
   key: string;
@@ -29,7 +29,7 @@ type Props = {
   label?: string;
   error?: string;
   disabled?: boolean;
-  size?: SizeToken;
+  size?: Size;
   fullWidth?: boolean;
   maxVisible?: number;
   style?: StyleProp<ViewStyle>;
