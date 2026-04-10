@@ -62,8 +62,8 @@ Wrap your app root. Manages light/dark mode, font scaling, and persists preferen
 
 ```tsx
 <SaltProvider
-  defaultPreference="system" // "system" | "light" | "dark"
-  defaultFontLevel={16}      // 8–18
+  initialPreference="system" // "system" | "light" | "dark"
+  fontLevel={16}             // 8–18 or "xs"|"sm"|"md"|"lg"|"xl"
 >
   {children}
 </SaltProvider>
@@ -71,11 +71,41 @@ Wrap your app root. Manages light/dark mode, font scaling, and persists preferen
 
 #### Custom Themes
 
+You can provide your own light and dark themes:
+
 ```tsx
-<SaltProvider customLight={myLightTheme} customDark={myDarkTheme}>
+<SaltProvider lightTheme={myLightTheme} darkTheme={myDarkTheme}>
   {children}
 </SaltProvider>
 ```
+
+#### Using salt-theme-gen (optional)
+
+[salt-theme-gen](https://www.npmjs.com/package/salt-theme-gen) generates a complete light/dark color system from a single hex color using OKLCH perceptual color science. It pairs with `@esaltws/react-native-salt` to give you branded themes without manually picking 17 color tokens.
+
+```bash
+npm install salt-theme-gen
+```
+
+```tsx
+import { generateTheme } from "salt-theme-gen";
+import { SaltProvider } from "@esaltws/react-native-salt";
+
+const generated = generateTheme({
+  primary: "#0E9D8E",
+  harmony: "complementary", // analogous | triadic | split-complementary | tetradic | monochromatic
+});
+
+export default function App() {
+  return (
+    <SaltProvider lightTheme={generated.light} darkTheme={generated.dark}>
+      {/* All 119 components pick up your branded colors automatically */}
+    </SaltProvider>
+  );
+}
+```
+
+`salt-theme-gen` is entirely optional — `@esaltws/react-native-salt` ships sensible defaults out of the box and works with any custom theme object that matches the `Theme` type.
 
 ### useTheme()
 
