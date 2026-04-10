@@ -81,7 +81,7 @@ export default function NotificationItem({
       {/* Avatar or Icon */}
       <View style={{ marginRight: spacing.md }}>
         {avatar || avatarName ? (
-          <Avatar name={avatarName || ""} uri={avatar} size={40} />
+          <Avatar name={avatarName || ""} uri={avatar} size="lg" />
         ) : icon ? (
           <View
             style={[
