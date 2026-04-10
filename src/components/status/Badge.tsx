@@ -2,13 +2,13 @@ import React from "react";
 import { View, Text, StyleSheet, ViewStyle, StyleProp } from "react-native";
 import { useTheme } from "../../theme/ThemeContext";
 import { resolveIntentColor } from "../../theme/intent";
-import { Intent, SizeToken } from "../../types";
+import { Intent, Size } from "../../types";
 
 type Props = {
   label: string;
   intent?: Intent;
   variant?: "solid" | "outline";
-  size?: SizeToken;
+  size?: Size;
   style?: StyleProp<ViewStyle>;
   testID?: string;
 };
@@ -24,7 +24,7 @@ export default function Badge({
   const { theme } = useTheme();
   const { colors, spacing, radius, fontSizes } = theme;
 
-  const sizeStyles: Record<SizeToken, { paddingVertical: number; paddingHorizontal: number; fontSize: number }> = {
+  const sizeStyles: Record<Size, { paddingVertical: number; paddingHorizontal: number; fontSize: number }> = {
     sm: { paddingVertical: spacing.xs, paddingHorizontal: spacing.sm, fontSize: fontSizes.xs },
     md: { paddingVertical: spacing.xs, paddingHorizontal: spacing.md, fontSize: fontSizes.sm },
     lg: { paddingVertical: spacing.sm, paddingHorizontal: spacing.lg, fontSize: fontSizes.md },
