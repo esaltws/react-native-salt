@@ -2,7 +2,7 @@ import React from "react";
 import { ScrollView, Pressable, StyleSheet, StyleProp, ViewStyle } from "react-native";
 import { useTheme } from "../../theme/ThemeContext";
 import Badge from "../status/Badge";
-import { SizeToken } from "../../types";
+import { Size } from "../../types";
 
 type ChipItem = {
   key: string;
@@ -15,7 +15,7 @@ type Props = {
   onSelect: (key: string | null) => void;
   showAll?: boolean;
   allLabel?: string;
-  size?: SizeToken;
+  size?: Size;
   style?: StyleProp<ViewStyle>;
   testID?: string;
 };
