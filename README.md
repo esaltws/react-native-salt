@@ -54,6 +54,85 @@ export default function App() {
 
 ---
 
+## Using with Expo
+
+`@esaltws/react-native-salt` is built for Expo. It ships raw TypeScript that Metro bundles directly — no build step, no native modules, works in **Expo Go** out of the box.
+
+### New Expo project
+
+```bash
+npx create-expo-app my-app
+cd my-app
+npm install @esaltws/react-native-salt @react-native-async-storage/async-storage
+```
+
+Optional (for the `Icon` component):
+```bash
+npx expo install @expo/vector-icons
+```
+
+### Wrap your app
+
+```tsx
+// app/_layout.tsx (Expo Router) or App.tsx
+import { SaltProvider } from "@esaltws/react-native-salt";
+
+export default function RootLayout() {
+  return (
+    <SaltProvider>
+      <Slot />  {/* or your navigator */}
+    </SaltProvider>
+  );
+}
+```
+
+### Use components
+
+```tsx
+// app/index.tsx
+import { Screen, Stack, Title, Text, Button, Card, Input, Badge } from "@esaltws/react-native-salt";
+
+export default function Home() {
+  return (
+    <Screen scroll>
+      <Stack gap="lg" style={{ padding: 16 }}>
+        <Title>Welcome</Title>
+        <Card elevation={2}>
+          <Stack gap="md">
+            <Text>Sign up to get started.</Text>
+            <Input label="Email" placeholder="you@example.com" />
+            <Button title="Continue" intent="primary" />
+          </Stack>
+        </Card>
+        <Badge intent="success">Active</Badge>
+      </Stack>
+    </Screen>
+  );
+}
+```
+
+### Dark mode & font scaling
+
+Salt follows the device color scheme by default. Users can override it at runtime:
+
+```tsx
+import { useTheme, ThemeSwitcher, FontLevelSwitcher } from "@esaltws/react-native-salt";
+
+function Settings() {
+  const { mode, preference } = useTheme();
+  return (
+    <Stack gap="lg">
+      <ThemeSwitcher />        {/* system / light / dark toggle */}
+      <FontLevelSwitcher />    {/* font size presets xs–xl */}
+    </Stack>
+  );
+}
+```
+
+No extra Expo config needed — everything works with the default `app.json`.
+
+---
+
 ## Theme System
 
 ### SaltProvider
