@@ -2,14 +2,14 @@ import React from "react";
 import { View, Pressable, StyleSheet, StyleProp, ViewStyle } from "react-native";
 import { useTheme } from "../../theme/ThemeContext";
 import Text from "../typography/Text";
-import { SizeToken } from "../../types";
+import { Size } from "../../types";
 
 type Props = {
   value: number;
   onValueChange: (value: number) => void;
   min?: number;
   max?: number;
-  size?: SizeToken;
+  size?: Size;
   style?: StyleProp<ViewStyle>;
   testID?: string;
 };
@@ -26,7 +26,7 @@ export default function QuantitySelector({
   const { theme } = useTheme();
   const { colors, radius, spacing, fontSizes } = theme;
 
-  const sizeStyles: Record<SizeToken, { btnSize: number; fontSize: number }> = {
+  const sizeStyles: Record<Size, { btnSize: number; fontSize: number }> = {
     sm: { btnSize: 28, fontSize: fontSizes.sm },
     md: { btnSize: 36, fontSize: fontSizes.md },
     lg: { btnSize: 44, fontSize: fontSizes.xl },
