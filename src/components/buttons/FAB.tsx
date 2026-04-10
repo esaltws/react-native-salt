@@ -9,21 +9,21 @@ import { useTheme } from "../../theme/ThemeContext";
 import { resolveIntentColor } from "../../theme/intent";
 import Text from "../typography/Text";
 import Icon from "../theme-settings/Icon";
-import { Intent, SizeToken } from "../../types";
+import { Intent, Size } from "../../types";
 
 type Props = {
   icon?: string;
   label?: string;
   onPress: () => void;
   intent?: Intent;
-  size?: SizeToken;
+  size?: Size;
   position?: "bottom-right" | "bottom-left" | "bottom-center";
   disabled?: boolean;
   style?: StyleProp<ViewStyle>;
   testID?: string;
 };
 
-const SIZE_MAP: Record<SizeToken, { btn: number; icon: number; font: number }> = {
+const SIZE_MAP: Record<Size, { btn: number; icon: number; font: number }> = {
   sm: { btn: 40, icon: 18, font: 12 },
   md: { btn: 56, icon: 24, font: 14 },
   lg: { btn: 64, icon: 28, font: 16 },
