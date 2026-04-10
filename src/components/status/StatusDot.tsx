@@ -1,13 +1,13 @@
 import React from "react";
 import { View, StyleSheet, StyleProp, ViewStyle } from "react-native";
 import { useTheme } from "../../theme/ThemeContext";
-import { SizeToken } from "../../types";
+import { Size } from "../../types";
 
 type StatusType = "online" | "offline" | "idle";
 
 type Props = {
   status?: StatusType;
-  size?: SizeToken;
+  size?: Size;
   style?: StyleProp<ViewStyle>;
   testID?: string;
 };
@@ -27,7 +27,7 @@ export default function StatusDot({
     idle: colors.warning,
   };
 
-  const sizeValues: Record<SizeToken, number> = {
+  const sizeValues: Record<Size, number> = {
     sm: 8,
     md: 10,
     lg: 14,
