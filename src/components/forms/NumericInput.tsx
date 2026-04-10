@@ -10,7 +10,7 @@ import {
 import { useTheme } from "../../theme/ThemeContext";
 import Text from "../typography/Text";
 import Icon from "../theme-settings/Icon";
-import { SizeToken } from "../../types";
+import { Size } from "../../types";
 
 type Props = {
   value: number;
@@ -21,7 +21,7 @@ type Props = {
   label?: string;
   error?: string;
   disabled?: boolean;
-  size?: SizeToken;
+  size?: Size;
   fullWidth?: boolean;
   prefix?: string;
   suffix?: string;
