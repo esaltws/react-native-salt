@@ -3,7 +3,7 @@ import { View, Pressable, StyleSheet, StyleProp, ViewStyle } from "react-native"
 import { useTheme } from "../../theme/ThemeContext";
 import Text from "../typography/Text";
 import Icon from "../theme-settings/Icon";
-import { Intent, SizeToken } from "../../types";
+import { Intent, Size } from "../../types";
 
 type TagItem = {
   key: string;
@@ -18,7 +18,7 @@ type Props = {
   onPress?: (key: string) => void;
   onAdd?: () => void;
   addLabel?: string;
-  size?: SizeToken;
+  size?: Size;
   style?: StyleProp<ViewStyle>;
   testID?: string;
 };

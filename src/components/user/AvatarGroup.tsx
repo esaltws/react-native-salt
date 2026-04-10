@@ -3,6 +3,7 @@ import { View, StyleSheet, StyleProp, ViewStyle } from "react-native";
 import { useTheme } from "../../theme/ThemeContext";
 import Avatar from "./Avatar";
 import Text from "../typography/Text";
+import { Size } from "../../types";
 
 type AvatarItem = {
   key: string;
@@ -13,7 +14,7 @@ type AvatarItem = {
 type Props = {
   items: AvatarItem[];
   max?: number;
-  size?: number;
+  size?: Size;
   overlap?: number;
   style?: StyleProp<ViewStyle>;
   testID?: string;
@@ -22,7 +23,7 @@ type Props = {
 export default function AvatarGroup({
   items,
   max = 4,
-  size = 36,
+  size = "md",
   overlap = 10,
   style,
   testID,
@@ -43,7 +44,7 @@ export default function AvatarGroup({
             zIndex: visible.length - index,
             borderWidth: 2,
             borderColor: colors.background,
-            borderRadius: size / 2 + 2,
+            borderRadius: size === "sm" ? 12 : size === "md" ? 18 : 24,
           }}
         >
           <Avatar
@@ -59,9 +60,9 @@ export default function AvatarGroup({
           style={[
             styles.overflowBadge,
             {
-              width: size,
-              height: size,
-              borderRadius: size / 2,
+              width: size === "sm" ? 24 : size === "md" ? 36 : 48,
+              height: size === "sm" ? 24 : size === "md" ? 36 : 48,
+              borderRadius: size === "sm" ? 12 : size === "md" ? 18 : 24,
               backgroundColor: colors.surface,
               borderWidth: 2,
               borderColor: colors.background,
