@@ -3,12 +3,12 @@ import { View, StyleSheet, StyleProp, ViewStyle } from "react-native";
 import { useTheme } from "../../theme/ThemeContext";
 import Caption from "../typography/Caption";
 import Icon from "../theme-settings/Icon";
-import { SizeToken } from "../../types";
+import { Size } from "../../types";
 
 type Props = {
   rating: number;
   total?: number;
-  size?: SizeToken;
+  size?: Size;
   style?: StyleProp<ViewStyle>;
   testID?: string;
 };
@@ -23,7 +23,7 @@ export default function RatingStars({
   const { theme } = useTheme();
   const { colors, spacing } = theme;
 
-  const starSizeMap: Record<SizeToken, number> = {
+  const starSizeMap: Record<Size, number> = {
     sm: 14,
     md: 18,
     lg: 22,
