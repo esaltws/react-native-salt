@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { useTheme } from "../../theme/ThemeContext";
 import Text from "../typography/Text";
-import { SizeToken } from "../../types";
+import { Size } from "../../types";
 
 type SegmentItem = {
   key: string;
@@ -19,14 +19,14 @@ type Props = {
   items: SegmentItem[];
   selected: string;
   onSelect: (key: string) => void;
-  size?: SizeToken;
+  size?: Size;
   fullWidth?: boolean;
   disabled?: boolean;
   style?: StyleProp<ViewStyle>;
   testID?: string;
 };
 
-const SIZE_MAP: Record<SizeToken, { py: number; px: number; font: number }> = {
+const SIZE_MAP: Record<Size, { py: number; px: number; font: number }> = {
   sm: { py: 4, px: 10, font: 12 },
   md: { py: 6, px: 14, font: 14 },
   lg: { py: 8, px: 18, font: 16 },
