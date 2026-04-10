@@ -3,7 +3,7 @@ import { View, Pressable, StyleSheet, StyleProp, ViewStyle } from "react-native"
 import { useTheme } from "../../theme/ThemeContext";
 import Text from "../typography/Text";
 import Icon from "../theme-settings/Icon";
-import { SizeToken } from "../../types";
+import { Size } from "../../types";
 
 type BreadcrumbItem = {
   key: string;
@@ -16,7 +16,7 @@ type Props = {
   items: BreadcrumbItem[];
   separator?: string;
   separatorIcon?: string;
-  size?: SizeToken;
+  size?: Size;
   style?: StyleProp<ViewStyle>;
   testID?: string;
 };
