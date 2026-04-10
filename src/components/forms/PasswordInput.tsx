@@ -13,7 +13,7 @@ import Text from "../typography/Text";
 import Label from "../typography/Label";
 import Caption from "../typography/Caption";
 import Icon from "../theme-settings/Icon";
-import { Size, SizeToken } from "../../types";
+import { Size } from "../../types";
 
 type StrengthLevel = "weak" | "fair" | "good" | "strong";
 
@@ -54,16 +54,13 @@ export default function PasswordInput({
   const { colors, spacing, radius } = theme;
   const [visible, setVisible] = useState(false);
 
-  const sizeStyles: Record<SizeToken, ViewStyle> = {
+  const sizeStyles: Record<Size, ViewStyle> = {
     sm: { paddingVertical: spacing.sm, paddingHorizontal: spacing.md },
     md: { paddingVertical: spacing.md, paddingHorizontal: spacing.lg },
     lg: { paddingVertical: spacing.lg, paddingHorizontal: spacing.xl },
   };
 
-  const inputSize =
-    typeof size === "number"
-      ? { paddingVertical: size, paddingHorizontal: size }
-      : sizeStyles[size] ?? sizeStyles.md;
+  const inputSize = sizeStyles[size];
 
   const strengthInfo = strength ? STRENGTH_CONFIG[strength] : null;
 
