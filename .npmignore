@@ -1,0 +1,14 @@
+# Tests
+**/__tests__/
+**/*.test.ts
+**/*.test.tsx
+
+# Test config
+jest.config.js
+jest.setup.ts
+babel.config.js
+
+# Dev files
+tsconfig.json
+.github/
+.claude/
