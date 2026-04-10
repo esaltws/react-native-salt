@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { useTheme } from "../../theme/ThemeContext";
 import Text from "../typography/Text";
-import { SizeToken } from "../../types";
+import { Size } from "../../types";
 
 const TRACK_HEIGHT = { sm: 3, md: 4, lg: 6 };
 const THUMB_SIZE = { sm: 20, md: 24, lg: 30 };
@@ -20,7 +20,7 @@ type Props = {
   min?: number;
   max?: number;
   step?: number;
-  size?: SizeToken;
+  size?: Size;
   disabled?: boolean;
   showValue?: boolean;
   style?: StyleProp<ViewStyle>;
