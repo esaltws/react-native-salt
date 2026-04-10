@@ -1,11 +1,11 @@
-# react-native-salt
+# @esaltws/react-native-salt
 
-119 themed React Native components for Expo. Built-in light/dark theming, font scaling, and zero native dependencies.
+AI-friendly React Native UI system for Expo with 119 themed components, built-in light/dark mode, font scaling, and zero native dependencies.
 
 ## Install
 
 ```bash
-npm install react-native-salt
+npm install @esaltws/react-native-salt
 ```
 
 ### Peer Dependencies
@@ -35,7 +35,7 @@ Works in **Expo Go** — no dev build required.
 ## Quick Start
 
 ```tsx
-import { SaltProvider, Screen, Stack, Title, Text, Button } from "react-native-salt";
+import { SaltProvider, Screen, Stack, Title, Text, Button } from "@esaltws/react-native-salt";
 
 export default function App() {
   return (
@@ -82,7 +82,7 @@ Wrap your app root. Manages light/dark mode, font scaling, and persists preferen
 Access theme tokens and controls in any component:
 
 ```tsx
-import { useTheme } from "react-native-salt";
+import { useTheme } from "@esaltws/react-native-salt";
 
 function MyComponent() {
   const { theme, mode, preference, setPreference, fontLevel, setFontLevel, isThemeLoaded } = useTheme();
@@ -140,7 +140,7 @@ import type {
   Elevation,        // 0 | 1 | 2 | 3
   Decoration,       // "underline" | "strikethrough"
   LineHeightToken,  // "tight" | "normal" | "relaxed"
-} from "react-native-salt";
+} from "@esaltws/react-native-salt";
 ```
 
 ---
