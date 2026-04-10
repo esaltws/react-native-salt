@@ -2,19 +2,18 @@ import React, { useEffect, useRef } from "react";
 import {
   View,
   Animated,
-  StyleSheet,
   StyleProp,
   ViewStyle,
 } from "react-native";
 import { useTheme } from "../../theme/ThemeContext";
-import { Intent, SizeToken } from "../../types";
+import { Intent, Size } from "../../types";
 
 const HEIGHT_MAP = { sm: 4, md: 8, lg: 12 };
 
 type Props = {
   progress: number; // 0 to 1
   intent?: Intent;
-  size?: SizeToken;
+  size?: Size;
   animated?: boolean;
   style?: StyleProp<ViewStyle>;
   testID?: string;
