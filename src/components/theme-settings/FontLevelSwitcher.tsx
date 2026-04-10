@@ -3,7 +3,7 @@ import { StyleProp, ViewStyle } from "react-native";
 import { useTheme } from "../../theme/ThemeContext";
 import ChipGroup from "../tags/ChipGroup";
 import { FontLevel } from "../../theme/typography";
-import { SizeToken } from "../../types";
+import { Size } from "../../types";
 
 const LEVELS: FontLevel[] = [18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8];
 
@@ -11,7 +11,7 @@ const LEVEL_ITEMS = LEVELS.map((n) => ({ key: String(n), label: String(n) }));
 
 type Props = {
   style?: StyleProp<ViewStyle>;
-  size?: SizeToken;
+  size?: Size;
   testID?: string;
 };
 
