@@ -124,7 +124,7 @@ export default function Leaderboard({
             <Avatar
               name={item.name}
               uri={item.avatar}
-              size={36}
+              size="sm"
             />
 
             {/* Name + subtitle */}
