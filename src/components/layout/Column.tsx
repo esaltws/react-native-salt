@@ -16,7 +16,7 @@ type Props = {
 
 export default function Column({
   children,
-  gap = 0,
+  gap = "none",
   align = "stretch",
   justify = "flex-start",
   wrap = false,
@@ -25,7 +25,6 @@ export default function Column({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const gapValue = typeof gap === "number" ? gap : theme.spacing[gap] ?? theme.spacing.md;
 
   return (
     <View
@@ -36,7 +35,7 @@ export default function Column({
           alignItems: align,
           justifyContent: justify,
           flexWrap: wrap ? "wrap" : "nowrap",
-          gap: gapValue,
+          gap: theme.spacing[gap],
           flex: fill ? 1 : undefined,
         },
         style,

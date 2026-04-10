@@ -40,17 +40,16 @@ export type Theme = {
 
 
 //Token Keys (safe)
-export type SpacingToken = keyof Theme["spacing"];
+export type Spacing = keyof Theme["spacing"];
 export type RadiusToken = keyof Theme["radius"];
 export type FontSizeToken = keyof Theme["fontSizes"];
 export type ColorToken = keyof ThemeColors;
 export type SizeToken = "sm" | "md" | "lg";
 
 //Values allowed in components props
-export type Spacing = SpacingToken | number;
-export type Radius = RadiusToken | number;
-export type FontSize = FontSizeToken | number;
-export type Size = SizeToken | number;
+export type Radius = keyof Theme["radius"];
+export type FontSize = keyof Theme["fontSizes"];
+export type Size = SizeToken;
 export type ColorValue = ColorToken | (string & {});
 
 export type { FontLevel, FontLevelPreset } from "../theme/typography";
