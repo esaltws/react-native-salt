@@ -10,7 +10,7 @@ jest.mock('react-native-safe-area-context', () => {
     SafeAreaView: ({ children, style, ...rest }: any) =>
       React.createElement(View, { ...rest, style, testID: rest.testID ?? 'safe-area-view' }, children),
   };
-});
+}, { virtual: true });
 
 describe('Screen', () => {
   it('renders children with background color', () => {

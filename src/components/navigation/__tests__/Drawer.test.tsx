@@ -44,9 +44,11 @@ describe('Drawer', () => {
     const settingsItem = getByText('Settings');
     expect(settingsItem).toBeTruthy();
     // The active item text should have fontWeight 600
-    expect(settingsItem.props.style).toEqual(
-      expect.objectContaining({ fontWeight: '600' })
+    const flatStyle = Object.assign(
+      {},
+      ...[].concat(settingsItem.props.style).flat(Infinity).filter(Boolean)
     );
+    expect(flatStyle.fontWeight).toBe('600');
   });
 
   it('calls item onPress and onClose when an item is pressed', () => {

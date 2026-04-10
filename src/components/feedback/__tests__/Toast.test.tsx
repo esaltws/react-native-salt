@@ -48,9 +48,10 @@ describe('Toast', () => {
   });
 
   it('has accessibilityRole alert', () => {
-    const { getByRole } = renderWithTheme(
+    const { toJSON } = renderWithTheme(
       <Toast visible message="Alert" onDismiss={jest.fn()} />
     );
-    expect(getByRole('alert')).toBeTruthy();
+    const tree = JSON.stringify(toJSON());
+    expect(tree).toContain('"accessibilityRole":"alert"');
   });
 });

@@ -65,7 +65,7 @@ export default function OnboardingSlide({
       {onSkip && (
         <View style={styles.skipRow}>
           <Button
-            label={skipLabel}
+            title={skipLabel}
             variant="text"
             size="sm"
             onPress={onSkip}
@@ -146,7 +146,7 @@ export default function OnboardingSlide({
       {/* Action button */}
       {onAction && actionLabel && (
         <View style={{ marginTop: spacing.xl, width: "100%" }}>
-          <Button label={actionLabel} onPress={onAction} fullWidth />
+          <Button title={actionLabel} onPress={onAction} fullWidth />
         </View>
       )}
     </View>

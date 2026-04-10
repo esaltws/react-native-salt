@@ -35,8 +35,9 @@ describe('MediaPickerRow', () => {
     const { getByText } = renderWithTheme(
       <MediaPickerRow items={items} label="Photos" maxItems={5} />
     );
-    expect(getByText('Photos')).toBeTruthy();
-    expect(getByText(' (2/5)')).toBeTruthy();
+    // Label and Caption are nested, so RNTL combines their text
+    expect(getByText(/Photos/)).toBeTruthy();
+    expect(getByText(/2\/5/)).toBeTruthy();
   });
 
   it('applies testID prop', () => {

@@ -48,9 +48,10 @@ describe('AlertDialog', () => {
   });
 
   it('has accessibilityRole alert', () => {
-    const { getByRole } = renderWithTheme(
+    const { toJSON } = renderWithTheme(
       <AlertDialog visible onClose={jest.fn()} title="Test" />
     );
-    expect(getByRole('alert')).toBeTruthy();
+    const tree = JSON.stringify(toJSON());
+    expect(tree).toContain('"accessibilityRole":"alert"');
   });
 });

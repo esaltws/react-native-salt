@@ -33,9 +33,9 @@ describe('Slider', () => {
   });
 
   it('renders with accessibilityRole adjustable', () => {
-    const { getByRole } = renderWithTheme(
-      <Slider value={50} onValueChange={jest.fn()} />
+    const { getByTestId } = renderWithTheme(
+      <Slider value={50} onValueChange={jest.fn()} testID="slider" />
     );
-    expect(getByRole('adjustable')).toBeTruthy();
+    expect(getByTestId('slider').props.accessibilityRole).toBe('adjustable');
   });
 });

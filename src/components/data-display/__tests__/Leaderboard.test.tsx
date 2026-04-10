@@ -71,9 +71,11 @@ describe('Leaderboard', () => {
 
     // The highlighted item name should have fontWeight 700
     const charlie = getByText('Charlie');
-    expect(charlie.props.style).toEqual(
-      expect.objectContaining({ fontWeight: '700' })
+    const flatStyle = Object.assign(
+      {},
+      ...[].concat(charlie.props.style).flat(Infinity).filter(Boolean)
     );
+    expect(flatStyle.fontWeight).toBe('700');
   });
 
   it('does not apply highlight styling to non-highlighted items', () => {
@@ -82,9 +84,11 @@ describe('Leaderboard', () => {
     );
 
     const alice = getByText('Alice');
-    expect(alice.props.style).toEqual(
-      expect.objectContaining({ fontWeight: '600' })
+    const flatStyle = Object.assign(
+      {},
+      ...[].concat(alice.props.style).flat(Infinity).filter(Boolean)
     );
+    expect(flatStyle.fontWeight).toBe('600');
   });
 });
 

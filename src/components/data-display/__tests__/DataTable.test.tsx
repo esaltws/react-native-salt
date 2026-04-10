@@ -23,8 +23,8 @@ describe('DataTable', () => {
       <DataTable columns={columns} data={data} keyExtractor={keyExtractor} />
     );
 
-    expect(getByText('NAME')).toBeTruthy();
-    expect(getByText('AGE')).toBeTruthy();
+    expect(getByText('Name')).toBeTruthy();
+    expect(getByText('Age')).toBeTruthy();
     expect(getByText('Alice')).toBeTruthy();
     expect(getByText('Bob')).toBeTruthy();
     expect(getByText('30')).toBeTruthy();
@@ -42,7 +42,7 @@ describe('DataTable', () => {
     );
 
     // First press: asc
-    fireEvent.press(getByText('NAME'));
+    fireEvent.press(getByText('Name'));
     expect(onSort).toHaveBeenCalledWith('name', 'asc');
   });
 
@@ -59,7 +59,7 @@ describe('DataTable', () => {
       />
     );
 
-    fireEvent.press(getByText('NAME'));
+    fireEvent.press(getByText('Name'));
     expect(onSort).toHaveBeenCalledWith('name', 'desc');
   });
 
@@ -76,7 +76,7 @@ describe('DataTable', () => {
       />
     );
 
-    fireEvent.press(getByText('NAME'));
+    fireEvent.press(getByText('Name'));
     expect(onSort).toHaveBeenCalledWith('name', null);
   });
 

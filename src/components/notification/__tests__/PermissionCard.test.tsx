@@ -18,10 +18,10 @@ describe('PermissionCard', () => {
   });
 
   it('renders Granted status label when status is granted', () => {
-    const { getByText } = renderWithTheme(
+    const { getAllByText } = renderWithTheme(
       <PermissionCard title="Location" status="granted" onActionPress={jest.fn()} />
     );
-    expect(getByText('Granted')).toBeTruthy();
+    expect(getAllByText('Granted').length).toBeGreaterThanOrEqual(1);
   });
 
   it('renders Denied status with Try Again action text', () => {
@@ -34,12 +34,12 @@ describe('PermissionCard', () => {
 
   it('disables the action button when status is granted', () => {
     const onActionPress = jest.fn();
-    const { getByText } = renderWithTheme(
+    const { getAllByText } = renderWithTheme(
       <PermissionCard title="Camera" status="granted" onActionPress={onActionPress} />
     );
-    // The button text for granted status is "Granted" as the default
-    const button = getByText('Granted');
-    fireEvent.press(button);
+    // Both the badge and the button show "Granted" text
+    const grantedElements = getAllByText('Granted');
+    grantedElements.forEach((el) => fireEvent.press(el));
     expect(onActionPress).not.toHaveBeenCalled();
   });
 

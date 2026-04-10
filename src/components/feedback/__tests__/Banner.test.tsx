@@ -18,10 +18,11 @@ describe('Banner', () => {
   });
 
   it('has accessibilityRole alert', () => {
-    const { getByRole } = renderWithTheme(
+    const { toJSON } = renderWithTheme(
       <Banner title="Alert" />
     );
-    expect(getByRole('alert')).toBeTruthy();
+    const tree = JSON.stringify(toJSON());
+    expect(tree).toContain('"accessibilityRole":"alert"');
   });
 
   it('shows dismiss button and hides on press', () => {

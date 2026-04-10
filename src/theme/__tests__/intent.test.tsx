@@ -1,5 +1,5 @@
-import { resolveIntentColor, resolveOnIntentColor } from '../../intent';
-import { lightTheme } from '../../lightTheme';
+import { resolveIntentColor, resolveOnIntentColor } from '../intent';
+import { lightTheme } from '../lightTheme';
 
 const colors = lightTheme.colors;
 

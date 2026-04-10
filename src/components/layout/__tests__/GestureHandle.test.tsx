@@ -24,12 +24,14 @@ describe('GestureHandle', () => {
 
   it('wraps in Pressable when onPress is provided', () => {
     const onPress = jest.fn();
-    const { getByTestId, UNSAFE_queryByType } = renderWithTheme(
+    const { getByTestId } = renderWithTheme(
       <GestureHandle testID="handle" onPress={onPress} />
     );
 
-    const pressable = UNSAFE_queryByType(Pressable);
-    expect(pressable).not.toBeNull();
+    const handle = getByTestId('handle');
+    expect(handle).toBeTruthy();
+    fireEvent.press(handle);
+    expect(onPress).toHaveBeenCalledTimes(1);
   });
 
   it('does not wrap in Pressable when no onPress or drag handlers', () => {

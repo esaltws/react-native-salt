@@ -71,15 +71,21 @@ describe('Gradient', () => {
   });
 
   it('renders gradient step views based on steps prop', () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId, UNSAFE_getAllByType } = renderWithTheme(
       <Gradient testID="gradient" colors={['#ff0000', '#0000ff']} steps={5} />
     );
 
     const gradient = getByTestId('gradient');
-    // The gradient layers container is the first child (absolute fill view)
-    const layersContainer = gradient.children[0] as any;
-    // steps=5 generates steps 0..5 = 6 gradient steps
-    expect(layersContainer.children.length).toBe(6);
+    expect(gradient).toBeTruthy();
+    // steps=5 generates steps 0..5 = 6 gradient steps, plus the container views
+    // Count all View descendants with backgroundColor containing 'rgb'
+    const { View } = require('react-native');
+    const allViews = UNSAFE_getAllByType(View);
+    const gradientViews = allViews.filter((v: any) => {
+      const bg = v.props?.style?.backgroundColor;
+      return typeof bg === 'string' && bg.startsWith('rgb(');
+    });
+    expect(gradientViews.length).toBe(6);
   });
 
   it('applies overflow hidden', () => {

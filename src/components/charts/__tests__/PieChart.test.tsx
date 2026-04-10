@@ -31,12 +31,12 @@ describe('PieChart', () => {
   });
 
   it('renders legend with percentages', () => {
-    const { getByText } = renderWithTheme(
+    const { getByText, getAllByText } = renderWithTheme(
       <PieChart slices={sampleSlices} testID="pie" />
     );
-    // 40 out of 100 = 40.0%, 30 out of 100 = 30.0%
+    // 40 out of 100 = 40.0%, 30 out of 100 = 30.0% (two slices have 30%)
     expect(getByText('40.0%')).toBeTruthy();
-    expect(getByText('30.0%')).toBeTruthy();
+    expect(getAllByText('30.0%').length).toBe(2);
   });
 
   it('renders donut hole when donut is true', () => {

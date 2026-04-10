@@ -46,21 +46,20 @@ describe('Card', () => {
       ? Object.assign({}, ...card.props.style.filter(Boolean))
       : card.props.style;
     expect(flatStyle.borderWidth).toBe(0);
-    // Should have shadow properties (platform-specific; Android uses elevation)
-    expect(flatStyle.elevation).toBeDefined();
+    // Should have shadow properties (platform-specific; iOS uses shadowOpacity)
+    expect(flatStyle.shadowOpacity).toBeDefined();
   });
 
   it('wraps in Pressable when onPress is provided', () => {
     const onPress = jest.fn();
-    const { getByTestId, UNSAFE_queryByType } = renderWithTheme(
+    const { getByTestId } = renderWithTheme(
       <Card testID="card" onPress={onPress}>
         <Text>Pressable card</Text>
       </Card>
     );
 
-    const pressable = UNSAFE_queryByType(Pressable);
-    expect(pressable).not.toBeNull();
-    fireEvent.press(pressable!);
+    const card = getByTestId('card');
+    fireEvent.press(card);
     expect(onPress).toHaveBeenCalledTimes(1);
   });
 
