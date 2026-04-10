@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet, StyleProp, ViewStyle } from "react-native";
 import { useTheme } from "../../theme/ThemeContext";
 import Text from "../typography/Text";
-import { Intent, SizeToken } from "../../types";
+import { Intent, Size } from "../../types";
 
 const RING_SIZE = { sm: 80, md: 120, lg: 160 };
 const STROKE_WIDTH = { sm: 6, md: 8, lg: 10 };
@@ -11,7 +11,7 @@ const SEGMENT_COUNT = 60;
 type Props = {
   progress: number; // 0 to 1
   intent?: Intent;
-  size?: SizeToken;
+  size?: Size;
   label?: string;
   sublabel?: string;
   style?: StyleProp<ViewStyle>;
