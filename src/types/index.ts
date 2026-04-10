@@ -41,15 +41,13 @@ export type Theme = {
 
 //Token Keys (safe)
 export type Spacing = keyof Theme["spacing"];
-export type RadiusToken = keyof Theme["radius"];
+export type Radius = keyof Theme["radius"];
 export type FontSizeToken = keyof Theme["fontSizes"];
 export type ColorToken = keyof ThemeColors;
-export type SizeToken = "sm" | "md" | "lg";
+export type Size = "sm" | "md" | "lg";
 
 //Values allowed in components props
-export type Radius = keyof Theme["radius"];
 export type FontSize = keyof Theme["fontSizes"];
-export type Size = SizeToken;
 export type ColorValue = ColorToken | (string & {});
 
 export type { FontLevel, FontLevelPreset } from "../theme/typography";
