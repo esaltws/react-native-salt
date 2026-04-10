@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Image, StyleSheet, StyleProp, ViewStyle } from "react-native";
 import { useTheme } from "../../theme/ThemeContext";
-import { SizeToken } from "../../types";
+import { Size } from "../../types";
 import Text from "../typography/Text";
 import StatusDot from "../status/StatusDot";
 
@@ -10,7 +10,7 @@ type StatusType = "online" | "offline" | "idle";
 type Props = {
   uri?: string | null;
   name?: string;
-  size?: SizeToken | number;
+  size?: Size;
   status?: StatusType;
   style?: StyleProp<ViewStyle>;
   testID?: string;
@@ -44,13 +44,13 @@ export default function Avatar({
   const { theme } = useTheme();
   const { colors, fontSizes } = theme;
 
-  const sizeValues: Record<SizeToken, number> = {
+  const sizeValues: Record<Size, number> = {
     sm: 32,
     md: 40,
     lg: 56,
   };
 
-  const fontSizeMap: Record<SizeToken, number> = {
+  const fontSizeMap: Record<Size, number> = {
     sm: fontSizes.xs,
     md: fontSizes.sm,
     lg: fontSizes.xxl,
