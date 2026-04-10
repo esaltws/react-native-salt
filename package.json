@@ -46,14 +46,13 @@
     "typescript"
   ],
   "author": {
-    "name": "SaltUI Team",
+    "name": "Esalt Web Services",
     "email": "hasanmathju@gmail.com"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/esaltbd/react-native-salt.git",
-    "directory": "packages/ui-kit"
+    "url": "https://github.com/esaltws/react-native-salt.git"
   },
   "type": "commonjs",
   "devDependencies": {
