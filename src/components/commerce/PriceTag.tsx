@@ -2,13 +2,13 @@ import React from "react";
 import { View, StyleSheet, StyleProp, ViewStyle } from "react-native";
 import { useTheme } from "../../theme/ThemeContext";
 import Text from "../typography/Text";
-import { SizeToken } from "../../types";
+import { Size } from "../../types";
 
 type Props = {
   amount: number;
   currency?: string;
   original?: number;
-  size?: SizeToken;
+  size?: Size;
   style?: StyleProp<ViewStyle>;
   testID?: string;
 };
@@ -24,7 +24,7 @@ export default function PriceTag({
   const { theme } = useTheme();
   const { colors, fontSizes, spacing } = theme;
 
-  const sizeStyles: Record<SizeToken, { fontSize: number; originalFontSize: number }> = {
+  const sizeStyles: Record<Size, { fontSize: number; originalFontSize: number }> = {
     sm: { fontSize: fontSizes.sm, originalFontSize: fontSizes.xs },
     md: { fontSize: fontSizes.xxl, originalFontSize: fontSizes.sm },
     lg: { fontSize: fontSizes.xxl, originalFontSize: fontSizes.md },
