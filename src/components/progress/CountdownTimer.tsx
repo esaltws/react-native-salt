@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { View, StyleSheet, StyleProp, ViewStyle } from "react-native";
 import { useTheme } from "../../theme/ThemeContext";
 import Text from "../typography/Text";
-import { SizeToken } from "../../types";
+import { Size } from "../../types";
 
 type Props = {
   targetDate?: Date;
@@ -12,12 +12,12 @@ type Props = {
   showDays?: boolean;
   showLabels?: boolean;
   separator?: string;
-  size?: SizeToken;
+  size?: Size;
   style?: StyleProp<ViewStyle>;
   testID?: string;
 };
 
-const SIZE_MAP: Record<SizeToken, { num: number; label: number; box: number }> = {
+const SIZE_MAP: Record<Size, { num: number; label: number; box: number }> = {
   sm: { num: 18, label: 10, box: 40 },
   md: { num: 28, label: 11, box: 56 },
   lg: { num: 36, label: 12, box: 72 },
