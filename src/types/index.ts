@@ -42,12 +42,11 @@ export type Theme = {
 //Token Keys (safe)
 export type Spacing = keyof Theme["spacing"];
 export type Radius = keyof Theme["radius"];
-export type FontSizeToken = keyof Theme["fontSizes"];
+export type FontSize = keyof Theme["fontSizes"];
 export type ColorToken = keyof ThemeColors;
 export type Size = "sm" | "md" | "lg";
 
 //Values allowed in components props
-export type FontSize = keyof Theme["fontSizes"];
 export type ColorValue = ColorToken | (string & {});
 
 export type { FontLevel, FontLevelPreset } from "../theme/typography";
