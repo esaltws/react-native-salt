@@ -7,7 +7,7 @@ import {
   ViewStyle,
 } from "react-native";
 import { useTheme } from "../../theme/ThemeContext";
-import { SizeToken } from "../../types";
+import { Size } from "../../types";
 
 const SIZE_MAP = { sm: 40, md: 48, lg: 56 };
 const THUMB_MAP = { sm: 18, md: 22, lg: 26 };
@@ -15,7 +15,7 @@ const THUMB_MAP = { sm: 18, md: 22, lg: 26 };
 type Props = {
   value: boolean;
   onValueChange: (value: boolean) => void;
-  size?: SizeToken;
+  size?: Size;
   disabled?: boolean;
   style?: StyleProp<ViewStyle>;
   testID?: string;
