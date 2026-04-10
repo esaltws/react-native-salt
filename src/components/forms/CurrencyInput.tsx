@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { useTheme } from "../../theme/ThemeContext";
 import Text from "../typography/Text";
-import { Size, SizeToken } from "../../types";
+import { Size } from "../../types";
 
 type CurrencySymbol = "$" | "€" | "£" | "¥" | "₹" | "₩" | "R$" | string;
 
@@ -50,16 +50,13 @@ export default function CurrencyInput({
   const { theme } = useTheme();
   const { colors, spacing, radius, fontSizes } = theme;
 
-  const sizeStyles: Record<SizeToken, ViewStyle> = {
+  const sizeStyles: Record<Size, ViewStyle> = {
     sm: { paddingVertical: spacing.sm, paddingHorizontal: spacing.md },
     md: { paddingVertical: spacing.md, paddingHorizontal: spacing.lg },
     lg: { paddingVertical: spacing.lg, paddingHorizontal: spacing.xl },
   };
 
-  const inputSize =
-    typeof size === "number"
-      ? { paddingVertical: size, paddingHorizontal: size }
-      : sizeStyles[size] ?? sizeStyles.md;
+  const inputSize = sizeStyles[size];
 
   const [displayValue, setDisplayValue] = useState(
     value > 0 ? value.toFixed(decimals) : ""
