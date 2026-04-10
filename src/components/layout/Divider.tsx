@@ -17,18 +17,14 @@ export default function Divider({
   vertical = false,
   thickness = 1,
   color,
-  inset = 0,
-  margin = 0,
+  inset = "none",
+  margin = "none",
   style,
   testID,
 }: Props) {
   const { theme } = useTheme();
-
-  const resolveSpace = (v: Spacing) =>
-    typeof v === "number" ? v : theme.spacing[v] ?? theme.spacing.md;
-
-  const insetValue = resolveSpace(inset);
-  const marginValue = resolveSpace(margin);
+  const insetValue = theme.spacing[inset] ?? theme.spacing.md;
+  const marginValue = theme.spacing[margin] ?? theme.spacing.md;
 
   const base: ViewStyle = vertical
     ? {
