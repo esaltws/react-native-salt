@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { useTheme } from "../../theme/ThemeContext";
 import Text from "../typography/Text";
-import { SizeToken } from "../../types";
+import { Size } from "../../types";
 
 const HEIGHT_MAP = { sm: 36, md: 44, lg: 52 };
 
@@ -23,7 +23,7 @@ type Props = {
   items: TabItem[];
   selected: string;
   onSelect: (key: string) => void;
-  size?: SizeToken;
+  size?: Size;
   scrollable?: boolean;
   style?: StyleProp<ViewStyle>;
   testID?: string;
