@@ -137,7 +137,7 @@ export default function Modal({
                   <Button
                     title={cancelText}
                     variant="outline"
-                    action="secondary"
+                    intent="secondary"
                     onPress={handleCancel}
                     fullWidth
                   />
@@ -148,7 +148,7 @@ export default function Modal({
                   <Button
                     title={confirmText}
                     variant="solid"
-                    action={destructive ? "danger" : "primary"}
+                    intent={destructive ? "danger" : "primary"}
                     onPress={handleConfirm}
                     fullWidth
                   />

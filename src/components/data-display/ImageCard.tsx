@@ -67,7 +67,7 @@ export default function ImageCard({
           />
           {badge ? (
             <View style={[styles.badge, { top: spacing.sm, left: spacing.sm }]}>
-              <Badge label={badge} action="danger" size="sm" />
+              <Badge label={badge} intent="danger" size="sm" />
             </View>
           ) : null}
         </View>

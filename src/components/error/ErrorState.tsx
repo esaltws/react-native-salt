@@ -33,7 +33,7 @@ export default function ErrorState({
           {description}
         </Text>
         {onRetry ? (
-          <Button title="Retry" action="danger" variant="outline" onPress={onRetry} />
+          <Button title="Retry" intent="danger" variant="outline" onPress={onRetry} />
         ) : null}
       </Stack>
     </View>

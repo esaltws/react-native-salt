@@ -48,7 +48,7 @@ export default function AvatarGroup({
         >
           <Avatar
             name={item.name}
-            source={item.source}
+            uri={item.source?.uri}
             size={size}
           />
         </View>

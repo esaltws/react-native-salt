@@ -123,7 +123,7 @@ export default function Leaderboard({
             {/* Avatar */}
             <Avatar
               name={item.name}
-              source={item.avatar ? { uri: item.avatar } : undefined}
+              uri={item.avatar}
               size={36}
             />
 

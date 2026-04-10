@@ -230,7 +230,7 @@ export default function Drawer({
 
 const styles = StyleSheet.create({
   backdrop: {
-    ...StyleSheet.absoluteFillObject,
+    ...(StyleSheet.absoluteFill as object),
     backgroundColor: "rgba(0,0,0,0.4)",
   },
   drawer: {

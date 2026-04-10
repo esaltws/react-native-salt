@@ -58,7 +58,7 @@ export default function Checkbox({
           {
             width: boxSize,
             height: boxSize,
-            borderRadius: radius.xs,
+            borderRadius: radius.sm,
             borderWidth: 2,
             borderColor: checked ? colors.primary : colors.border,
             backgroundColor: checked ? colors.primary : "transparent",

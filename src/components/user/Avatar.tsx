@@ -10,7 +10,7 @@ type StatusType = "online" | "offline" | "idle";
 type Props = {
   uri?: string | null;
   name?: string;
-  size?: SizeToken;
+  size?: SizeToken | number;
   status?: StatusType;
   style?: StyleProp<ViewStyle>;
   testID?: string;
@@ -56,8 +56,8 @@ export default function Avatar({
     lg: fontSizes.xxl,
   };
 
-  const dimension = sizeValues[size];
-  const fontSize = fontSizeMap[size];
+  const dimension = typeof size === "number" ? size : sizeValues[size];
+  const fontSize = typeof size === "number" ? size * 0.4 : fontSizeMap[size];
   const initials = getInitials(name);
   const bgColor = name ? hashColor(name) : colors.muted;
 

@@ -160,7 +160,7 @@ export default function Confetti({
 
 const styles = StyleSheet.create({
   container: {
-    ...StyleSheet.absoluteFillObject,
+    ...(StyleSheet.absoluteFill as object),
     zIndex: 999,
     overflow: "hidden",
   },

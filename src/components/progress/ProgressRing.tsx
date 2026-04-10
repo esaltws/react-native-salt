@@ -47,7 +47,7 @@ export default function ProgressRing({
         {/* Track circle */}
         <View
           style={[
-            StyleSheet.absoluteFillObject,
+            StyleSheet.absoluteFill,
             {
               borderRadius: half,
               borderWidth: sw,
@@ -77,7 +77,7 @@ export default function ProgressRing({
         })}
 
         {/* Center label */}
-        <View style={[StyleSheet.absoluteFillObject, styles.center]}>
+        <View style={[StyleSheet.absoluteFill, styles.center]}>
           {label ? (
             <Text
               style={{

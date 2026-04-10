@@ -39,7 +39,7 @@ export default function Snackbar({
   const { theme } = useTheme();
   const { colors, spacing, radius, fontSizes } = theme;
   const slideAnim = useRef(new Animated.Value(0)).current;
-  const timerRef = useRef<ReturnType<typeof setTimeout>>();
+  const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   useEffect(() => {
     if (visible) {

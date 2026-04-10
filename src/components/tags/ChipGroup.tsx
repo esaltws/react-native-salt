@@ -44,7 +44,7 @@ export default function ChipGroup({
         <Pressable onPress={() => onSelect(null)} accessibilityRole="button" accessibilityState={{ selected: selected === null }}>
           <Badge
             label={allLabel}
-            action="secondary"
+            intent="secondary"
             variant={selected === null ? "solid" : "outline"}
             size={size}
           />
@@ -54,7 +54,7 @@ export default function ChipGroup({
         <Pressable key={item.key} onPress={() => onSelect(item.key)} accessibilityRole="button" accessibilityState={{ selected: selected === item.key }}>
           <Badge
             label={item.label}
-            action="primary"
+            intent="primary"
             variant={selected === item.key ? "solid" : "outline"}
             size={size}
           />

@@ -66,7 +66,7 @@ export default function Screen({
     >
       {statusBarStyle ? (
         <StatusBar
-          barStyle={statusBarStyle === "default" ? "default" : `${statusBarStyle}-content`}
+          barStyle={statusBarStyle === "default" ? "default" : statusBarStyle === "light" ? "light-content" : "dark-content"}
         />
       ) : null}
       {content}

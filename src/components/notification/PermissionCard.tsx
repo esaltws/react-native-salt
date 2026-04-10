@@ -175,7 +175,7 @@ export default function PermissionCard({
                 <Button
                   title={resolvedActionText}
                   variant={isGranted ? "outline" : "solid"}
-                  action={isGranted ? "success" : "primary"}
+                  intent={isGranted ? "success" : "primary"}
                   size="sm"
                   onPress={onActionPress}
                   disabled={isActionDisabled}

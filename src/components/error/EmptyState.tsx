@@ -38,7 +38,7 @@ export default function EmptyState({
         ) : null}
 
         {(primaryAction || secondaryAction) ? (
-          <Stack direction="column" gap="sm" wrap justify="center">
+          <Stack direction="vertical" gap="sm" wrap justify="center">
             {primaryAction ? (
               <Button title={primaryAction.title} onPress={primaryAction.onPress} />
             ) : null}
@@ -46,7 +46,7 @@ export default function EmptyState({
               <Button
                 title={secondaryAction.title}
                 variant="outline"
-                action="secondary"
+                intent="secondary"
                 onPress={secondaryAction.onPress}
               />
             ) : null}
