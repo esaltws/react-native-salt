@@ -31,7 +31,7 @@ export default function Display({
   const sizeMap = {
     sm: fontSizes.xxl,
     md: fontSizes["3xl"],
-    lg: 40,
+    lg: fontSizes["4xl"],
   };
 
   return (

@@ -29,7 +29,7 @@ export default function Caption({
   const { colors, fontSizes } = theme;
 
   const sizeMap = {
-    sm: 10,
+    sm: fontSizes.xxs,
     md: fontSizes.xs,
     lg: fontSizes.sm,
   };
