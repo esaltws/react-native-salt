@@ -35,7 +35,7 @@ export default function BottomSheet({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, sizeMap } = theme;
 
   const screenHeight = Dimensions.get("window").height;
   const sheetHeight = customHeight ?? screenHeight * 0.5;
@@ -106,11 +106,11 @@ export default function BottomSheet({
         >
           <Pressable onPress={(e) => e.stopPropagation()}>
             {/* Drag handle */}
-            <View style={styles.handleRow} accessibilityLabel="Drag handle, swipe down to close">
+            <View style={[styles.handleRow, { paddingVertical: spacing.md }]} accessibilityLabel="Drag handle, swipe down to close">
               <View
                 style={[
                   styles.handle,
-                  { backgroundColor: colors.border },
+                  { backgroundColor: colors.border, width: sizeMap.sm, height: spacing.xs },
                 ]}
               />
             </View>
@@ -152,11 +152,8 @@ const styles = StyleSheet.create({
   },
   handleRow: {
     alignItems: "center",
-    paddingVertical: 10,
   },
   handle: {
-    width: 36,
-    height: 4,
     borderRadius: 2,
   },
 });

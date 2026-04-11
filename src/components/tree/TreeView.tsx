@@ -48,7 +48,7 @@ function TreeNodeItem({
   indentWidth: number;
 }) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes } = theme;
 
   const hasChildren = node.children && node.children.length > 0;
   const isExpanded = expandedKeys.has(node.key);
@@ -80,7 +80,7 @@ function TreeNodeItem({
         ]}
       >
         {/* Expand/collapse icon */}
-        <View style={{ width: 24, alignItems: "center" }}>
+        <View style={{ width: spacing.xxl, alignItems: "center" }}>
           {hasChildren ? (
             <Icon
               name={
@@ -88,11 +88,11 @@ function TreeNodeItem({
                   ? "chevron-down-outline"
                   : "chevron-forward-outline"
               }
-              size={16}
+              size={iconSizes.xs}
               color={colors.muted}
             />
           ) : (
-            <View style={{ width: 16 }} />
+            <View style={{ width: spacing.lg }} />
           )}
         </View>
 
@@ -100,7 +100,7 @@ function TreeNodeItem({
         {node.icon && (
           <Icon
             name={node.icon}
-            size={18}
+            size={iconSizes.sm}
             color={isSelected ? colors.primary : colors.text}
             style={{ marginRight: spacing.sm }}
           />

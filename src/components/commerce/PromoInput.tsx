@@ -40,7 +40,7 @@ export default function PromoInput({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes } = theme;
 
   const isLoading = status === "loading";
   const isDisabled = disabled || isLoading || !value.trim();
@@ -98,12 +98,12 @@ export default function PromoInput({
 
       {status === "success" && (
         <View style={[styles.feedback, { marginTop: spacing.xs }]}>
-          <Icon name="checkmark-circle" size={14} color={colors.success} />
+          <Icon name="checkmark-circle" size={iconSizes.xs} color={colors.success} />
           <Text
             style={{
               color: colors.success,
               fontSize: fontSizes.xs,
-              marginLeft: 4,
+              marginLeft: spacing.xs,
             }}
           >
             {successMessage}
@@ -113,12 +113,12 @@ export default function PromoInput({
 
       {status === "error" && (
         <View style={[styles.feedback, { marginTop: spacing.xs }]}>
-          <Icon name="close-circle" size={14} color={colors.danger} />
+          <Icon name="close-circle" size={iconSizes.xs} color={colors.danger} />
           <Text
             style={{
               color: colors.danger,
               fontSize: fontSizes.xs,
-              marginLeft: 4,
+              marginLeft: spacing.xs,
             }}
           >
             {errorMessage}

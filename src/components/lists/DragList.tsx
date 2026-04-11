@@ -37,7 +37,7 @@ export default function DragList({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes } = theme;
   const [draggingIndex, setDraggingIndex] = useState<number | null>(null);
 
   const moveItem = (fromIndex: number, direction: "up" | "down") => {
@@ -58,31 +58,31 @@ export default function DragList({
         const isLast = index === items.length - 1;
 
         const handle = (
-          <View style={styles.handleArea}>
+          <View style={[styles.handleArea, { marginHorizontal: spacing.sm }]}>
             <Pressable
               onPress={() => moveItem(index, "up")}
               disabled={isFirst}
-              hitSlop={4}
-              style={{ opacity: isFirst ? 0.2 : 1, padding: 4 }}
+              hitSlop={spacing.xs}
+              style={{ opacity: isFirst ? 0.2 : 1, padding: spacing.xs }}
               accessibilityRole="button"
               accessibilityLabel={`Move ${item.label} up`}
               accessibilityState={{ disabled: isFirst }}
             >
-              <Icon name="chevron-up-outline" size={18} color={colors.muted} />
+              <Icon name="chevron-up-outline" size={iconSizes.sm} color={colors.muted} />
             </Pressable>
-            <Icon name="reorder-three-outline" size={20} color={colors.muted} />
+            <Icon name="reorder-three-outline" size={iconSizes.sm} color={colors.muted} />
             <Pressable
               onPress={() => moveItem(index, "down")}
               disabled={isLast}
-              hitSlop={4}
-              style={{ opacity: isLast ? 0.2 : 1, padding: 4 }}
+              hitSlop={spacing.xs}
+              style={{ opacity: isLast ? 0.2 : 1, padding: spacing.xs }}
               accessibilityRole="button"
               accessibilityLabel={`Move ${item.label} down`}
               accessibilityState={{ disabled: isLast }}
             >
               <Icon
                 name="chevron-down-outline"
-                size={18}
+                size={iconSizes.sm}
                 color={colors.muted}
               />
             </Pressable>
@@ -96,7 +96,7 @@ export default function DragList({
             {item.icon && (
               <Icon
                 name={item.icon}
-                size={20}
+                size={iconSizes.sm}
                 color={colors.text}
                 style={{ marginRight: spacing.sm }}
               />
@@ -146,7 +146,6 @@ const styles = StyleSheet.create({
   handleArea: {
     alignItems: "center",
     justifyContent: "center",
-    marginHorizontal: 8,
   },
   defaultContent: {
     flexDirection: "row",

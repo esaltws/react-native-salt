@@ -39,7 +39,7 @@ export default function FloatingToolbar({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes, dimensions } = theme;
 
   const positionStyle: ViewStyle =
     position === "top"
@@ -93,19 +93,21 @@ export default function FloatingToolbar({
                     : "transparent",
                   borderRadius: radius.md,
                   padding: spacing.sm,
+                  minWidth: dimensions.md,
+                  minHeight: dimensions.md,
                   opacity: item.disabled ? 0.4 : 1,
                 },
               ]}
             >
               <Icon
                 name={item.icon}
-                size={20}
+                size={iconSizes.sm}
                 color={isActive ? colors.primary : colors.text}
               />
               {item.label && (
                 <Text
                   style={{
-                    fontSize: 10,
+                    fontSize: fontSizes.xxs,
                     color: isActive ? colors.primary : colors.muted,
                     marginTop: 2,
                   }}
@@ -137,7 +139,5 @@ const styles = StyleSheet.create({
   item: {
     alignItems: "center",
     justifyContent: "center",
-    minWidth: 40,
-    minHeight: 40,
   },
 });

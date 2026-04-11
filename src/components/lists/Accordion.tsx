@@ -48,7 +48,7 @@ export default function Accordion({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes } = theme;
   const [internalKeys, setInternalKeys] = useState<string[]>([]);
 
   const expanded = controlledKeys ?? internalKeys;
@@ -106,7 +106,7 @@ export default function Accordion({
               {item.icon && (
                 <Icon
                   name={item.icon}
-                  size={18}
+                  size={iconSizes.sm}
                   color={isOpen ? colors.primary : colors.muted}
                   style={{ marginRight: spacing.sm }}
                 />
@@ -123,7 +123,7 @@ export default function Accordion({
               </Text>
               <Icon
                 name={isOpen ? "chevron-up-outline" : "chevron-down-outline"}
-                size={18}
+                size={iconSizes.sm}
                 color={isOpen ? colors.primary : colors.muted}
               />
             </Pressable>

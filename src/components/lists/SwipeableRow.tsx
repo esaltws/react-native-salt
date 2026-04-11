@@ -42,7 +42,7 @@ export default function SwipeableRow({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors } = theme;
+  const { colors, spacing, radius, iconSizes } = theme;
   const translateX = useRef(new Animated.Value(0)).current;
   const lastOffset = useRef(0);
 
@@ -101,7 +101,7 @@ export default function SwipeableRow({
         side === "left"
           ? { left: 0 }
           : { right: 0 },
-        { flexDirection: "row" },
+        { flexDirection: "row", borderRadius: radius.lg },
       ]}
     >
       {actions.map((action) => (
@@ -121,14 +121,14 @@ export default function SwipeableRow({
             },
           ]}
         >
-          <Icon name={action.icon} size={22} color={colors.surface} />
+          <Icon name={action.icon} size={iconSizes.md} color={colors.surface} />
           {action.label && (
             <Label
               fontSize="sm"
               style={{
                 color: colors.surface,
                 fontWeight: "600",
-                marginTop: 4,
+                marginTop: spacing.xs,
               }}
             >
               {action.label}
@@ -170,7 +170,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 0,
     bottom: 0,
-    borderRadius: 12,
     overflow: "hidden",
   },
   actionBtn: {

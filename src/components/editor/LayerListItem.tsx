@@ -40,7 +40,7 @@ export default function LayerListItem({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes, dimensions } = theme;
 
   return (
     <Pressable
@@ -64,8 +64,8 @@ export default function LayerListItem({
     >
       {/* Drag handle */}
       {onDragStart && (
-        <Pressable onLongPress={onDragStart} style={styles.dragHandle}>
-          <Icon name="reorder-three-outline" size={16} color={colors.muted} />
+        <Pressable onLongPress={onDragStart} style={[styles.dragHandle, { marginRight: spacing.sm }]}>
+          <Icon name="reorder-three-outline" size={iconSizes.xs} color={colors.muted} />
         </Pressable>
       )}
 
@@ -75,6 +75,8 @@ export default function LayerListItem({
           style={[
             styles.thumb,
             {
+              width: dimensions.xs,
+              height: dimensions.xs,
               borderRadius: radius.sm,
               borderWidth: 1,
               borderColor: colors.border,
@@ -87,7 +89,7 @@ export default function LayerListItem({
       ) : icon ? (
         <Icon
           name={icon}
-          size={16}
+          size={iconSizes.xs}
           color={selected ? colors.primary : colors.muted}
         />
       ) : null}
@@ -107,21 +109,21 @@ export default function LayerListItem({
       </Text>
 
       {/* Actions */}
-      <View style={styles.actions}>
+      <View style={[styles.actions, { gap: spacing.xs }]}>
         {onToggleLock && (
-          <Pressable onPress={onToggleLock} style={styles.actionBtn}>
+          <Pressable onPress={onToggleLock} style={[styles.actionBtn, { padding: spacing.xs }]}>
             <Icon
               name={locked ? "lock-closed-outline" : "lock-open-outline"}
-              size={14}
+              size={iconSizes.xs}
               color={locked ? colors.warning : colors.muted}
             />
           </Pressable>
         )}
         {onToggleVisibility && (
-          <Pressable onPress={onToggleVisibility} style={styles.actionBtn}>
+          <Pressable onPress={onToggleVisibility} style={[styles.actionBtn, { padding: spacing.xs }]}>
             <Icon
               name={visible ? "eye-outline" : "eye-off-outline"}
-              size={14}
+              size={iconSizes.xs}
               color={colors.muted}
             />
           </Pressable>
@@ -137,18 +139,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   dragHandle: {
-    marginRight: 6,
     padding: 2,
   },
-  thumb: {
-    width: 28,
-    height: 28,
-  },
+  thumb: {},
   actions: {
     flexDirection: "row",
-    gap: 4,
   },
-  actionBtn: {
-    padding: 4,
-  },
+  actionBtn: {},
 });
