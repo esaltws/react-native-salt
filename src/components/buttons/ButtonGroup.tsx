@@ -3,7 +3,7 @@ import { View, Pressable, StyleSheet, StyleProp, ViewStyle } from "react-native"
 import { useTheme } from "../../theme/ThemeContext";
 import Text from "../typography/Text";
 import Icon from "../theme-settings/Icon";
-import { Intent, Size } from "../../types";
+import { Intent, Size, FontSize, IconSize } from "../../types";
 
 type ButtonItem = {
   key: string;
@@ -24,10 +24,11 @@ type Props = {
   testID?: string;
 };
 
-const SIZE_MAP = {
-  sm: { py: 6, px: 10, font: 12, icon: 14 },
-  md: { py: 8, px: 14, font: 14, icon: 18 },
-  lg: { py: 12, px: 18, font: 16, icon: 22 },
+// Compact components use one token step below the size prop
+const COMPACT_MAP: Record<Size, { py: "xs" | "sm" | "md"; px: "sm" | "md" | "lg"; font: FontSize; icon: IconSize }> = {
+  sm: { py: "xs", px: "sm", font: "xs", icon: "xs" },
+  md: { py: "sm", px: "md", font: "sm", icon: "sm" },
+  lg: { py: "md", px: "lg", font: "md", icon: "md" },
 };
 
 export default function ButtonGroup({
@@ -42,9 +43,9 @@ export default function ButtonGroup({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, radius } = theme;
-  const s = SIZE_MAP[size];
-  const accentColor = (colors as any)[intent] || colors.primary;
+  const { colors, radius, spacing, fontSizes, iconSizes } = theme;
+  const s = COMPACT_MAP[size];
+  const accentColor = colors[intent];
 
   const isSelected = (key: string) =>
     Array.isArray(selected) ? selected.includes(key) : selected === key;
@@ -77,8 +78,8 @@ export default function ButtonGroup({
             style={[
               styles.button,
               {
-                paddingVertical: s.py,
-                paddingHorizontal: s.px,
+                paddingVertical: spacing[s.py],
+                paddingHorizontal: spacing[s.px],
                 backgroundColor: active ? accentColor : "transparent",
                 borderRightWidth: index < items.length - 1 ? 1 : 0,
                 borderRightColor: accentColor,
@@ -90,15 +91,15 @@ export default function ButtonGroup({
             {item.icon && (
               <Icon
                 name={item.icon}
-                size={s.icon}
+                size={iconSizes[s.icon]}
                 color={active ? colors.onPrimary : accentColor}
-                style={item.label ? { marginRight: 6 } : undefined}
+                style={item.label ? { marginRight: spacing.xs } : undefined}
               />
             )}
             {item.label && (
               <Text
                 style={{
-                  fontSize: s.font,
+                  fontSize: fontSizes[s.font],
                   fontWeight: "600",
                   color: active ? colors.onPrimary : accentColor,
                 }}
