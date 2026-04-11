@@ -42,9 +42,11 @@ export default function NotificationItem({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes, dimensions } = theme;
 
-  const accentColor = (colors as any)[intent] || colors.primary;
+  const accentColor = colors[intent];
+  const circleSize = dimensions.md;
+  const iconSize = iconSizes.md;
 
   return (
     <Pressable
@@ -87,28 +89,28 @@ export default function NotificationItem({
             style={[
               styles.iconCircle,
               {
-                width: 40,
-                height: 40,
-                borderRadius: 20,
+                width: circleSize,
+                height: circleSize,
+                borderRadius: circleSize / 2,
                 backgroundColor: `${accentColor}18`,
               },
             ]}
           >
-            <Icon name={icon} size={20} color={accentColor} />
+            <Icon name={icon} size={iconSize} color={accentColor} />
           </View>
         ) : (
           <View
             style={[
               styles.iconCircle,
               {
-                width: 40,
-                height: 40,
-                borderRadius: 20,
+                width: circleSize,
+                height: circleSize,
+                borderRadius: circleSize / 2,
                 backgroundColor: `${accentColor}18`,
               },
             ]}
           >
-            <Icon name="notifications-outline" size={20} color={accentColor} />
+            <Icon name="notifications-outline" size={iconSize} color={accentColor} />
           </View>
         )}
       </View>
@@ -150,7 +152,7 @@ export default function NotificationItem({
       {/* Dismiss */}
       {onDismiss && (
         <Pressable onPress={onDismiss} hitSlop={8} style={{ padding: 4 }}>
-          <Icon name="close" size={16} color={colors.muted} />
+          <Icon name="close" size={iconSizes.sm} color={colors.muted} />
         </Pressable>
       )}
     </Pressable>
