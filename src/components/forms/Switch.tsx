@@ -9,9 +9,6 @@ import {
 import { useTheme } from "../../theme/ThemeContext";
 import { Size } from "../../types";
 
-const SIZE_MAP = { sm: 40, md: 48, lg: 56 };
-const THUMB_MAP = { sm: 18, md: 22, lg: 26 };
-
 type Props = {
   value: boolean;
   onValueChange: (value: boolean) => void;
@@ -30,11 +27,11 @@ export default function Switch({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, radius } = theme;
+  const { colors, radius, sizeMap, iconSizes } = theme;
 
-  const trackWidth = SIZE_MAP[size];
+  const trackWidth = sizeMap[size];
   const trackHeight = trackWidth * 0.55;
-  const thumbSize = THUMB_MAP[size];
+  const thumbSize = iconSizes[size];
   const padding = (trackHeight - thumbSize) / 2;
   const translateEnd = trackWidth - thumbSize - padding * 2;
 
