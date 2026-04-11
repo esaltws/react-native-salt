@@ -38,7 +38,7 @@ describe('Column', () => {
 
   it('resolves raw number for gap', () => {
     const { getByTestId } = renderWithTheme(
-      <Column testID="column" gap={50}>
+      <Column testID="column" gap={'xxl'}>
         <Text>A</Text>
         <Text>B</Text>
       </Column>
@@ -48,7 +48,7 @@ describe('Column', () => {
     const flatStyle = Array.isArray(column.props.style)
       ? Object.assign({}, ...column.props.style.filter(Boolean))
       : column.props.style;
-    expect(flatStyle.gap).toBe(50);
+    expect(flatStyle.gap).toBe(32);
   });
 
   it('applies flex: 1 when fill is true', () => {
