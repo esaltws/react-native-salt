@@ -10,7 +10,7 @@ import {
 import { useTheme } from "../../theme/ThemeContext";
 import Text from "../typography/Text";
 import Icon from "../theme-settings/Icon";
-import { Size } from "../../types";
+import { Size, FontSize, IconSize, SizeMap } from "../../types";
 
 type Props = {
   value: number;
@@ -29,10 +29,10 @@ type Props = {
   testID?: string;
 };
 
-const SIZE_MAP = {
-  sm: { height: 32, font: 13, icon: 16, btn: 28 },
-  md: { height: 40, font: 15, icon: 20, btn: 36 },
-  lg: { height: 48, font: 17, icon: 24, btn: 44 },
+const COMPACT_MAP: Record<Size, { font: FontSize; icon: IconSize; btn: SizeMap }> = {
+  sm: { font: "xs", icon: "xs", btn: "xs" },
+  md: { font: "sm", icon: "sm", btn: "sm" },
+  lg: { font: "md", icon: "md", btn: "md" },
 };
 
 export default function NumericInput({
@@ -52,8 +52,8 @@ export default function NumericInput({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
-  const s = SIZE_MAP[size];
+  const { colors, spacing, radius, fontSizes, iconSizes, sizeMap } = theme;
+  const s = COMPACT_MAP[size];
 
   const canDecrement = value - step >= min;
   const canIncrement = value + step <= max;
