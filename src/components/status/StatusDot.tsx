@@ -33,7 +33,7 @@ export default function StatusDot({
     lg: spacing.lg,
   };
 
-  const dimension = sizeValues[size];
+  const dimension = sizeValues[size] > 14 ? 14 : sizeValues[size] ; // default to 8px if spacing is not defined
 
   return (
     <View
