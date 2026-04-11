@@ -24,8 +24,6 @@ type Props = {
 };
 
 
-const ICON_SIZES: Record<Size, number> = { sm: 16, md: 20, lg: 24 };
-
 export default function Button({
     title,
     onPress,
@@ -43,7 +41,7 @@ export default function Button({
     testID,
 }: Props) {
     const { theme } = useTheme();
-    const { colors, spacing, radius } = theme;
+    const { colors, spacing, radius, iconSizes } = theme;
 
     const isIconOnly = !!icon && !title;
 
@@ -115,12 +113,12 @@ export default function Button({
             color={iconColor}
           />
         ) : isIconOnly ? (
-          <Icon name={icon} size={ICON_SIZES[size]} color={iconColor} />
+          <Icon name={icon} size={iconSizes[size]} color={iconColor} />
         ) : (
           <>
-            {iconLeft && <Icon name={iconLeft} size={ICON_SIZES[size]} color={iconColor} style={{ marginRight: spacing.xs }} />}
+            {iconLeft && <Icon name={iconLeft} size={iconSizes[size]} color={iconColor} style={{ marginRight: spacing.xs }} />}
             {title && <Text style={labelStyles}>{title}</Text>}
-            {iconRight && <Icon name={iconRight} size={ICON_SIZES[size]} color={iconColor} style={{ marginLeft: spacing.xs }} />}
+            {iconRight && <Icon name={iconRight} size={iconSizes[size]} color={iconColor} style={{ marginLeft: spacing.xs }} />}
           </>
         )}
       </Pressable>
