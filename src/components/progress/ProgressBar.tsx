@@ -19,15 +19,6 @@ type Props = {
   testID?: string;
 };
 
-const INTENT_COLORS: Record<Intent, string> = {
-  primary: "primary",
-  secondary: "muted",
-  danger: "danger",
-  success: "success",
-  warning: "warning",
-  info: "info",
-};
-
 export default function ProgressBar({
   progress,
   intent = "primary",
@@ -37,11 +28,11 @@ export default function ProgressBar({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, radius } = theme;
+  const { colors } = theme;
 
   const clampedProgress = Math.min(1, Math.max(0, progress));
   const height = HEIGHT_MAP[size];
-  const barColor = (colors as any)[INTENT_COLORS[intent]] || colors.primary;
+  const barColor = colors[intent];
 
   const anim = useRef(new Animated.Value(0)).current;
 
