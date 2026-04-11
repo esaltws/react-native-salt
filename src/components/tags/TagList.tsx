@@ -3,7 +3,7 @@ import { View, Pressable, StyleSheet, StyleProp, ViewStyle } from "react-native"
 import { useTheme } from "../../theme/ThemeContext";
 import Text from "../typography/Text";
 import Icon from "../theme-settings/Icon";
-import { Intent, Size } from "../../types";
+import { Intent, Size, FontSize } from "../../types";
 
 type TagItem = {
   key: string;
@@ -23,10 +23,11 @@ type Props = {
   testID?: string;
 };
 
-const SIZE_MAP = {
-  sm: { py: 2, px: 8, font: 11, icon: 12, gap: 4 },
-  md: { py: 4, px: 10, font: 13, icon: 14, gap: 6 },
-  lg: { py: 6, px: 14, font: 15, icon: 16, gap: 8 },
+// Tags are extra compact — py stays as small hardcoded values
+const COMPACT_MAP: Record<Size, { py: number; px: "sm" | "md" | "lg"; font: FontSize }> = {
+  sm: { py: 2, px: "sm", font: "xs" },
+  md: { py: 4, px: "md", font: "sm" },
+  lg: { py: 6, px: "lg", font: "md" },
 };
 
 export default function TagList({
@@ -40,12 +41,12 @@ export default function TagList({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius } = theme;
-  const s = SIZE_MAP[size];
+  const { colors, spacing, radius, fontSizes } = theme;
+  const s = COMPACT_MAP[size];
 
   const getTagColor = (tag: TagItem) => {
     if (tag.color) return tag.color;
-    if (tag.intent) return (colors as any)[tag.intent] || colors.primary;
+    if (tag.intent) return colors[tag.intent];
     return colors.primary;
   };
 
