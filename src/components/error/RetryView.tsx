@@ -29,7 +29,7 @@ export default function RetryView({
   if (loading) {
     return (
       <View testID={testID} style={[styles.centered, style]}>
-        <Loader size="large" label={loadingLabel} />
+        <Loader size="lg" label={loadingLabel} />
       </View>
     );
   }

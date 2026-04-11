@@ -7,6 +7,7 @@
 [![npm](https://img.shields.io/npm/v/@esaltws/react-native-salt)](https://www.npmjs.com/package/@esaltws/react-native-salt)
 [![license](https://img.shields.io/npm/l/@esaltws/react-native-salt)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue)](https://www.typescriptlang.org/)
+[![salt-theme-gen](https://img.shields.io/npm/v/salt-theme-gen?label=salt-theme-gen%20%E2%80%93%20OKLCH%20color%20themes)](https://www.npmjs.com/package/salt-theme-gen)
 
 ---
 
