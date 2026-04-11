@@ -36,6 +36,8 @@ export type Theme = {
     radius: { none: number; sm: number; md: number; lg: number; xl: number; xxl: number; pill: number };
     fontSizes: { xs: number; sm: number; md: number; lg: number; xl: number; xxl: number; "3xl": number };
     iconSizes: { xs: number; sm: number; md: number; lg: number; xl: number; xxl: number; "3xl": number };
+    sizeMap: { xs: number; sm: number; md: number; lg: number; xl: number; xxl: number; "3xl": number };
+    dimensions: { xs: number; sm: number; md: number; lg: number; xl: number; xxl: number; "3xl": number };
     fontLevel: FontLevel;
 };
 
@@ -44,6 +46,9 @@ export type Theme = {
 export type Spacing = keyof Theme["spacing"];
 export type Radius = keyof Theme["radius"];
 export type FontSize = keyof Theme["fontSizes"];
+export type IconSize = keyof Theme["iconSizes"];
+export type SizeMap = keyof Theme["sizeMap"];
+export type Dimension = keyof Theme["dimensions"];
 export type ColorToken = keyof ThemeColors;
 export type Size = "sm" | "md" | "lg";
 
