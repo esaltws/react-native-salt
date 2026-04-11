@@ -33,6 +33,7 @@ export default function ListItem({
   testID,
 }: Props) {
   const { theme } = useTheme();
+  const { colors, spacing, radius } = theme;
   const isPressable = !!onPress && !disabled;
 
   return (
@@ -45,14 +46,17 @@ export default function ListItem({
       style={[
         styles.container,
         {
-          borderColor: theme.colors.border,
-          backgroundColor: theme.colors.surface,
+          borderColor: colors.border,
+          backgroundColor: colors.surface,
+          borderRadius: radius.lg,
+          paddingVertical: spacing.md,
+          paddingHorizontal: spacing.md,
           opacity: disabled ? 0.6 : 1,
         },
         style,
       ]}
     >
-      {left ? <View style={styles.left}>{left}</View> : null}
+      {left ? <View style={[styles.left, { marginRight: spacing.md }]}>{left}</View> : null}
 
       <View style={styles.center}>
         <Stack gap="xs">
@@ -63,7 +67,7 @@ export default function ListItem({
         </Stack>
       </View>
 
-      {right ? <View style={styles.right}>{right}</View> : null}
+      {right ? <View style={[styles.right, { marginLeft: spacing.md }]}>{right}</View> : null}
     </Pressable>
   );
 }
@@ -71,13 +75,10 @@ export default function ListItem({
 const styles = StyleSheet.create({
   container: {
     borderWidth: 1,
-    borderRadius: 12,
-    paddingVertical: 12,
-    paddingHorizontal: 12,
     flexDirection: "row",
     alignItems: "center",
   },
-  left: { marginRight: 12 },
+  left: {},
   center: { flex: 1 },
-  right: { marginLeft: 12 },
+  right: {},
 });

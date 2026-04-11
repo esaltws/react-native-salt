@@ -26,7 +26,7 @@ export default function SortHeader({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, fontSizes } = theme;
+  const { colors, spacing, fontSizes, iconSizes } = theme;
 
   const iconName =
     direction === "asc"
@@ -65,10 +65,10 @@ export default function SortHeader({
       >
         {label}
       </Text>
-      <View style={{ marginLeft: 4 }}>
+      <View style={{ marginLeft: spacing.xs }}>
         <Icon
           name={iconName}
-          size={12}
+          size={iconSizes.xs}
           color={active ? colors.primary : colors.muted}
         />
       </View>

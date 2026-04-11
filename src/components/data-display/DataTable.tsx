@@ -59,7 +59,7 @@ export default function DataTable<T extends Record<string, any>>({
   testID,
 }: Props<T>) {
   const { theme } = useTheme();
-  const { colors, spacing, fontSizes, radius } = theme;
+  const { colors, spacing, fontSizes, radius, iconSizes } = theme;
 
   const py = compact ? spacing.xs : spacing.md;
   const px = compact ? spacing.sm : spacing.md;
@@ -122,7 +122,7 @@ export default function DataTable<T extends Record<string, any>>({
               disabled={!col.sortable}
               style={[styles.cell, getColStyle(col)]}
             >
-              <View style={styles.headerContent}>
+              <View style={[styles.headerContent, { gap: spacing.xs }]}>
                 <Label
                   fontSize="sm"
                   uppercase
@@ -141,7 +141,7 @@ export default function DataTable<T extends Record<string, any>>({
                         ? "chevron-up-outline"
                         : "chevron-down-outline"
                     }
-                    size={12}
+                    size={iconSizes.xs}
                     color={colors.primary}
                   />
                 )}
@@ -218,6 +218,5 @@ const styles = StyleSheet.create({
   headerContent: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 4,
   },
 });

@@ -30,7 +30,7 @@ export default function StatGrid({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes } = theme;
 
   const py = compact ? spacing.sm : spacing.md;
   const gap = spacing.sm;
@@ -74,7 +74,7 @@ export default function StatGrid({
             >
               <Icon
                 name={item.icon}
-                size={compact ? 16 : 20}
+                size={compact ? iconSizes.xs : iconSizes.sm}
                 color={item.color || colors.primary}
               />
             </View>

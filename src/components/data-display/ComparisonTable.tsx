@@ -37,14 +37,14 @@ export default function ComparisonTable({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes } = theme;
 
   const renderValue = (val: FeatureValue) => {
     if (typeof val === "boolean") {
       return val ? (
-        <Icon name="checkmark-circle" size={20} color={colors.success} />
+        <Icon name="checkmark-circle" size={iconSizes.sm} color={colors.success} />
       ) : (
-        <Icon name="close-circle" size={20} color={colors.border} />
+        <Icon name="close-circle" size={iconSizes.sm} color={colors.border} />
       );
     }
     return (
@@ -126,7 +126,7 @@ export default function ComparisonTable({
                     {
                       backgroundColor: colors.primary,
                       borderRadius: radius.sm,
-                      marginTop: 4,
+                      marginTop: spacing.xs,
                       paddingHorizontal: spacing.xs,
                       paddingVertical: 2,
                     },
@@ -134,7 +134,7 @@ export default function ComparisonTable({
                 >
                   <Text
                     style={{
-                      fontSize: 10,
+                      fontSize: fontSizes.xxs,
                       fontWeight: "700",
                       color: colors.onPrimary,
                     }}

@@ -30,7 +30,7 @@ export default function KeyValueList({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes } = theme;
 
   const py = compact ? spacing.sm : spacing.md;
 
@@ -68,7 +68,7 @@ export default function KeyValueList({
             {item.icon && (
               <Icon
                 name={item.icon}
-                size={18}
+                size={iconSizes.sm}
                 color={colors.muted}
                 style={{ marginRight: spacing.sm }}
               />
@@ -106,7 +106,7 @@ export default function KeyValueList({
             {item.onPress && (
               <Icon
                 name="chevron-forward-outline"
-                size={16}
+                size={iconSizes.xs}
                 color={colors.muted}
                 style={{ marginLeft: spacing.xs }}
               />

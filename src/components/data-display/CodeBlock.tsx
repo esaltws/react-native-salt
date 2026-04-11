@@ -62,7 +62,7 @@ export default function CodeBlock({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes } = theme;
   const [copied, setCopied] = useState(false);
 
   const bgColor = colors.background;
@@ -110,11 +110,11 @@ export default function CodeBlock({
           ]}
         >
           {language ? (
-            <View style={styles.langRow}>
+            <View style={[styles.langRow, { gap: spacing.sm }]}>
               <View
                 style={[
                   styles.langDot,
-                  { backgroundColor: langColor },
+                  { backgroundColor: langColor, width: spacing.sm, height: spacing.sm, borderRadius: radius.sm },
                 ]}
               />
               <Text
@@ -137,14 +137,14 @@ export default function CodeBlock({
             <Pressable onPress={handleCopy} style={styles.copyBtn}>
               <Icon
                 name={copied ? "checkmark" : "copy-outline"}
-                size={14}
+                size={iconSizes.xs}
                 color={copied ? colors.success : colors.muted}
               />
               <Text
                 style={{
                   fontSize: fontSizes.xs,
                   color: copied ? colors.success : colors.muted,
-                  marginLeft: 4,
+                  marginLeft: spacing.xs,
                 }}
               >
                 {copied ? "Copied" : "Copy"}
@@ -209,13 +209,8 @@ const styles = StyleSheet.create({
   langRow: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 6,
   },
-  langDot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-  },
+  langDot: {},
   copyBtn: {
     flexDirection: "row",
     alignItems: "center",

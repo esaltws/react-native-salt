@@ -37,12 +37,12 @@ export default function MetricCard({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes } = theme;
 
-  const accentColor = (colors as any)[intent] || colors.primary;
+  const accentColor = colors[intent] || colors.primary;
   const trendConfig = trend ? TREND_CONFIG[trend] : null;
   const trendColor = trendConfig
-    ? (colors as any)[trendConfig.color] || colors.muted
+    ? colors[trendConfig.color as keyof typeof colors] || colors.muted
     : colors.muted;
 
   return (
@@ -72,7 +72,7 @@ export default function MetricCard({
           {title}
         </Text>
         {icon && (
-          <Icon name={icon} size={18} color={accentColor} />
+          <Icon name={icon} size={iconSizes.sm} color={accentColor} />
         )}
       </View>
 
@@ -106,7 +106,7 @@ export default function MetricCard({
             <View style={styles.trendRow}>
               <Icon
                 name={trendConfig.icon}
-                size={14}
+                size={iconSizes.xs}
                 color={trendColor}
               />
               {trendValue && (
@@ -115,7 +115,7 @@ export default function MetricCard({
                     fontSize: fontSizes.xs,
                     color: trendColor,
                     fontWeight: "600",
-                    marginLeft: 4,
+                    marginLeft: spacing.xs,
                   }}
                 >
                   {trendValue}

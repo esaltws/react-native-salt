@@ -31,10 +31,10 @@ export default function Timeline({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes, dimensions } = theme;
 
-  const dotSize = 12;
-  const iconDotSize = 28;
+  const dotSize = spacing.md;
+  const iconDotSize = dimensions.xs;
   const lineWidth = 2;
 
   return (
@@ -42,7 +42,7 @@ export default function Timeline({
       {events.map((event, index) => {
         const isLast = index === events.length - 1;
         const accentColor = event.intent
-          ? (colors as any)[event.intent] || colors.primary
+          ? colors[event.intent] || colors.primary
           : colors.primary;
         const hasIcon = !!event.icon;
         const currentDotSize = hasIcon ? iconDotSize : dotSize;
@@ -82,7 +82,7 @@ export default function Timeline({
               </View>
 
               {/* Center line + dot */}
-              <View style={styles.centerLine}>
+              <View style={[styles.centerLine, { width: dimensions.xs }]}>
                 {hasIcon ? (
                   <View
                     style={{
@@ -94,7 +94,7 @@ export default function Timeline({
                       justifyContent: "center",
                     }}
                   >
-                    <Icon name={event.icon!} size={14} color={accentColor} />
+                    <Icon name={event.icon!} size={iconSizes.xs} color={accentColor} />
                   </View>
                 ) : (
                   <View
@@ -112,7 +112,7 @@ export default function Timeline({
                       width: lineWidth,
                       flex: 1,
                       backgroundColor: colors.border,
-                      marginVertical: 4,
+                      marginVertical: spacing.xs,
                     }}
                   />
                 )}
@@ -229,7 +229,7 @@ export default function Timeline({
                   style={{
                     fontSize: fontSizes.sm,
                     color: colors.muted,
-                    marginTop: 4,
+                    marginTop: spacing.xs,
                   }}
                 >
                   {event.description}
@@ -272,6 +272,5 @@ const styles = StyleSheet.create({
   },
   centerLine: {
     alignItems: "center",
-    width: 28,
   },
 });
