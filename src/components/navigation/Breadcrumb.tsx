@@ -60,14 +60,14 @@ export default function Breadcrumb({
               {item.icon && (
                 <Icon
                   name={item.icon}
-                  size={s.icon}
+                  size={iconSizes[s.icon]}
                   color={isLast ? colors.text : colors.primary}
-                  style={{ marginRight: 4 }}
+                  style={{ marginRight: spacing.xs }}
                 />
               )}
               <Text
                 style={{
-                  fontSize: s.font,
+                  fontSize: fontSizes[s.font],
                   color: isLast ? colors.text : colors.primary,
                   fontWeight: isLast ? "600" : "400",
                 }}
@@ -81,7 +81,7 @@ export default function Breadcrumb({
               separator ? (
                 <Text
                   style={{
-                    fontSize: s.sep,
+                    fontSize: fontSizes[s.sep],
                     color: colors.muted,
                   }}
                 >
@@ -90,7 +90,7 @@ export default function Breadcrumb({
               ) : (
                 <Icon
                   name={separatorIcon}
-                  size={s.sep}
+                  size={fontSizes[s.sep]}
                   color={colors.muted}
                 />
               )

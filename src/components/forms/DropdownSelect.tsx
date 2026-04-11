@@ -90,7 +90,7 @@ export default function DropdownSelect({
     outputRange: ["0deg", "180deg"],
   });
 
-  const itemHeight = s.height + 2;
+  const itemHeight = sizeMap[size] + 2;
   const listHeight = Math.min(options.length, maxVisible) * itemHeight;
 
   return (
@@ -116,8 +116,8 @@ export default function DropdownSelect({
         style={[
           styles.trigger,
           {
-            height: s.height,
-            paddingHorizontal: s.padding,
+            height: sizeMap[size],
+            paddingHorizontal: spacing[s.px],
             backgroundColor: colors.surface,
             borderColor: error
               ? colors.danger
@@ -133,7 +133,7 @@ export default function DropdownSelect({
         {selected?.icon && (
           <Icon
             name={selected.icon}
-            size={s.icon}
+            size={iconSizes[s.icon]}
             color={colors.text}
             style={{ marginRight: spacing.sm }}
           />
@@ -141,7 +141,7 @@ export default function DropdownSelect({
         <Text
           style={{
             flex: 1,
-            fontSize: s.font,
+            fontSize: fontSizes[s.font],
             color: selected ? colors.text : colors.muted,
           }}
           numberOfLines={1}
@@ -149,7 +149,7 @@ export default function DropdownSelect({
           {selected ? selected.label : placeholder}
         </Text>
         <Animated.View style={{ transform: [{ rotate }] }}>
-          <Icon name="chevron-down-outline" size={s.icon} color={colors.muted} />
+          <Icon name="chevron-down-outline" size={iconSizes[s.icon]} color={colors.muted} />
         </Animated.View>
       </Pressable>
 
@@ -185,7 +185,7 @@ export default function DropdownSelect({
                   style={[
                     styles.option,
                     {
-                      paddingHorizontal: s.padding,
+                      paddingHorizontal: spacing[s.px],
                       paddingVertical: spacing.sm,
                       backgroundColor: isSelected
                         ? `${colors.primary}12`
@@ -197,7 +197,7 @@ export default function DropdownSelect({
                   {item.icon && (
                     <Icon
                       name={item.icon}
-                      size={s.icon}
+                      size={iconSizes[s.icon]}
                       color={isSelected ? colors.primary : colors.text}
                       style={{ marginRight: spacing.sm }}
                     />
@@ -205,7 +205,7 @@ export default function DropdownSelect({
                   <View style={{ flex: 1 }}>
                     <Text
                       style={{
-                        fontSize: s.font,
+                        fontSize: fontSizes[s.font],
                         color: isSelected ? colors.primary : colors.text,
                         fontWeight: isSelected ? "600" : "400",
                       }}
@@ -229,7 +229,7 @@ export default function DropdownSelect({
                   {isSelected && (
                     <Icon
                       name="checkmark"
-                      size={s.icon}
+                      size={iconSizes[s.icon]}
                       color={colors.primary}
                       style={{ marginLeft: spacing.sm }}
                     />

@@ -102,7 +102,7 @@ export default function NumericInput({
             borderColor: error ? colors.danger : colors.border,
             borderWidth: 1,
             borderRadius: radius.md,
-            height: s.height,
+            height: sizeMap[size],
             opacity: disabled ? 0.5 : 1,
           },
         ]}
@@ -117,14 +117,14 @@ export default function NumericInput({
           style={[
             styles.btn,
             {
-              width: s.btn,
+              width: sizeMap[s.btn],
               borderRightWidth: 1,
               borderRightColor: colors.border,
               opacity: canDecrement ? 1 : 0.3,
             },
           ]}
         >
-          <Icon name="remove-outline" size={s.icon} color={colors.text} />
+          <Icon name="remove-outline" size={iconSizes[s.icon]} color={colors.text} />
         </Pressable>
 
         {/* Value */}
@@ -132,9 +132,9 @@ export default function NumericInput({
           {prefix && (
             <Text
               style={{
-                fontSize: s.font,
+                fontSize: fontSizes[s.font],
                 color: colors.muted,
-                marginRight: 4,
+                marginRight: spacing.xs,
               }}
             >
               {prefix}
@@ -150,7 +150,7 @@ export default function NumericInput({
             style={[
               styles.input,
               {
-                fontSize: s.font,
+                fontSize: fontSizes[s.font],
                 color: colors.text,
                 fontWeight: "600",
                 fontVariant: ["tabular-nums"],
@@ -161,9 +161,9 @@ export default function NumericInput({
           {suffix && (
             <Text
               style={{
-                fontSize: s.font,
+                fontSize: fontSizes[s.font],
                 color: colors.muted,
-                marginLeft: 4,
+                marginLeft: spacing.xs,
               }}
             >
               {suffix}
@@ -181,14 +181,14 @@ export default function NumericInput({
           style={[
             styles.btn,
             {
-              width: s.btn,
+              width: sizeMap[s.btn],
               borderLeftWidth: 1,
               borderLeftColor: colors.border,
               opacity: canIncrement ? 1 : 0.3,
             },
           ]}
         >
-          <Icon name="add-outline" size={s.icon} color={colors.text} />
+          <Icon name="add-outline" size={iconSizes[s.icon]} color={colors.text} />
         </Pressable>
       </View>
 

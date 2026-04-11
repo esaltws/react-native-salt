@@ -51,7 +51,7 @@ export default function TagList({
   };
 
   return (
-    <View testID={testID} style={[styles.container, { gap: s.gap }, style]}>
+    <View testID={testID} style={[styles.container, { gap: spacing.xs }, style]}>
       {tags.map((tag) => {
         const tagColor = getTagColor(tag);
         const Wrapper = onPress ? Pressable : View;
@@ -66,15 +66,15 @@ export default function TagList({
                 backgroundColor: `${tagColor}14`,
                 borderRadius: radius.pill,
                 paddingVertical: s.py,
-                paddingLeft: s.px,
-                paddingRight: onRemove ? s.gap : s.px,
+                paddingLeft: spacing[s.px],
+                paddingRight: onRemove ? spacing.xs : spacing[s.px],
               },
             ]}
             {...(onPress ? { accessibilityRole: "button" as const, accessibilityLabel: tag.label } : {})}
           >
             <Text
               style={{
-                fontSize: s.font,
+                fontSize: fontSizes[s.font],
                 color: tagColor,
                 fontWeight: "500",
               }}
@@ -86,11 +86,11 @@ export default function TagList({
               <Pressable
                 onPress={() => onRemove(tag.key)}
                 hitSlop={8}
-                style={{ marginLeft: s.gap, padding: 2 }}
+                style={{ marginLeft: spacing.xs, padding: 2 }}
                 accessibilityRole="button"
                 accessibilityLabel={`Remove ${tag.label}`}
               >
-                <Icon name="close-circle" size={s.icon} color={tagColor} />
+                <Icon name="close-circle" size={fontSizes[s.font]} color={tagColor} />
               </Pressable>
             )}
           </Wrapper>
@@ -109,7 +109,7 @@ export default function TagList({
               borderColor: colors.border,
               borderStyle: "dashed",
               paddingVertical: s.py,
-              paddingHorizontal: s.px,
+              paddingHorizontal: spacing[s.px],
             },
           ]}
           accessibilityRole="button"
@@ -117,14 +117,14 @@ export default function TagList({
         >
           <Icon
             name="add-outline"
-            size={s.icon}
+            size={fontSizes[s.font]}
             color={colors.muted}
           />
           <Text
             style={{
-              fontSize: s.font,
+              fontSize: fontSizes[s.font],
               color: colors.muted,
-              marginLeft: 4,
+              marginLeft: spacing.xs,
             }}
           >
             {addLabel}

@@ -75,8 +75,8 @@ export default function SegmentedControl({
               {
                 backgroundColor: isActive ? colors.surface : "transparent",
                 borderRadius: radius.md,
-                paddingVertical: sizeConfig.py,
-                paddingHorizontal: sizeConfig.px,
+                paddingVertical: spacing[s.py],
+                paddingHorizontal: spacing[s.px],
               },
               isActive && styles.shadow,
               fullWidth && { flex: 1 },
@@ -84,7 +84,7 @@ export default function SegmentedControl({
           >
             <Text
               style={{
-                fontSize: sizeConfig.font,
+                fontSize: fontSizes[s.font],
                 fontWeight: isActive ? "600" : "400",
                 color: isActive ? colors.text : colors.muted,
                 textAlign: "center",
