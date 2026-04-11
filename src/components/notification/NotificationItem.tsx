@@ -71,7 +71,7 @@ export default function NotificationItem({
             {
               width: spacing.sm,
               height: spacing.sm,
-              borderRadius: radius.sm,
+              borderRadius: 4,
               backgroundColor: accentColor,
               marginRight: spacing.sm,
               marginTop: 6,
