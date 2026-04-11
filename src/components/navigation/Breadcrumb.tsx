@@ -3,7 +3,7 @@ import { View, Pressable, StyleSheet, StyleProp, ViewStyle } from "react-native"
 import { useTheme } from "../../theme/ThemeContext";
 import Text from "../typography/Text";
 import Icon from "../theme-settings/Icon";
-import { Size } from "../../types";
+import { Size, FontSize, IconSize } from "../../types";
 
 type BreadcrumbItem = {
   key: string;
@@ -21,10 +21,10 @@ type Props = {
   testID?: string;
 };
 
-const SIZE_MAP = {
-  sm: { font: 12, icon: 12, sep: 10 },
-  md: { font: 14, icon: 16, sep: 12 },
-  lg: { font: 16, icon: 18, sep: 14 },
+const COMPACT_MAP: Record<Size, { font: FontSize; icon: IconSize; sep: FontSize }> = {
+  sm: { font: "xs", icon: "xs", sep: "xs" },
+  md: { font: "sm", icon: "sm", sep: "xs" },
+  lg: { font: "md", icon: "md", sep: "sm" },
 };
 
 export default function Breadcrumb({
@@ -36,8 +36,8 @@ export default function Breadcrumb({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing } = theme;
-  const s = SIZE_MAP[size];
+  const { colors, spacing, fontSizes, iconSizes } = theme;
+  const s = COMPACT_MAP[size];
 
   return (
     <View testID={testID} style={[styles.container, { gap: spacing.xs }, style]}>
