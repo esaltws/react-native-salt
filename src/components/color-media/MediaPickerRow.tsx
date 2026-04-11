@@ -44,7 +44,7 @@ export default function MediaPickerRow({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius } = theme;
+  const { colors, spacing, radius, iconSizes } = theme;
 
   const canAdd = items.length < maxItems && !disabled;
 
@@ -79,7 +79,7 @@ export default function MediaPickerRow({
               },
             ]}
           >
-            <Icon name="add" size={24} color={colors.muted} />
+            <Icon name="add" size={iconSizes.md} color={colors.muted} />
             <Caption style={{ marginTop: 2 }}>
               Add
             </Caption>
@@ -110,7 +110,14 @@ export default function MediaPickerRow({
                 onPress={() => onRemove(item.id)}
                 style={[
                   styles.removeBtn,
-                  { backgroundColor: "rgba(0,0,0,0.6)" },
+                  {
+                    backgroundColor: "rgba(0,0,0,0.6)",
+                    top: spacing.xs,
+                    right: spacing.xs,
+                    width: iconSizes.sm,
+                    height: iconSizes.sm,
+                    borderRadius: iconSizes.sm / 2,
+                  },
                 ]}
               >
                 <Icon name="close" size={12} color="#fff" />
@@ -134,11 +141,6 @@ const styles = StyleSheet.create({
   },
   removeBtn: {
     position: "absolute",
-    top: 4,
-    right: 4,
-    width: 20,
-    height: 20,
-    borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
   },

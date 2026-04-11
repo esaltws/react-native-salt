@@ -21,12 +21,6 @@ type Props = {
   testID?: string;
 };
 
-const SIZE_MAP = {
-  sm: { swatch: 24, font: 11 },
-  md: { swatch: 32, font: 12 },
-  lg: { swatch: 40, font: 14 },
-};
-
 export default function ColorPickerTrigger({
   color,
   onPress,
@@ -38,9 +32,13 @@ export default function ColorPickerTrigger({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes, sizeMap, dimensions } = theme;
 
-  const sizeConfig = SIZE_MAP[size];
+  const sizeConfig = {
+    sm: { swatch: iconSizes.md, font: fontSizes.xs },
+    md: { swatch: sizeMap.xs, font: fontSizes.xs },
+    lg: { swatch: dimensions.md, font: fontSizes.sm },
+  }[size];
 
   return (
     <Pressable
@@ -106,7 +104,7 @@ export default function ColorPickerTrigger({
 
       <Icon
         name="chevron-down-outline"
-        size={14}
+        size={iconSizes.xs}
         color={colors.muted}
       />
     </Pressable>

@@ -28,7 +28,7 @@ export default function ColorPalette({
   value,
   onChange,
   columns = 6,
-  swatchSize = 40,
+  swatchSize,
   label,
   showHex = false,
   disabled = false,
@@ -36,7 +36,8 @@ export default function ColorPalette({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, dimensions } = theme;
+  const effectiveSwatchSize = swatchSize ?? dimensions.md;
 
   const gap = spacing.sm;
 
@@ -71,8 +72,8 @@ export default function ColorPalette({
               style={[
                 styles.swatch,
                 {
-                  width: swatchSize,
-                  height: swatchSize,
+                  width: effectiveSwatchSize,
+                  height: effectiveSwatchSize,
                   borderRadius: radius.md,
                   backgroundColor: color,
                   borderWidth: isSelected ? 3 : 1,
@@ -86,7 +87,7 @@ export default function ColorPalette({
               {isSelected && (
                 <Icon
                   name="checkmark"
-                  size={swatchSize * 0.45}
+                  size={effectiveSwatchSize * 0.45}
                   color={isLightColor(color) ? "#000000" : "#FFFFFF"}
                 />
               )}

@@ -35,7 +35,7 @@ export default function Lightbox({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, fontSizes } = theme;
+  const { colors, spacing, fontSizes, iconSizes } = theme;
   const screen = Dimensions.get("window");
   const scale = useRef(new Animated.Value(1)).current;
 
@@ -51,11 +51,11 @@ export default function Lightbox({
         {/* Close button */}
         <Pressable
           onPress={onClose}
-          style={[styles.closeBtn, { top: spacing.xl + 20 }]}
+          style={[styles.closeBtn, { top: spacing.xl + 20, right: spacing.lg, padding: spacing.sm }]}
           accessibilityRole="button"
           accessibilityLabel="Close"
         >
-          <Icon name="close" size={28} color={colors.surface} />
+          <Icon name="close" size={iconSizes.xl} color={colors.surface} />
         </Pressable>
 
         {/* Image */}
@@ -99,7 +99,7 @@ export default function Lightbox({
                 style={{
                   fontSize: fontSizes.sm,
                   color: "rgba(255,255,255,0.7)",
-                  marginTop: 4,
+                  marginTop: spacing.xs,
                 }}
               >
                 {description}
@@ -120,9 +120,7 @@ const styles = StyleSheet.create({
   },
   closeBtn: {
     position: "absolute",
-    right: 16,
     zIndex: 10,
-    padding: 8,
   },
   image: {
     maxHeight: "70%",

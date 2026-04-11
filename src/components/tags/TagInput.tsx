@@ -39,7 +39,7 @@ export default function TagInput({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes } = theme;
   const [text, setText] = useState("");
   const [focused, setFocused] = useState(false);
 
@@ -111,9 +111,9 @@ export default function TagInput({
                 backgroundColor: `${colors.primary}18`,
                 borderRadius: radius.lg,
                 paddingHorizontal: spacing.sm,
-                paddingVertical: 4,
-                marginRight: 6,
-                marginBottom: 6,
+                paddingVertical: spacing.xs,
+                marginRight: spacing.sm,
+                marginBottom: spacing.sm,
               },
             ]}
           >
@@ -129,12 +129,12 @@ export default function TagInput({
             {!disabled && (
               <Pressable
                 onPress={() => removeTag(i)}
-                hitSlop={6}
-                style={{ marginLeft: 4 }}
+                hitSlop={spacing.sm}
+                style={{ marginLeft: spacing.xs }}
                 accessibilityRole="button"
                 accessibilityLabel={`Remove ${tag}`}
               >
-                <Icon name="close" size={14} color={colors.primary} />
+                <Icon name="close" size={iconSizes.xs} color={colors.primary} />
               </Pressable>
             )}
           </View>
@@ -160,6 +160,7 @@ export default function TagInput({
                 fontSize: fontSizes.sm,
                 color: colors.text,
                 minWidth: 80,
+                paddingVertical: spacing.xs,
               },
             ]}
           />
@@ -172,6 +173,7 @@ export default function TagInput({
           style={[
             styles.suggestions,
             {
+              marginTop: spacing.xs,
               backgroundColor: colors.surface,
               borderColor: colors.border,
               borderWidth: 1,
@@ -207,7 +209,7 @@ export default function TagInput({
       )}
 
       {/* Error / counter */}
-      <View style={styles.footer}>
+      <View style={[styles.footer, { marginTop: spacing.xs }]}>
         {error && (
           <Text
             style={{ fontSize: fontSizes.xs, color: colors.danger, flex: 1 }}
@@ -243,16 +245,13 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    paddingVertical: 4,
     minHeight: 30,
   },
   suggestions: {
-    marginTop: 4,
     overflow: "hidden",
   },
   suggestion: {},
   footer: {
     flexDirection: "row",
-    marginTop: 4,
   },
 });

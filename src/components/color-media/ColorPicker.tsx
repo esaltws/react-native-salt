@@ -247,7 +247,7 @@ export default function ColorPicker({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes, sizeMap, dimensions } = theme;
 
   const safeColor = isValidHex(color) ? color : "#000000";
   const hsv = hexToHsv(safeColor);
@@ -466,6 +466,8 @@ export default function ColorPicker({
               borderRadius: radius.sm,
               borderWidth: 1,
               borderColor: colors.border,
+              width: sizeMap.lg,
+              height: sizeMap.lg,
             },
           ]}
         />
@@ -542,14 +544,17 @@ export default function ColorPicker({
             style={[
               styles.indicator,
               {
-                left: indicatorX - 10,
-                top: indicatorY - 10,
+                left: indicatorX - iconSizes.sm / 2,
+                top: indicatorY - iconSizes.sm / 2,
                 borderColor: brightness > 0.5 ? "#000" : "#fff",
+                width: iconSizes.sm,
+                height: iconSizes.sm,
+                borderRadius: iconSizes.sm / 2,
               },
             ]}
           >
             <View
-              style={[styles.indicatorInner, { backgroundColor: currentHex }]}
+              style={[styles.indicatorInner, { backgroundColor: currentHex, width: fontSizes.sm, height: fontSizes.sm, borderRadius: fontSizes.sm / 2 }]}
             />
           </View>
         )}
@@ -557,13 +562,13 @@ export default function ColorPicker({
 
       {/* Hue bar — custom PanResponder with rainbow strips */}
       <View>
-        <Caption style={{ marginBottom: 4 }}>Hue</Caption>
+        <Caption style={{ marginBottom: spacing.xs }}>Hue</Caption>
         <View
           ref={hueBarRef}
           onLayout={onHueBarLayout}
           style={[
             styles.hueBar,
-            { borderRadius: radius.sm, borderWidth: 1, borderColor: colors.border },
+            { borderRadius: radius.sm, borderWidth: 1, borderColor: colors.border, height: iconSizes.xl },
           ]}
           {...hueBarPanResponder.panHandlers}
         >
@@ -581,7 +586,10 @@ export default function ColorPicker({
               styles.hueMarker,
               {
                 left: `${hueFraction * 100}%`,
-                marginLeft: -8,
+                marginLeft: -spacing.sm,
+                width: iconSizes.xs,
+                height: iconSizes.xl,
+                borderRadius: radius.sm,
               },
             ]}
           />
@@ -591,7 +599,7 @@ export default function ColorPicker({
       {/* Alpha slider */}
       {showAlpha && (
         <View>
-          <Caption style={{ marginBottom: 4 }}>
+          <Caption style={{ marginBottom: spacing.xs }}>
             Opacity: {Math.round(alpha * 100)}%
           </Caption>
           <Slider
@@ -617,6 +625,7 @@ export default function ColorPicker({
                 borderRadius: radius.sm,
                 backgroundColor: colors.background,
                 paddingHorizontal: spacing.sm,
+                height: dimensions.md,
               },
             ]}
           >
@@ -626,8 +635,10 @@ export default function ColorPicker({
                 styles.hexInput,
                 {
                   color: colors.text,
-                  fontSize: 14,
+                  fontSize: fontSizes.sm,
                   fontFamily: "monospace",
+                  height: dimensions.md,
+                  paddingHorizontal: spacing.xs,
                 },
               ]}
               value={hexInput.replace("#", "")}
@@ -683,8 +694,8 @@ export default function ColorPicker({
       {/* Preset colors */}
       {presets.length > 0 && (
         <View>
-          <Caption style={{ marginBottom: 6 }}>Presets</Caption>
-          <View style={styles.presetGrid}>
+          <Caption style={{ marginBottom: spacing.sm }}>Presets</Caption>
+          <View style={[styles.presetGrid, { gap: spacing.sm }]}>
             {presets.map((preset, i) => (
               <TouchableOpacity
                 key={`${preset}-${i}`}
@@ -694,6 +705,8 @@ export default function ColorPicker({
                   {
                     backgroundColor: preset,
                     borderRadius: radius.sm,
+                    width: dimensions.xs,
+                    height: dimensions.xs,
                     borderWidth:
                       preset.toLowerCase() === currentHex.toLowerCase() ? 2 : 1,
                     borderColor:
@@ -713,7 +726,7 @@ export default function ColorPicker({
       {/* Recent colors */}
       {recentColors.length > 0 && (
         <View>
-          <Caption style={{ marginBottom: 6 }}>Recent</Caption>
+          <Caption style={{ marginBottom: spacing.sm }}>Recent</Caption>
           <View style={[styles.recentRow, { gap: spacing.xs }]}>
             {recentColors.slice(0, 8).map((rc, i) => (
               <TouchableOpacity
@@ -726,6 +739,8 @@ export default function ColorPicker({
                     borderRadius: radius.sm,
                     borderWidth: 1,
                     borderColor: colors.border,
+                    width: dimensions.xs,
+                    height: dimensions.xs,
                   },
                 ]}
                 accessibilityRole="button"
@@ -823,10 +838,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
-  previewSwatch: {
-    width: 48,
-    height: 48,
-  },
+  previewSwatch: {},
   spectrum: {
     width: "100%",
     height: 180,
@@ -834,28 +846,17 @@ const styles = StyleSheet.create({
   },
   indicator: {
     position: "absolute",
-    width: 20,
-    height: 20,
-    borderRadius: 10,
     borderWidth: 2,
     justifyContent: "center",
     alignItems: "center",
   },
-  indicatorInner: {
-    width: 14,
-    height: 14,
-    borderRadius: 7,
-  },
+  indicatorInner: {},
   hueBar: {
-    height: 28,
     overflow: "hidden",
     justifyContent: "center",
   },
   hueMarker: {
     position: "absolute",
-    width: 16,
-    height: 28,
-    borderRadius: 4,
     borderWidth: 2,
     borderColor: "#ffffff",
     backgroundColor: "transparent",
@@ -872,12 +873,9 @@ const styles = StyleSheet.create({
   hexInputWrap: {
     flexDirection: "row",
     alignItems: "center",
-    height: 40,
   },
   hexInput: {
     flex: 1,
-    height: 40,
-    paddingHorizontal: 4,
   },
   valuesBox: {
     alignItems: "flex-end",
@@ -918,17 +916,10 @@ const styles = StyleSheet.create({
   presetGrid: {
     flexDirection: "row",
     flexWrap: "wrap",
-    gap: 6,
   },
-  presetSwatch: {
-    width: 28,
-    height: 28,
-  },
+  presetSwatch: {},
   recentRow: {
     flexDirection: "row",
   },
-  recentSwatch: {
-    width: 28,
-    height: 28,
-  },
+  recentSwatch: {},
 });

@@ -85,7 +85,7 @@ export default function TagList({
             {onRemove && (
               <Pressable
                 onPress={() => onRemove(tag.key)}
-                hitSlop={8}
+                hitSlop={spacing.sm}
                 style={{ marginLeft: spacing.xs, padding: 2 }}
                 accessibilityRole="button"
                 accessibilityLabel={`Remove ${tag.label}`}
