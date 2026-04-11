@@ -78,7 +78,7 @@ export default function SearchBar({
       {showIcon ? (
         <Icon
           name="search"
-          size={18}
+          size={theme.iconSizes.sm}
           color={theme.colors.muted}
           accessibilityLabel="Search icon"
           style={[styles.icon, { marginRight: theme.spacing.sm }]}
@@ -106,7 +106,7 @@ export default function SearchBar({
           hitSlop={10}
           style={[styles.clearBtn, { marginLeft: theme.spacing.sm }]}
         >
-          <Icon name="close" size={18} color={theme.colors.muted} />
+          <Icon name="close" size={theme.iconSizes.sm} color={theme.colors.muted} />
         </Pressable>
       ) : null}
     </View>

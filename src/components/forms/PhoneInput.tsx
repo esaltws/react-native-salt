@@ -153,7 +153,7 @@ export default function PhoneInput({
           </Text>
           <Icon
             name="chevron-down-outline"
-            size={14}
+            size={iconSizes.xs}
             color={colors.muted}
             style={{ marginLeft: spacing.xs }}
           />

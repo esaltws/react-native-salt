@@ -26,7 +26,7 @@ export default function RadioGroup({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius } = theme;
+  const { colors, spacing, radius, iconSizes } = theme;
 
   return (
     <View testID={testID} style={[{ gap: spacing.sm }, style]}>
@@ -57,9 +57,9 @@ export default function RadioGroup({
                 styles.radio,
                 {
                   borderColor: isSelected ? colors.primary : colors.border,
-                  width: 22,
-                  height: 22,
-                  borderRadius: 11,
+                  width: iconSizes.md,
+                  height: iconSizes.md,
+                  borderRadius: iconSizes.md / 2,
                   marginRight: spacing.md,
                 },
               ]}
@@ -67,9 +67,9 @@ export default function RadioGroup({
               {isSelected ? (
                 <View
                   style={{
-                    width: 12,
-                    height: 12,
-                    borderRadius: 6,
+                    width: spacing.md,
+                    height: spacing.md,
+                    borderRadius: spacing.md / 2,
                     backgroundColor: colors.primary,
                   }}
                 />
