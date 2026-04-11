@@ -35,6 +35,7 @@ export type Theme = {
     spacing: { none: number; xs: number; sm: number; md: number; lg: number; xl: number; xxl: number };
     radius: { none: number; sm: number; md: number; lg: number; xl: number; xxl: number; pill: number };
     fontSizes: { xs: number; sm: number; md: number; lg: number; xl: number; xxl: number; "3xl": number };
+    iconSizes: { xs: number; sm: number; md: number; lg: number; xl: number; xxl: number; "3xl": number };
     fontLevel: FontLevel;
 };
 
