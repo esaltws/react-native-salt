@@ -3,20 +3,27 @@ import { View, ActivityIndicator, StyleSheet, StyleProp, ViewStyle } from "react
 import { useTheme } from "../../theme/ThemeContext";
 import Caption from "../typography/Caption";
 import Spacer from "../layout/Spacer";
+import { Size } from "../../types";
 
 type Props = {
   label?: string;
-  size?: "small" | "large";
+  size?: Size;
   style?: StyleProp<ViewStyle>;
   testID?: string;
 };
 
-export default function Loader({ label, size = "small", style, testID }: Props) {
+const INDICATOR_SIZE: Record<Size, "small" | "large"> = {
+  sm: "small",
+  md: "small",
+  lg: "large",
+};
+
+export default function Loader({ label, size = "md", style, testID }: Props) {
   const { theme } = useTheme();
   const colors = theme.colors;
   return (
     <View testID={testID} style={[styles.container, style]}>
-      <ActivityIndicator size={size} color={colors.primary} />
+      <ActivityIndicator size={INDICATOR_SIZE[size]} color={colors.primary} />
       {label ? (
         <>
           <Spacer size="sm" />

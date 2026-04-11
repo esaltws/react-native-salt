@@ -136,8 +136,8 @@ describe('FAB', () => {
       );
       const fab = getByTestId('fab');
       const flatStyle = Object.assign({}, ...([].concat(fab.props.style).flat(Infinity).filter(Boolean)));
-      expect(flatStyle.width).toBe(64);
-      expect(flatStyle.height).toBe(64);
+      expect(flatStyle.width).toBe(68);
+      expect(flatStyle.height).toBe(68);
     });
   });
 
