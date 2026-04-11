@@ -24,15 +24,10 @@ export default function QuantitySelector({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, radius, spacing, fontSizes } = theme;
+  const { colors, radius, spacing, fontSizes, sizeMap } = theme;
 
-  const sizeStyles: Record<Size, { btnSize: number; fontSize: number }> = {
-    sm: { btnSize: 28, fontSize: fontSizes.sm },
-    md: { btnSize: 36, fontSize: fontSizes.md },
-    lg: { btnSize: 44, fontSize: fontSizes.xl },
-  };
-
-  const { btnSize, fontSize } = sizeStyles[size];
+  const btnSize = sizeMap[size];
+  const fontSize = fontSizes[size];
   const canDecrement = value > min;
   const canIncrement = value < max;
 
