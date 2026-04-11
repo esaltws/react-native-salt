@@ -45,7 +45,7 @@ export default function OnboardingSlide({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes, sizeMap } = theme;
+  const { colors, spacing, fontSizes, sizeMap } = theme;
   const screen = Dimensions.get("window");
 
   return (
@@ -133,7 +133,7 @@ export default function OnboardingSlide({
               style={{
                 width: i === step ? spacing.xxl : spacing.sm,
                 height: spacing.sm,
-                borderRadius: radius.sm,
+                borderRadius: 4,
                 backgroundColor:
                   i === step ? colors.primary : colors.border,
                 marginHorizontal: spacing.xs,
