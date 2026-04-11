@@ -51,7 +51,7 @@ export default function PasswordInput({
   ...props
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius } = theme;
+  const { colors, spacing, radius, iconSizes } = theme;
   const [visible, setVisible] = useState(false);
 
   const sizeStyles: Record<Size, ViewStyle> = {
@@ -107,11 +107,11 @@ export default function PasswordInput({
           onPress={() => setVisible((v) => !v)}
           accessibilityRole="button"
           accessibilityLabel="Toggle password visibility"
-          style={[styles.eyeBtn, { paddingRight: spacing.md }]}
+          style={[styles.eyeBtn, { padding: spacing.xs, paddingRight: spacing.md }]}
         >
           <Icon
             name={visible ? "eye-outline" : "eye-off-outline"}
-            size={20}
+            size={iconSizes.sm}
             color={colors.muted}
           />
         </Pressable>
@@ -166,9 +166,7 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
   },
-  eyeBtn: {
-    padding: 4,
-  },
+  eyeBtn: {},
   strengthTrack: {
     height: 4,
     overflow: "hidden",

@@ -81,7 +81,7 @@ export default function SearchBar({
           size={18}
           color={theme.colors.muted}
           accessibilityLabel="Search icon"
-          style={styles.icon}
+          style={[styles.icon, { marginRight: theme.spacing.sm }]}
         />
       ) : null}
 
@@ -104,7 +104,7 @@ export default function SearchBar({
           accessibilityRole="button"
           accessibilityLabel="Clear search"
           hitSlop={10}
-          style={styles.clearBtn}
+          style={[styles.clearBtn, { marginLeft: theme.spacing.sm }]}
         >
           <Icon name="close" size={18} color={theme.colors.muted} />
         </Pressable>
@@ -120,14 +120,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   icon: {
-    marginRight: 8,
     fontWeight: "700",
   },
   input: {
     flex: 1,
     paddingVertical: 0, // keep vertical padding controlled by container
   },
-  clearBtn: {
-    marginLeft: 8,
-  },
+  clearBtn: {},
 });

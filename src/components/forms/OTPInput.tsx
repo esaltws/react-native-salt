@@ -42,7 +42,7 @@ export default function OTPInput({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes } = theme;
   const inputRef = useRef<TextInput>(null);
   const sizeConfig = SIZE_MAP[size];
 
@@ -120,7 +120,7 @@ export default function OTPInput({
                 <View
                   style={[
                     styles.cursor,
-                    { backgroundColor: colors.primary },
+                    { backgroundColor: colors.primary, bottom: spacing.sm, height: iconSizes.sm },
                   ]}
                 />
               )}
@@ -165,8 +165,6 @@ const styles = StyleSheet.create({
   },
   cursor: {
     position: "absolute",
-    bottom: 8,
     width: 2,
-    height: 20,
   },
 });

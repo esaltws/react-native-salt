@@ -81,7 +81,7 @@ export default function PhoneInput({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes } = theme;
   const [showPicker, setShowPicker] = useState(false);
   const [search, setSearch] = useState("");
 
@@ -140,7 +140,7 @@ export default function PhoneInput({
             },
           ]}
         >
-          <Text style={{ fontSize: 18 }}>{selected.flag}</Text>
+          <Text style={{ fontSize: fontSizes.lg }}>{selected.flag}</Text>
           <Text
             style={{
               fontSize: fontSizes.sm,
@@ -155,7 +155,7 @@ export default function PhoneInput({
             name="chevron-down-outline"
             size={14}
             color={colors.muted}
-            style={{ marginLeft: 4 }}
+            style={{ marginLeft: spacing.xs }}
           />
         </Pressable>
 
@@ -236,7 +236,7 @@ export default function PhoneInput({
               accessibilityRole="button"
               accessibilityLabel="Close country picker"
             >
-              <Icon name="close" size={24} color={colors.text} />
+              <Icon name="close" size={iconSizes.md} color={colors.text} />
             </Pressable>
           </View>
 
@@ -289,7 +289,7 @@ export default function PhoneInput({
                   },
                 ]}
               >
-                <Text style={{ fontSize: 20, marginRight: spacing.md }}>
+                <Text style={{ fontSize: fontSizes.xl, marginRight: spacing.md }}>
                   {item.flag}
                 </Text>
                 <Text
