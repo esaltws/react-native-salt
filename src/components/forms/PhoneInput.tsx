@@ -133,6 +133,7 @@ export default function PhoneInput({
           style={[
             styles.countryBtn,
             {
+              paddingVertical: spacing.md,
               paddingHorizontal: spacing.md,
               borderRightWidth: 1,
               borderRightColor: colors.border,
@@ -327,7 +328,6 @@ const styles = StyleSheet.create({
   countryBtn: {
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical: 12,
   },
   input: {
     flex: 1,

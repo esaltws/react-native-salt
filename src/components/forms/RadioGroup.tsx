@@ -60,6 +60,7 @@ export default function RadioGroup({
                   width: 22,
                   height: 22,
                   borderRadius: 11,
+                  marginRight: spacing.md,
                 },
               ]}
             >
@@ -100,7 +101,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     alignItems: "center",
     justifyContent: "center",
-    marginRight: 12,
   },
   textContainer: {
     flex: 1,

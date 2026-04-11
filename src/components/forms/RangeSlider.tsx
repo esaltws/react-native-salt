@@ -44,11 +44,11 @@ export default function RangeSlider({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing } = theme;
+  const { colors, spacing, iconSizes } = theme;
   const [trackWidth, setTrackWidth] = useState(0);
-  const accentColor = (colors as any)[intent] || colors.primary;
+  const accentColor = colors[intent] || colors.primary;
 
-  const thumbSize = 28;
+  const thumbSize = iconSizes.xl;
   const trackHeight = 6;
   const gap = minGap ?? step;
 

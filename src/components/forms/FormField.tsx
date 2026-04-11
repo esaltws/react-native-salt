@@ -32,7 +32,7 @@ type Props =
 
 export default function FormField(props: Props) {
   const { theme } = useTheme();
-  const { colors } = theme;
+  const { colors, spacing } = theme;
 
   const label = "label" in props ? props.label : undefined;
   const required = "required" in props ? props.required : undefined;
@@ -48,7 +48,7 @@ export default function FormField(props: Props) {
           <View style={styles.labelRow}>
             <Label>{label}</Label>
             {required ? (
-              <Text style={{ color: colors.danger, marginLeft: 4 }}>
+              <Text style={{ color: colors.danger, marginLeft: spacing.xs }}>
                 *
               </Text>
             ) : null}

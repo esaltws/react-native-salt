@@ -184,7 +184,7 @@ export default function TimePicker({
                 marginHorizontal: spacing.xs,
               }}
             />
-            <View style={styles.periodCol}>
+            <View style={[styles.periodCol, { gap: spacing.sm }]}>
               {(["AM", "PM"] as const).map((p) => (
                 <Pressable
                   key={p}
@@ -241,6 +241,5 @@ const styles = StyleSheet.create({
   },
   periodCol: {
     justifyContent: "center",
-    gap: 8,
   },
 });

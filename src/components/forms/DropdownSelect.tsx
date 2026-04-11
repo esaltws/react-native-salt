@@ -159,6 +159,7 @@ export default function DropdownSelect({
           style={[
             styles.dropdown,
             {
+              marginTop: spacing.xs,
               maxHeight: listHeight,
               backgroundColor: colors.surface,
               borderColor: colors.border,
@@ -262,7 +263,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   dropdown: {
-    marginTop: 4,
     overflow: "hidden",
   },
   option: {

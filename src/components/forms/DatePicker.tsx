@@ -34,7 +34,7 @@ export default function DatePicker({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes, sizeMap } = theme;
 
   const today = new Date();
   const [viewYear, setViewYear] = useState(value?.getFullYear() ?? today.getFullYear());
@@ -88,14 +88,14 @@ export default function DatePicker({
       ]}
     >
       {/* Month/Year header */}
-      <View style={styles.header}>
+      <View style={[styles.header, { marginBottom: spacing.md }]}>
         <Pressable
           onPress={() => goMonth(-1)}
-          style={styles.navBtn}
+          style={[styles.navBtn, { padding: spacing.xs }]}
           accessibilityRole="button"
           accessibilityLabel="Previous month"
         >
-          <Icon name="chevron-back" size={20} color={colors.text} />
+          <Icon name="chevron-back" size={iconSizes.sm} color={colors.text} />
         </Pressable>
         <Text
           style={{
@@ -108,18 +108,18 @@ export default function DatePicker({
         </Text>
         <Pressable
           onPress={() => goMonth(1)}
-          style={styles.navBtn}
+          style={[styles.navBtn, { padding: spacing.xs }]}
           accessibilityRole="button"
           accessibilityLabel="Next month"
         >
-          <Icon name="chevron-forward" size={20} color={colors.text} />
+          <Icon name="chevron-forward" size={iconSizes.sm} color={colors.text} />
         </Pressable>
       </View>
 
       {/* Day labels */}
-      <View style={styles.row}>
+      <View style={[styles.row, { marginBottom: spacing.xs }]}>
         {DAYS.map((d) => (
-          <View key={d} style={styles.cell}>
+          <View key={d} style={[styles.cell, { height: sizeMap.sm }]}>
             <Text
               style={{
                 fontSize: fontSizes.xs,
@@ -138,7 +138,7 @@ export default function DatePicker({
       <View style={styles.grid}>
         {calendarDays.map((day, i) => {
           if (day === null) {
-            return <View key={`empty-${i}`} style={styles.cell} />;
+            return <View key={`empty-${i}`} style={[styles.cell, { height: sizeMap.sm }]} />;
           }
 
           const key = `${viewYear}-${viewMonth}-${day}`;
@@ -156,6 +156,7 @@ export default function DatePicker({
               accessibilityState={{ selected: isSelected, disabled }}
               style={[
                 styles.cell,
+                { height: sizeMap.sm },
                 styles.dayCell,
                 isSelected && {
                   backgroundColor: colors.primary,
@@ -196,14 +197,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 12,
   },
-  navBtn: {
-    padding: 4,
-  },
+  navBtn: {},
   row: {
     flexDirection: "row",
-    marginBottom: 4,
   },
   grid: {
     flexDirection: "row",
@@ -213,7 +210,6 @@ const styles = StyleSheet.create({
     width: "14.28%",
     alignItems: "center",
     justifyContent: "center",
-    height: 36,
   },
   dayCell: {
     alignItems: "center",

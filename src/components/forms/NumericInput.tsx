@@ -52,7 +52,7 @@ export default function NumericInput({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes, iconSizes, sizeMap } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes, sizeMap, dimensions } = theme;
   const s = COMPACT_MAP[size];
 
   const canDecrement = value - step >= min;
@@ -150,6 +150,7 @@ export default function NumericInput({
             style={[
               styles.input,
               {
+                minWidth: dimensions.md,
                 fontSize: fontSizes[s.font],
                 color: colors.text,
                 fontWeight: "600",
@@ -226,7 +227,6 @@ const styles = StyleSheet.create({
   },
   input: {
     textAlign: "center",
-    minWidth: 40,
     padding: 0,
   },
 });

@@ -55,7 +55,7 @@ export default function Input({
     <View style={[fullWidth && { width: "100%" }, containerStyle]}>
       {label ? <Label style={{ marginBottom: spacing.sm }}>{label}
               {required ? (
-              <Text style={{ color: colors.danger, marginLeft: 4 }}>
+              <Text style={{ color: colors.danger, marginLeft: spacing.xs }}>
                 *
               </Text>
             ) : null}

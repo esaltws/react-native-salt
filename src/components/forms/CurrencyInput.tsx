@@ -140,6 +140,7 @@ export default function CurrencyInput({
           style={[
             styles.symbolBox,
             {
+              paddingVertical: spacing.md,
               paddingHorizontal: spacing.md,
               borderRightWidth: 1,
               borderRightColor: colors.border,
@@ -206,7 +207,6 @@ const styles = StyleSheet.create({
   symbolBox: {
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 12,
   },
   input: {
     flex: 1,
