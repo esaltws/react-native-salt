@@ -3,7 +3,7 @@ import { Appearance, useColorScheme } from "react-native"
 import { lightTheme as lightThemeDefault } from "./lightTheme";
 import { darkTheme as darkThemeDefault } from "./darkTheme";
 import { Theme, ThemeMode, ThemePreference, FontLevel, FontLevelPreset } from "../types";
-import { buildFontSizes, FONT_LEVEL_PRESETS } from "./typography";
+import { buildFontSizes, buildIconSizes, buildSizeMap, buildDimensions, FONT_LEVEL_PRESETS } from "./typography";
 import AsyncStorage from "@react-native-async-storage/async-storage"
 
 type ThemeContextValue = {
@@ -87,6 +87,9 @@ export function SaltProvider({ children, initialPreference = "system", fontLevel
     const theme: Theme = {
       ...baseTheme,
       fontSizes: buildFontSizes(fontLevel),
+      iconSizes: buildIconSizes(fontLevel),
+      sizeMap: buildSizeMap(fontLevel),
+      dimensions: buildDimensions(fontLevel),
       fontLevel,
     };
     return {
