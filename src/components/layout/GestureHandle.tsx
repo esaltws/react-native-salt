@@ -44,7 +44,7 @@ export default function GestureHandle({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing } = theme;
+  const { colors, spacing, sizeMap } = theme;
 
   const handleColor = color ?? colors.muted;
   const scaleAnim = useRef(new Animated.Value(1)).current;
@@ -101,13 +101,13 @@ export default function GestureHandle({
           style={[
             styles.barContainer,
             isVertical ? styles.barVertical : styles.barHorizontal,
-            { transform: [{ scale: scaleAnim }] },
+            { padding: spacing.sm, transform: [{ scale: scaleAnim }] },
           ]}
         >
           <View
             style={{
-              width: isVertical ? 4 : 36,
-              height: isVertical ? 36 : 4,
+              width: isVertical ? 4 : sizeMap.sm,
+              height: isVertical ? sizeMap.sm : 4,
               borderRadius: 2,
               backgroundColor: handleColor,
             }}
@@ -198,7 +198,6 @@ const styles = StyleSheet.create({
   barContainer: {
     alignItems: "center",
     justifyContent: "center",
-    padding: 8,
   },
   barHorizontal: {
     alignSelf: "center",

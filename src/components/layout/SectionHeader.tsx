@@ -56,7 +56,7 @@ export default function SectionHeader({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing } = theme;
+  const { colors, spacing, iconSizes } = theme;
 
   const isControlled = controlledCollapsed !== undefined;
   const [internalCollapsed, setInternalCollapsed] = useState(defaultCollapsed);
@@ -87,7 +87,7 @@ export default function SectionHeader({
   const headerRow = (
     <View style={styles.row}>
       <Stack direction="horizontal" gap="xs" style={styles.titleArea}>
-        {icon ? <Icon name={icon} size={20} color={colors.text} /> : null}
+        {icon ? <Icon name={icon} size={iconSizes.sm} color={colors.text} /> : null}
         <Stack gap="xs" style={styles.flex}>
           <Title fontSize="md">{title}</Title>
           {subtitle ? (
@@ -98,7 +98,7 @@ export default function SectionHeader({
 
       {collapsible ? (
         <Animated.View style={{ transform: [{ rotate: chevronRotation }] }}>
-          <Icon name="chevron-up-outline" size={20} color={colors.muted} />
+          <Icon name="chevron-up-outline" size={iconSizes.sm} color={colors.muted} />
         </Animated.View>
       ) : actionText && onActionPress ? (
         <Button title={actionText} variant="text" onPress={onActionPress} />

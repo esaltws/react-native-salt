@@ -52,18 +52,18 @@ export function FormScreen({
   testID,
 }: FormScreenProps) {
   const { theme } = useTheme();
-  const { colors, fontSizes, radius } = theme;
+  const { colors, spacing, radius, fontSizes, sizeMap, iconSizes } = theme;
 
   const content = scrollable ? (
     <ScrollView
-      contentContainerStyle={[styles.scrollContent, contentContainerStyle]}
+      contentContainerStyle={[styles.scrollContent, { padding: spacing.xl, gap: spacing.lg }, contentContainerStyle]}
       keyboardShouldPersistTaps="handled"
       showsVerticalScrollIndicator={false}
     >
       {children}
     </ScrollView>
   ) : (
-    <View style={[styles.content, contentContainerStyle]}>{children}</View>
+    <View style={[styles.content, { padding: spacing.xl }, contentContainerStyle]}>{children}</View>
   );
 
   return (
@@ -72,20 +72,20 @@ export function FormScreen({
         style={styles.flex}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
-        <View style={[styles.header, { borderBottomColor: colors.border, backgroundColor: colors.surface }]}>
-          <View style={styles.headerRow}>
+        <View style={[styles.header, { borderBottomColor: colors.border, backgroundColor: colors.surface, paddingHorizontal: spacing.xl, paddingTop: spacing.sm, paddingBottom: spacing.md }]}>
+          <View style={[styles.headerRow, { gap: spacing.md }]}>
             {onBackPress ? (
               <Pressable
                 accessibilityRole="button"
                 accessibilityLabel="Go back"
                 hitSlop={10}
                 onPress={onBackPress}
-                style={styles.backButton}
+                style={[styles.backButton, { width: sizeMap.sm, height: sizeMap.sm, borderRadius: sizeMap.sm / 2 }]}
               >
-                <Icon name="back" size={22} />
+                <Icon name="back" size={iconSizes.sm} />
               </Pressable>
             ) : (
-              <View style={styles.backButtonSpacer} />
+              <View style={{ width: sizeMap.sm }} />
             )}
 
             <View style={styles.titleBlock}>
@@ -99,7 +99,7 @@ export function FormScreen({
           </View>
 
           {step && (
-            <View style={styles.stepRow}>
+            <View style={[styles.stepRow, { paddingHorizontal: spacing.xs }]}>
               {Array.from({ length: step.total }, (_, i) => (
                 <View key={i} style={styles.stepItem}>
                   <View
@@ -124,7 +124,7 @@ export function FormScreen({
         </View>
 
         {error ? (
-          <View style={[styles.errorBanner, { backgroundColor: colors.danger + "15" }]}>
+          <View style={[styles.errorBanner, { backgroundColor: colors.danger + "15", paddingHorizontal: spacing.xl }]}>
             <Caption fontSize="lg" style={{ color: colors.danger }}>{error}</Caption>
           </View>
         ) : null}
@@ -132,7 +132,7 @@ export function FormScreen({
         <View style={styles.flex}>{content}</View>
 
         {bottomActions ? (
-          <View style={[styles.bottomActions, { borderTopColor: colors.border, backgroundColor: colors.surface }]}>
+          <View style={[styles.bottomActions, { borderTopColor: colors.border, backgroundColor: colors.surface, paddingHorizontal: spacing.xl, paddingTop: spacing.md, paddingBottom: spacing.xl }]}>
             {bottomActions}
           </View>
         ) : null}
@@ -157,26 +157,16 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    paddingHorizontal: 20,
-    paddingTop: 8,
-    paddingBottom: 12,
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
   headerRow: {
     flexDirection: 'row',
     alignItems: 'flex-start',
-    gap: 12,
   },
   backButton: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 2,
-  },
-  backButtonSpacer: {
-    width: 36,
   },
   titleBlock: {
     flex: 1,
@@ -190,17 +180,11 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    padding: 20,
   },
   scrollContent: {
-    padding: 20,
-    gap: 16,
     flexGrow: 1,
   },
   bottomActions: {
-    paddingHorizontal: 20,
-    paddingTop: 12,
-    paddingBottom: 20,
     borderTopWidth: StyleSheet.hairlineWidth,
   },
   stepRow: {
@@ -208,7 +192,6 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     gap: 6,
     marginTop: 10,
-    paddingHorizontal: 4,
   },
   stepItem: {
     alignItems: "center",
@@ -218,7 +201,6 @@ const styles = StyleSheet.create({
     height: 8,
   },
   errorBanner: {
-    paddingHorizontal: 20,
     paddingVertical: 10,
   },
   loadingOverlay: {
