@@ -35,7 +35,7 @@ export default function ActionSheet({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, sizeMap } = theme;
 
   return (
     <Modal
@@ -62,7 +62,7 @@ export default function ActionSheet({
           <View
             style={[
               styles.handle,
-              { backgroundColor: colors.border, marginVertical: spacing.sm },
+              { backgroundColor: colors.border, marginVertical: spacing.sm, width: sizeMap.sm, borderRadius: 2 },
             ]}
           />
 
@@ -145,9 +145,7 @@ const styles = StyleSheet.create({
   },
   sheet: {},
   handle: {
-    width: 36,
     height: 4,
-    borderRadius: 2,
     alignSelf: "center",
   },
   option: {},

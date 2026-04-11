@@ -40,12 +40,12 @@ export default function SpeedDial({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, dimensions, sizeMap, iconSizes } = theme;
   const [open, setOpen] = useState(false);
   const anims = useRef(actions.map(() => new Animated.Value(0))).current;
   const rotateAnim = useRef(new Animated.Value(0)).current;
 
-  const accentColor = (colors as any)[intent] || colors.primary;
+  const accentColor = colors[intent] || colors.primary;
 
   useEffect(() => {
     if (open) {
@@ -92,7 +92,7 @@ export default function SpeedDial({
       ? {
           left: "50%" as any,
           bottom: spacing.lg,
-          transform: [{ translateX: -28 }],
+          transform: [{ translateX: -(dimensions.xl / 2) }],
         }
       : { right: spacing.lg, bottom: spacing.lg };
 
@@ -104,7 +104,7 @@ export default function SpeedDial({
       {actions.map((item, index) => {
         const translateY = anims[index].interpolate({
           inputRange: [0, 1],
-          outputRange: [0, -(56 + index * 60)],
+          outputRange: [0, -(dimensions.xl + index * (sizeMap.md + spacing.lg))],
         });
         const scale = anims[index];
 
@@ -160,6 +160,9 @@ export default function SpeedDial({
                 styles.miniBtn,
                 {
                   backgroundColor: item.color || colors.surface,
+                  width: sizeMap.md,
+                  height: sizeMap.md,
+                  borderRadius: sizeMap.md / 2,
                   shadowColor: "#000",
                   shadowOffset: { width: 0, height: 2 },
                   shadowOpacity: 0.12,
@@ -170,7 +173,7 @@ export default function SpeedDial({
             >
               <Icon
                 name={item.icon}
-                size={22}
+                size={iconSizes.sm}
                 color={item.color ? colors.onPrimary : accentColor}
               />
             </Pressable>
@@ -187,6 +190,9 @@ export default function SpeedDial({
           styles.mainBtn,
           {
             backgroundColor: accentColor,
+            width: dimensions.xl,
+            height: dimensions.xl,
+            borderRadius: dimensions.xl / 2,
             shadowColor: "#000",
             shadowOffset: { width: 0, height: 3 },
             shadowOpacity: 0.2,
@@ -198,7 +204,7 @@ export default function SpeedDial({
         <Animated.View style={{ transform: [{ rotate }] }}>
           <Icon
             name={open ? openIcon : icon}
-            size={28}
+            size={iconSizes.xl}
             color={colors.onPrimary}
           />
         </Animated.View>
@@ -223,16 +229,10 @@ const styles = StyleSheet.create({
     overflow: "visible",
   },
   mainBtn: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
     alignItems: "center",
     justifyContent: "center",
   },
   miniBtn: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
     alignItems: "center",
     justifyContent: "center",
   },
