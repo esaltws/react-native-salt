@@ -10,9 +10,9 @@ import { useTheme } from "../../theme/ThemeContext";
 import Text from "../typography/Text";
 import Label from "../typography/Label";
 import Caption from "../typography/Caption";
-import { Size } from "../../types";
+import { Size, IconSize } from "../../types";
 
-const BOX_SIZE = { sm: 18, md: 22, lg: 28 };
+const BOX_MAP: Record<Size, IconSize> = { sm: "xs", md: "sm", lg: "md" };
 
 type Props = {
   checked: boolean;
@@ -36,9 +36,9 @@ export default function Checkbox({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius } = theme;
+  const { colors, spacing, radius, iconSizes } = theme;
 
-  const boxSize = BOX_SIZE[size];
+  const boxSize = iconSizes[BOX_MAP[size]];
 
   return (
     <Pressable

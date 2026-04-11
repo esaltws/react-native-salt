@@ -3,7 +3,9 @@ import { View, StyleSheet, StyleProp, ViewStyle } from "react-native";
 import { useTheme } from "../../theme/ThemeContext";
 import Caption from "../typography/Caption";
 import Icon from "../theme-settings/Icon";
-import { Size } from "../../types";
+import { Size, IconSize } from "../../types";
+
+const STAR_MAP: Record<Size, IconSize> = { sm: "xs", md: "sm", lg: "md" };
 
 type Props = {
   rating: number;
@@ -21,15 +23,9 @@ export default function RatingStars({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing } = theme;
+  const { colors, spacing, iconSizes } = theme;
 
-  const starSizeMap: Record<Size, number> = {
-    sm: 14,
-    md: 18,
-    lg: 22,
-  };
-
-  const starSize = starSizeMap[size];
+  const starSize = iconSizes[STAR_MAP[size]];
   const clampedRating = Math.max(0, Math.min(5, rating));
   const fullStars = Math.floor(clampedRating);
   const hasHalf = clampedRating - fullStars >= 0.25 && clampedRating - fullStars < 0.75;

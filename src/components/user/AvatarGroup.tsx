@@ -3,7 +3,10 @@ import { View, StyleSheet, StyleProp, ViewStyle } from "react-native";
 import { useTheme } from "../../theme/ThemeContext";
 import Avatar from "./Avatar";
 import Text from "../typography/Text";
-import { Size } from "../../types";
+import { Size, Dimension } from "../../types";
+
+const AVATAR_DIM: Record<Size, Dimension> = { sm: "sm", md: "md", lg: "xl" };
+const OVERFLOW_DIM: Record<Size, Dimension> = { sm: "xs", md: "sm", lg: "lg" };
 
 type AvatarItem = {
   key: string;
@@ -29,8 +32,10 @@ export default function AvatarGroup({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, fontSizes } = theme;
+  const { colors, fontSizes, dimensions } = theme;
 
+  const avatarDim = dimensions[AVATAR_DIM[size]];
+  const overflowDim = dimensions[OVERFLOW_DIM[size]];
   const visible = items.slice(0, max);
   const overflow = items.length - max;
 
@@ -44,7 +49,7 @@ export default function AvatarGroup({
             zIndex: visible.length - index,
             borderWidth: 2,
             borderColor: colors.background,
-            borderRadius: size === "sm" ? 12 : size === "md" ? 18 : 24,
+            borderRadius: avatarDim / 2,
           }}
         >
           <Avatar
@@ -60,9 +65,9 @@ export default function AvatarGroup({
           style={[
             styles.overflowBadge,
             {
-              width: size === "sm" ? 24 : size === "md" ? 36 : 48,
-              height: size === "sm" ? 24 : size === "md" ? 36 : 48,
-              borderRadius: size === "sm" ? 12 : size === "md" ? 18 : 24,
+              width: overflowDim,
+              height: overflowDim,
+              borderRadius: overflowDim / 2,
               backgroundColor: colors.surface,
               borderWidth: 2,
               borderColor: colors.background,

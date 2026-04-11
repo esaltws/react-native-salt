@@ -34,7 +34,7 @@ export default function ProgressRing({
   const sw = STROKE_WIDTH[size];
   const half = ringSize / 2;
   const clampedProgress = Math.min(1, Math.max(0, progress));
-  const barColor = (colors as any)[intent] || colors.primary;
+  const barColor = colors[intent] || colors.primary;
   const percentage = Math.round(clampedProgress * 100);
 
   // Radius at center of stroke

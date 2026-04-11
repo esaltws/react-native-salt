@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { View, StyleSheet, StyleProp, ViewStyle } from "react-native";
 import { useTheme } from "../../theme/ThemeContext";
 import Text from "../typography/Text";
-import { Size } from "../../types";
+import { Size, FontSize, Dimension } from "../../types";
 
 type Props = {
   targetDate?: Date;
@@ -17,10 +17,10 @@ type Props = {
   testID?: string;
 };
 
-const SIZE_MAP: Record<Size, { num: number; label: number; box: number }> = {
-  sm: { num: 18, label: 10, box: 40 },
-  md: { num: 28, label: 11, box: 56 },
-  lg: { num: 36, label: 12, box: 72 },
+const TOKEN_MAP: Record<Size, { num: FontSize; label: FontSize; box: Dimension }> = {
+  sm: { num: "lg", label: "xs", box: "md" },
+  md: { num: "xxl", label: "xs", box: "xl" },
+  lg: { num: "3xl", label: "xs", box: "xxl" },
 };
 
 function pad(n: number): string {
@@ -40,8 +40,8 @@ export default function CountdownTimer({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius } = theme;
-  const sizeConfig = SIZE_MAP[size];
+  const { colors, spacing, radius, fontSizes, dimensions } = theme;
+  const s = TOKEN_MAP[size];
 
   const getRemaining = (): number => {
     if (targetDate) {
@@ -91,14 +91,14 @@ export default function CountdownTimer({
           {i > 0 && (
             <View
               style={{
-                height: sizeConfig.box,
+                height: dimensions[s.box],
                 justifyContent: "center",
                 marginHorizontal: spacing.xs,
               }}
             >
               <Text
                 style={{
-                  fontSize: sizeConfig.num,
+                  fontSize: fontSizes[s.num],
                   fontWeight: "700",
                   color: colors.muted,
                 }}
@@ -112,8 +112,8 @@ export default function CountdownTimer({
               style={[
                 styles.box,
                 {
-                  width: sizeConfig.box,
-                  height: sizeConfig.box,
+                  width: dimensions[s.box],
+                  height: dimensions[s.box],
                   borderRadius: radius.md,
                   backgroundColor: colors.primary + "12",
                 },
@@ -121,7 +121,7 @@ export default function CountdownTimer({
             >
               <Text
                 style={{
-                  fontSize: sizeConfig.num,
+                  fontSize: fontSizes[s.num],
                   fontWeight: "700",
                   color: colors.text,
                   fontFamily: "monospace",
@@ -135,9 +135,9 @@ export default function CountdownTimer({
             {showLabels && (
               <Text
                 style={{
-                  fontSize: sizeConfig.label,
+                  fontSize: fontSizes[s.label],
                   color: colors.muted,
-                  marginTop: 4,
+                  marginTop: spacing.xs,
                   textAlign: "center",
                 }}
               >

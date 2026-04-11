@@ -9,7 +9,7 @@ import { useTheme } from "../../theme/ThemeContext";
 import { resolveIntentColor } from "../../theme/intent";
 import Text from "../typography/Text";
 import Icon from "../theme-settings/Icon";
-import { Intent, Size } from "../../types";
+import { Intent, Size, FontSize, IconSize, Dimension } from "../../types";
 
 type Props = {
   icon?: string;
@@ -23,10 +23,10 @@ type Props = {
   testID?: string;
 };
 
-const SIZE_MAP: Record<Size, { btn: number; icon: number; font: number }> = {
-  sm: { btn: 40, icon: 18, font: 12 },
-  md: { btn: 56, icon: 24, font: 14 },
-  lg: { btn: 64, icon: 28, font: 16 },
+const FAB_MAP: Record<Size, { btn: Dimension; icon: IconSize; font: FontSize }> = {
+  sm: { btn: "md", icon: "sm", font: "xs" },
+  md: { btn: "xl", icon: "md", font: "sm" },
+  lg: { btn: "xxl", icon: "lg", font: "md" },
 };
 
 export default function FAB({
@@ -41,9 +41,8 @@ export default function FAB({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing } = theme;
-
-  const sizeConfig = SIZE_MAP[size];
+  const { colors, spacing, fontSizes, iconSizes, dimensions } = theme;
+  const s = FAB_MAP[size];
 
   const bgColor = disabled ? colors.muted : resolveIntentColor(colors, intent);
 
@@ -52,7 +51,7 @@ export default function FAB({
       ? { bottom: spacing.xl, right: spacing.xl }
       : position === "bottom-left"
       ? { bottom: spacing.xl, left: spacing.xl }
-      : { bottom: spacing.xl, alignSelf: "center", left: "50%", marginLeft: -(label ? 60 : sizeConfig.btn / 2) };
+      : { bottom: spacing.xl, alignSelf: "center", left: "50%", marginLeft: -(label ? 60 : dimensions[s.btn] / 2) };
 
   const isExtended = !!label;
 
@@ -68,9 +67,9 @@ export default function FAB({
         styles.fab,
         {
           backgroundColor: bgColor,
-          borderRadius: isExtended ? sizeConfig.btn / 2 : sizeConfig.btn / 2,
-          width: isExtended ? undefined : sizeConfig.btn,
-          height: sizeConfig.btn,
+          borderRadius: isExtended ? dimensions[s.btn] / 2 : dimensions[s.btn] / 2,
+          width: isExtended ? undefined : dimensions[s.btn],
+          height: dimensions[s.btn],
           paddingHorizontal: isExtended ? spacing.lg : 0,
           position: "absolute",
           ...positionStyle,
@@ -79,13 +78,13 @@ export default function FAB({
         style,
       ]}
     >
-      <Icon name={icon} size={sizeConfig.icon} color={colors.surface} />
+      <Icon name={icon} size={iconSizes[s.icon]} color={colors.surface} />
       {label && (
         <Text
           style={{
             color: colors.surface,
             fontWeight: "600",
-            fontSize: sizeConfig.font,
+            fontSize: fontSizes[s.font],
             marginLeft: spacing.sm,
           }}
         >

@@ -9,10 +9,10 @@ import {
 } from "react-native";
 import { useTheme } from "../../theme/ThemeContext";
 import Text from "../typography/Text";
-import { Size } from "../../types";
+import { Size, IconSize } from "../../types";
 
 const TRACK_HEIGHT = { sm: 3, md: 4, lg: 6 };
-const THUMB_SIZE = { sm: 20, md: 24, lg: 30 };
+const THUMB_MAP: Record<Size, IconSize> = { sm: "sm", md: "md", lg: "xl" };
 
 type Props = {
   value: number;
@@ -40,10 +40,10 @@ export default function Slider({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, fontSizes, spacing } = theme;
+  const { colors, fontSizes, spacing, iconSizes } = theme;
 
   const trackHeight = TRACK_HEIGHT[size];
-  const thumbSize = THUMB_SIZE[size];
+  const thumbSize = iconSizes[THUMB_MAP[size]];
   const trackWidth = useRef(0);
   const trackRef = useRef<View>(null);
   const trackPageX = useRef(0);

@@ -1,9 +1,11 @@
 import React from "react";
 import { View, Image, StyleSheet, StyleProp, ViewStyle } from "react-native";
 import { useTheme } from "../../theme/ThemeContext";
-import { Size } from "../../types";
+import { Size, Dimension } from "../../types";
 import Text from "../typography/Text";
 import StatusDot from "../status/StatusDot";
+
+const AVATAR_DIM: Record<Size, Dimension> = { sm: "sm", md: "md", lg: "xl" };
 
 type StatusType = "online" | "offline" | "idle";
 
@@ -42,13 +44,7 @@ export default function Avatar({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, fontSizes } = theme;
-
-  const sizeValues: Record<Size, number> = {
-    sm: 32,
-    md: 40,
-    lg: 56,
-  };
+  const { colors, fontSizes, dimensions } = theme;
 
   const fontSizeMap: Record<Size, number> = {
     sm: fontSizes.xs,
@@ -56,8 +52,8 @@ export default function Avatar({
     lg: fontSizes.xxl,
   };
 
-  const dimension = typeof size === "number" ? size : sizeValues[size];
-  const fontSize = typeof size === "number" ? size * 0.4 : fontSizeMap[size];
+  const dimension = dimensions[AVATAR_DIM[size]];
+  const fontSize = fontSizeMap[size];
   const initials = getInitials(name);
   const bgColor = name ? hashColor(name) : colors.muted;
 

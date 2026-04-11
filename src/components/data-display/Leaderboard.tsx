@@ -35,7 +35,7 @@ export default function Leaderboard({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes, sizeMap } = theme;
 
   return (
     <View
@@ -100,11 +100,11 @@ export default function Leaderboard({
             ]}
           >
             {/* Rank */}
-            <View style={[styles.rankBox, { width: 32 }]}>
+            <View style={[styles.rankBox, { width: sizeMap.xs }]}>
               {isMedal ? (
                 <Icon
                   name="trophy"
-                  size={20}
+                  size={iconSizes.sm}
                   color={MEDAL_COLORS[rank - 1]}
                 />
               ) : (
