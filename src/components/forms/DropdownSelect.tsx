@@ -11,7 +11,7 @@ import {
 import { useTheme } from "../../theme/ThemeContext";
 import Text from "../typography/Text";
 import Icon from "../theme-settings/Icon";
-import { Size } from "../../types";
+import { Size, FontSize, IconSize } from "../../types";
 
 type DropdownOption = {
   key: string;
@@ -36,10 +36,10 @@ type Props = {
   testID?: string;
 };
 
-const SIZE_MAP = {
-  sm: { height: 34, font: 13, icon: 16, padding: 8 },
-  md: { height: 42, font: 15, icon: 18, padding: 12 },
-  lg: { height: 50, font: 17, icon: 20, padding: 16 },
+const COMPACT_MAP: Record<Size, { font: FontSize; icon: IconSize; px: "sm" | "md" | "lg" }> = {
+  sm: { font: "xs", icon: "xs", px: "sm" },
+  md: { font: "sm", icon: "sm", px: "md" },
+  lg: { font: "md", icon: "md", px: "lg" },
 };
 
 export default function DropdownSelect({
@@ -57,10 +57,10 @@ export default function DropdownSelect({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes, sizeMap } = theme;
   const [open, setOpen] = useState(false);
   const rotateAnim = useRef(new Animated.Value(0)).current;
-  const s = SIZE_MAP[size];
+  const s = COMPACT_MAP[size];
 
   const selected = options.find((o) => o.key === value);
 
