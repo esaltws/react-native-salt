@@ -167,7 +167,7 @@ export default function RangeSlider({
         {trackWidth > 0 && (
           <View
             {...lowPan.panHandlers}
-            hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+            hitSlop={{ top: spacing.md, bottom: spacing.md, left: spacing.md, right: spacing.md }}
             accessibilityRole="adjustable"
             accessibilityLabel="Minimum value"
             accessibilityValue={{ min, max, now: low }}
@@ -191,7 +191,7 @@ export default function RangeSlider({
         {trackWidth > 0 && (
           <View
             {...highPan.panHandlers}
-            hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+            hitSlop={{ top: spacing.md, bottom: spacing.md, left: spacing.md, right: spacing.md }}
             accessibilityRole="adjustable"
             accessibilityLabel="Maximum value"
             accessibilityValue={{ min, max, now: high }}

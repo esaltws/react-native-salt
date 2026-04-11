@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(npx jest src/components/buttons/__tests__/Button.test.tsx --no-coverage)",
-      "Bash(npx jest --no-coverage --maxWorkers=2 src/theme/__tests__/ src/components/typography/__tests__/)"
+      "Bash(npx jest --no-coverage --maxWorkers=2 src/theme/__tests__/ src/components/typography/__tests__/)",
+      "Bash(grep -n \"marginLeft:\\\\|marginRight:\\\\|marginVertical:\\\\|marginHorizontal:\\\\|paddingVertical:\" \"e:\\\\react-native-salt\\\\src\\\\components\\\\buttons\"/*.tsx)"
     ]
   }
 }

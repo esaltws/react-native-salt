@@ -107,7 +107,8 @@ export function FormScreen({
                       styles.stepDot,
                       {
                         backgroundColor: i < step.current ? colors.primary : colors.border,
-                        width: i === step.current - 1 ? 24 : 8,
+                        width: i === step.current - 1 ? spacing.xxl : spacing.sm,
+                        height: spacing.sm,
                         borderRadius: radius.sm,
                       },
                     ]}
@@ -197,9 +198,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flex: 1,
   },
-  stepDot: {
-    height: 8,
-  },
+  stepDot: {},
   errorBanner: {
     paddingVertical: 10,
   },

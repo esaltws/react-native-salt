@@ -127,7 +127,7 @@ export default function SpeedDial({
                   {
                     backgroundColor: colors.surface,
                     borderRadius: radius.sm,
-                    paddingVertical: 4,
+                    paddingVertical: spacing.xs,
                     paddingHorizontal: spacing.sm,
                     [alignRight ? "marginRight" : "marginLeft"]: spacing.sm,
                     shadowColor: "#000",

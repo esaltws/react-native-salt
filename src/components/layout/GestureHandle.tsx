@@ -35,7 +35,7 @@ export default function GestureHandle({
   size = 8,
   color,
   variant = "dot",
-  hitSlop = 12,
+  hitSlop,
   onPress,
   onDragStart,
   onDrag,
@@ -91,7 +91,8 @@ export default function GestureHandle({
     })
   ).current;
 
-  const hitSlopValue = { top: hitSlop, bottom: hitSlop, left: hitSlop, right: hitSlop };
+  const effectiveHitSlop = hitSlop ?? spacing.md;
+  const hitSlopValue = { top: effectiveHitSlop, bottom: effectiveHitSlop, left: effectiveHitSlop, right: effectiveHitSlop };
 
   const renderHandle = () => {
     if (variant === "bar") {

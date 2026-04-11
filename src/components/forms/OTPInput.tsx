@@ -23,11 +23,6 @@ type Props = {
   testID?: string;
 };
 
-const SIZE_MAP = {
-  sm: { box: 36, font: 16 },
-  md: { box: 46, font: 22 },
-  lg: { box: 56, font: 28 },
-};
 
 export default function OTPInput({
   length = 6,
@@ -42,9 +37,13 @@ export default function OTPInput({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes, iconSizes } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes, sizeMap, dimensions } = theme;
   const inputRef = useRef<TextInput>(null);
-  const sizeConfig = SIZE_MAP[size];
+  const sizeConfig = {
+    sm: { box: sizeMap.sm, font: fontSizes.md },
+    md: { box: 46, font: 22 },
+    lg: { box: dimensions.xl, font: 28 },
+  }[size];
 
   const digits = value.split("").slice(0, length);
 

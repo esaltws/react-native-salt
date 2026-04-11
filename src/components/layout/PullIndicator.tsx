@@ -11,20 +11,20 @@ type Props = {
 };
 
 export default function PullIndicator({
-  width = 36,
+  width,
   height = 5,
   color,
   style,
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing } = theme;
+  const { colors, spacing, sizeMap } = theme;
 
   return (
     <View testID={testID} style={[styles.container, { paddingVertical: spacing.sm }, style]}>
       <View
         style={{
-          width,
+          width: width ?? sizeMap.sm,
           height,
           borderRadius: height / 2,
           backgroundColor: color || colors.border,

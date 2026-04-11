@@ -41,7 +41,7 @@ export default function FAB({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, fontSizes, iconSizes, dimensions } = theme;
+  const { colors, spacing, fontSizes, iconSizes, dimensions, sizeMap } = theme;
   const s = FAB_MAP[size];
 
   const bgColor = disabled ? colors.muted : resolveIntentColor(colors, intent);
@@ -51,7 +51,7 @@ export default function FAB({
       ? { bottom: spacing.xl, right: spacing.xl }
       : position === "bottom-left"
       ? { bottom: spacing.xl, left: spacing.xl }
-      : { bottom: spacing.xl, alignSelf: "center", left: "50%", marginLeft: -(label ? 60 : dimensions[s.btn] / 2) };
+      : { bottom: spacing.xl, alignSelf: "center", left: "50%", marginLeft: -(label ? sizeMap.xxl : dimensions[s.btn] / 2) };
 
   const isExtended = !!label;
 

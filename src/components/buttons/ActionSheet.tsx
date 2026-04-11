@@ -62,7 +62,7 @@ export default function ActionSheet({
           <View
             style={[
               styles.handle,
-              { backgroundColor: colors.border, marginVertical: spacing.sm, width: sizeMap.sm, borderRadius: 2 },
+              { backgroundColor: colors.border, marginVertical: spacing.sm, width: sizeMap.sm, height: spacing.xs, borderRadius: 2 },
             ]}
           />
 
@@ -145,7 +145,6 @@ const styles = StyleSheet.create({
   },
   sheet: {},
   handle: {
-    height: 4,
     alignSelf: "center",
   },
   option: {},
