@@ -36,9 +36,9 @@ describe('Row', () => {
     expect(flatStyle.gap).toBe(16); // theme.spacing.lg
   });
 
-  it('resolves raw number for gap', () => {
+  it('resolves spacing token xl for gap', () => {
     const { getByTestId } = renderWithTheme(
-      <Row testID="row" gap={30}>
+      <Row testID="row" gap="xl">
         <Text>A</Text>
         <Text>B</Text>
       </Row>
@@ -48,7 +48,7 @@ describe('Row', () => {
     const flatStyle = Array.isArray(row.props.style)
       ? Object.assign({}, ...row.props.style.filter(Boolean))
       : row.props.style;
-    expect(flatStyle.gap).toBe(30);
+    expect(flatStyle.gap).toBe(24); // theme.spacing.xl
   });
 
   it('applies flex: 1 when fill is true', () => {
