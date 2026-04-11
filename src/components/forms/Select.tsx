@@ -52,7 +52,7 @@ export default function Select({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes } = theme;
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
 
@@ -100,7 +100,7 @@ export default function Select({
         {selected?.icon && (
           <Icon
             name={selected.icon}
-            size={18}
+            size={iconSizes[size]}
             color={colors.text}
             style={{ marginRight: spacing.sm }}
           />
@@ -117,7 +117,7 @@ export default function Select({
         </Text>
         <Icon
           name="chevron-down-outline"
-          size={18}
+          size={iconSizes[size]}
           color={colors.muted}
         />
       </Pressable>
@@ -163,7 +163,7 @@ export default function Select({
               >
                 <Icon
                   name="search-outline"
-                  size={18}
+                  size={iconSizes[size]}
                   color={colors.muted}
                   style={{ marginRight: spacing.sm }}
                 />
@@ -208,7 +208,7 @@ export default function Select({
                     {item.icon && (
                       <Icon
                         name={item.icon}
-                        size={18}
+                        size={iconSizes[size]}
                         color={isSelected ? colors.primary : colors.text}
                         style={{ marginRight: spacing.sm }}
                       />
@@ -226,7 +226,7 @@ export default function Select({
                     {isSelected && (
                       <Icon
                         name="checkmark"
-                        size={18}
+                        size={iconSizes[size]}
                         color={colors.primary}
                       />
                     )}
