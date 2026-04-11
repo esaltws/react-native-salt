@@ -192,8 +192,8 @@ export default function PieChart({
               >
                 <View
                   style={{
-                    width: 12,
-                    height: 12,
+                    width: spacing.md,
+                    height: spacing.md,
                     borderRadius: 3,
                     backgroundColor: seg.color,
                     marginRight: spacing.sm,

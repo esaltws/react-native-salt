@@ -12,7 +12,7 @@ type Props = {
 
 export default function StepIndicator({ steps, currentStep, style, testID }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, fontSizes } = theme;
+  const { colors, spacing, fontSizes, dimensions } = theme;
 
   return (
     <View testID={testID} style={[styles.container, style]}>
@@ -51,9 +51,9 @@ export default function StepIndicator({ steps, currentStep, style, testID }: Pro
                 style={[
                   styles.circle,
                   {
-                    width: 28,
-                    height: 28,
-                    borderRadius: 14,
+                    width: dimensions.xs,
+                    height: dimensions.xs,
+                    borderRadius: dimensions.xs / 2,
                     backgroundColor: circleColor,
                   },
                 ]}

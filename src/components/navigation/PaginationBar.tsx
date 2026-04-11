@@ -15,12 +15,6 @@ type Props = {
   testID?: string;
 };
 
-const SIZE_MAP = {
-  sm: { height: 28, font: 12, icon: 14, px: 8 },
-  md: { height: 36, font: 14, icon: 18, px: 12 },
-  lg: { height: 44, font: 16, icon: 22, px: 16 },
-};
-
 export default function PaginationBar({
   currentPage,
   totalPages,
@@ -32,7 +26,13 @@ export default function PaginationBar({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes, dimensions, sizeMap } = theme;
+
+  const SIZE_MAP = {
+    sm: { height: dimensions.xs, font: fontSizes.xs, icon: iconSizes.xs, px: spacing.sm },
+    md: { height: dimensions.sm, font: fontSizes.sm, icon: iconSizes.sm, px: spacing.md },
+    lg: { height: sizeMap.md, font: fontSizes.md, icon: iconSizes.md, px: spacing.lg },
+  };
   const sizeConfig = SIZE_MAP[size];
 
   const isFirst = currentPage <= 1;

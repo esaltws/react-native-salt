@@ -29,7 +29,7 @@ export default function BarChart({
   maxValue,
   showValues = true,
   showLabels = true,
-  barHeight = 24,
+  barHeight,
   intent = "primary",
   style,
   testID,
@@ -37,8 +37,9 @@ export default function BarChart({
   const { theme } = useTheme();
   const { colors, spacing, radius, fontSizes } = theme;
 
+  const effectiveBarHeight = barHeight ?? spacing.xxl;
   const max = maxValue ?? Math.max(...items.map((i) => i.value), 1);
-  const defaultColor = (colors as any)[intent] || colors.primary;
+  const defaultColor = colors[intent] || colors.primary;
 
   return (
     <View testID={testID} style={[{ gap: spacing.sm }, style]}>
@@ -47,7 +48,7 @@ export default function BarChart({
         const barColor = item.color
           ? item.color
           : item.intent
-          ? (colors as any)[item.intent] || defaultColor
+          ? colors[item.intent] || defaultColor
           : defaultColor;
 
         return (
@@ -72,7 +73,7 @@ export default function BarChart({
               style={[
                 styles.track,
                 {
-                  height: barHeight,
+                  height: effectiveBarHeight,
                   backgroundColor: `${barColor}14`,
                   borderRadius: radius.sm,
                   flex: 1,

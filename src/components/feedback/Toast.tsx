@@ -52,7 +52,7 @@ export default function Toast({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes } = theme;
   const opacity = useRef(new Animated.Value(0)).current;
   const translateY = useRef(new Animated.Value(position === "top" ? -20 : 20)).current;
 
@@ -102,6 +102,8 @@ export default function Toast({
       style={[
         styles.container,
         {
+          left: spacing.lg,
+          right: spacing.lg,
           [position]: spacing.xxl,
           opacity,
           transform: [{ translateY }],
@@ -118,14 +120,14 @@ export default function Toast({
             backgroundColor: colors.surface,
             borderRadius: radius.lg,
             padding: spacing.md,
-            borderLeftWidth: 4,
+            borderLeftWidth: spacing.xs,
             borderLeftColor: toastColor,
           },
           styles.shadow,
           style,
         ]}
       >
-        <Icon name={displayIcon} size={20} color={toastColor} />
+        <Icon name={displayIcon} size={iconSizes.sm} color={toastColor} />
         <Text
           style={{
             flex: 1,
@@ -152,7 +154,7 @@ export default function Toast({
           </Pressable>
         ) : (
           <Pressable onPress={onDismiss} style={{ marginLeft: spacing.sm }} accessibilityRole="button" accessibilityLabel="Dismiss">
-            <Icon name="close" size={16} color={colors.muted} />
+            <Icon name="close" size={iconSizes.xs} color={colors.muted} />
           </Pressable>
         )}
       </View>
@@ -163,8 +165,6 @@ export default function Toast({
 const styles = StyleSheet.create({
   container: {
     position: "absolute",
-    left: 16,
-    right: 16,
     zIndex: 9999,
     alignItems: "center",
   },

@@ -45,11 +45,11 @@ export default function AlertDialog({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes, dimensions } = theme;
 
   const accentColor = destructive
     ? colors.danger
-    : (colors as any)[intent] || colors.primary;
+    : colors[intent] || colors.primary;
 
   return (
     <Modal
@@ -81,14 +81,14 @@ export default function AlertDialog({
                 styles.iconCircle,
                 {
                   backgroundColor: `${accentColor}14`,
-                  width: 56,
-                  height: 56,
-                  borderRadius: 28,
+                  width: dimensions.xl,
+                  height: dimensions.xl,
+                  borderRadius: dimensions.xl / 2,
                   marginBottom: spacing.md,
                 },
               ]}
             >
-              <Icon name={icon} size={28} color={accentColor} />
+              <Icon name={icon} size={iconSizes.xl} color={accentColor} />
             </View>
           )}
 

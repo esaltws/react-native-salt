@@ -75,20 +75,20 @@ export default function Popover({
 
   const getPopoverStyle = (): ViewStyle => {
     const { x, y, width, height } = triggerLayout;
-    const gap = 8;
+    const gap = spacing.sm;
 
     switch (position) {
       case "top":
         return {
           position: "absolute",
           bottom: screen.height - y + gap,
-          left: Math.max(8, x + width / 2 - maxWidth / 2),
+          left: Math.max(spacing.sm, x + width / 2 - maxWidth / 2),
         };
       case "bottom":
         return {
           position: "absolute",
           top: y + height + gap,
-          left: Math.max(8, x + width / 2 - maxWidth / 2),
+          left: Math.max(spacing.sm, x + width / 2 - maxWidth / 2),
         };
       case "left":
         return {

@@ -58,12 +58,12 @@ export default function Tooltip({
 
   const tipStyle: ViewStyle =
     position === "top"
-      ? { bottom: triggerLayout.height + 8, left: 0 }
+      ? { bottom: triggerLayout.height + spacing.sm, left: 0 }
       : position === "bottom"
-      ? { top: triggerLayout.height + 8, left: 0 }
+      ? { top: triggerLayout.height + spacing.sm, left: 0 }
       : position === "left"
-      ? { right: triggerLayout.width + 8, top: 0 }
-      : { left: triggerLayout.width + 8, top: 0 };
+      ? { right: triggerLayout.width + spacing.sm, top: 0 }
+      : { left: triggerLayout.width + spacing.sm, top: 0 };
 
   return (
     <View testID={testID} style={[styles.wrapper, style]}>

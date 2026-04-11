@@ -37,7 +37,7 @@ export default function Snackbar({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes } = theme;
   const slideAnim = useRef(new Animated.Value(0)).current;
   const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
@@ -77,6 +77,10 @@ export default function Snackbar({
       testID={testID}
       style={[
         styles.container,
+        {
+          left: spacing.lg,
+          right: spacing.lg,
+        },
         position === "bottom"
           ? { bottom: spacing.xl }
           : { top: spacing.xl },
@@ -104,7 +108,7 @@ export default function Snackbar({
         {icon && (
           <Icon
             name={icon}
-            size={20}
+            size={iconSizes.sm}
             color={theme.mode === "dark" ? colors.text : colors.surface}
             style={{ marginRight: spacing.sm }}
           />
@@ -149,8 +153,6 @@ export default function Snackbar({
 const styles = StyleSheet.create({
   container: {
     position: "absolute",
-    left: 16,
-    right: 16,
     zIndex: 9999,
   },
   snackbar: {

@@ -48,7 +48,7 @@ export default function Drawer({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes } = theme;
   const screenWidth = Dimensions.get("window").width;
   const width = drawerWidth ?? screenWidth * 0.8;
   const slideAnim = useRef(new Animated.Value(0)).current;
@@ -138,7 +138,7 @@ export default function Drawer({
         )}
 
         {/* Items or children */}
-        <View style={styles.body}>
+        <View style={[styles.body, { paddingVertical: spacing.sm }]}>
           {children ??
             items?.map((item) => (
               <Pressable
@@ -166,7 +166,7 @@ export default function Drawer({
                 {item.icon && (
                   <Icon
                     name={item.icon}
-                    size={22}
+                    size={iconSizes.md}
                     color={item.active ? colors.primary : colors.muted}
                     style={{ marginRight: spacing.md }}
                   />
@@ -183,19 +183,18 @@ export default function Drawer({
                 </Text>
                 {item.badge != null && item.badge > 0 && (
                   <View
-                    style={[
-                      styles.badge,
-                      {
-                        backgroundColor: colors.danger,
-                        borderRadius: 10,
-                        paddingHorizontal: 6,
-                        paddingVertical: 2,
-                      },
-                    ]}
+                    style={{
+                      minWidth: iconSizes.sm,
+                      alignItems: "center",
+                      backgroundColor: colors.danger,
+                      borderRadius: radius.lg,
+                      paddingHorizontal: spacing.sm,
+                      paddingVertical: 2,
+                    }}
                   >
                     <Text
                       style={{
-                        fontSize: 11,
+                        fontSize: fontSizes.xs,
                         fontWeight: "700",
                         color: colors.onDanger,
                       }}
@@ -246,14 +245,9 @@ const styles = StyleSheet.create({
   section: {},
   body: {
     flex: 1,
-    paddingVertical: 8,
   },
   menuItem: {
     flexDirection: "row",
-    alignItems: "center",
-  },
-  badge: {
-    minWidth: 20,
     alignItems: "center",
   },
 });

@@ -42,15 +42,15 @@ export default function LineChart({
   if (data.length < 2) return null;
 
   const lineColor =
-    customColor || (colors as any)[intent] || colors.primary;
+    customColor || colors[intent] || colors.primary;
   const values = data.map((d) => d.value);
   const minVal = Math.min(...values);
   const maxVal = Math.max(...values);
   const range = maxVal - minVal || 1;
 
-  const chartPaddingTop = 20;
+  const chartPaddingTop = spacing.xl;
   const chartHeight = height - chartPaddingTop;
-  const dotSize = 8;
+  const dotSize = spacing.sm;
 
   // Normalize values to chart height
   const points = data.map((d, i) => ({
@@ -86,8 +86,8 @@ export default function LineChart({
                 style={{
                   position: "absolute",
                   right: 0,
-                  top: -8,
-                  fontSize: 10,
+                  top: -spacing.sm,
+                  fontSize: fontSizes.xxs,
                   color: colors.muted,
                 }}
               >
@@ -178,7 +178,7 @@ export default function LineChart({
                 position: "absolute",
                 left: `${point.x}%` as any,
                 top: point.y + chartPaddingTop - dotSize / 2 - 16,
-                fontSize: 10,
+                fontSize: fontSizes.xxs,
                 fontWeight: "600",
                 color: colors.text,
                 textAlign: "center",
@@ -221,7 +221,7 @@ export default function LineChart({
             <Text
               key={i}
               style={{
-                fontSize: 10,
+                fontSize: fontSizes.xxs,
                 color: colors.muted,
                 textAlign: "center",
                 flex: 1,

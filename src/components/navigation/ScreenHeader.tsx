@@ -42,13 +42,13 @@ export default function ScreenHeader({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes, sizeMap, dimensions } = theme;
 
   return (
     <View
       testID={testID}
       style={[
-        styles.container,
+        { flexDirection: "row" as const, alignItems: "center" as const, minHeight: sizeMap.xl },
         {
           backgroundColor: transparent ? "transparent" : colors.surface,
           borderBottomWidth: transparent ? 0 : 1,
@@ -60,15 +60,15 @@ export default function ScreenHeader({
       ]}
     >
       {/* Left: back button */}
-      <View style={styles.left}>
+      <View style={{ minWidth: dimensions.md }}>
         {onBack && (
           <Pressable
             onPress={onBack}
-            style={styles.backBtn}
+            style={{ padding: spacing.xs }}
             accessibilityRole="button"
             accessibilityLabel="Go back"
           >
-            <Icon name={backIcon} size={24} color={colors.text} />
+            <Icon name={backIcon} size={iconSizes.md} color={colors.text} />
           </Pressable>
         )}
       </View>
@@ -86,24 +86,32 @@ export default function ScreenHeader({
       </View>
 
       {/* Right: actions */}
-      <View style={styles.right}>
+      <View style={{ flexDirection: "row", minWidth: dimensions.md, justifyContent: "flex-end", gap: spacing.sm }}>
         {actions.map((act, index) => (
           <Pressable
             key={index}
             onPress={act.onPress}
-            style={styles.actionBtn}
+            style={{ padding: spacing.xs, position: "relative" as const }}
             accessibilityRole="button"
             accessibilityLabel={act.icon}
           >
-            <Icon name={act.icon} size={22} color={colors.text} />
+            <Icon name={act.icon} size={iconSizes.md} color={colors.text} />
             {act.badge != null && act.badge > 0 && (
               <View
-                style={[
-                  styles.badge,
-                  { backgroundColor: colors.danger },
-                ]}
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  right: 0,
+                  minWidth: spacing.lg,
+                  height: spacing.lg,
+                  borderRadius: radius.md,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  paddingHorizontal: 3,
+                  backgroundColor: colors.danger,
+                }}
               >
-                <Text style={{ color: colors.onDanger, fontSize: 9, fontWeight: "700" }}>
+                <Text style={{ color: colors.onDanger, fontSize: fontSizes.xxs, fontWeight: "700" }}>
                   {act.badge > 99 ? "99+" : act.badge}
                 </Text>
               </View>
@@ -116,42 +124,10 @@ export default function ScreenHeader({
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    alignItems: "center",
-    minHeight: 52,
-  },
-  left: {
-    minWidth: 40,
-  },
   center: {
     flex: 1,
   },
   centerAbsolute: {
     alignItems: "center",
-  },
-  right: {
-    flexDirection: "row",
-    minWidth: 40,
-    justifyContent: "flex-end",
-    gap: 8,
-  },
-  backBtn: {
-    padding: 4,
-  },
-  actionBtn: {
-    padding: 4,
-    position: "relative",
-  },
-  badge: {
-    position: "absolute",
-    top: 0,
-    right: 0,
-    minWidth: 16,
-    height: 16,
-    borderRadius: 8,
-    alignItems: "center",
-    justifyContent: "center",
-    paddingHorizontal: 3,
   },
 });

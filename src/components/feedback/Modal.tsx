@@ -44,7 +44,7 @@ export default function Modal({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes } = theme;
 
   const handleCancel = () => {
     onCancel?.();
@@ -88,11 +88,11 @@ export default function Modal({
           {closable && (
             <Pressable
               onPress={onClose}
-              style={[styles.closeBtn, { top: spacing.md, right: spacing.md }]}
+              style={[styles.closeBtn, { top: spacing.md, right: spacing.md, padding: spacing.xs }]}
               accessibilityRole="button"
               accessibilityLabel="Close"
             >
-              <Icon name="close" size={20} color={colors.muted} />
+              <Icon name="close" size={iconSizes.sm} color={colors.muted} />
             </Pressable>
           )}
 
@@ -180,7 +180,6 @@ const styles = StyleSheet.create({
   closeBtn: {
     position: "absolute",
     zIndex: 1,
-    padding: 4,
   },
   actions: {
     flexDirection: "row",

@@ -46,12 +46,12 @@ export default function Banner({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, iconSizes } = theme;
   const [dismissed, setDismissed] = useState(false);
 
   if (dismissed) return null;
 
-  const accentColor = (colors as any)[intent] || colors.primary;
+  const accentColor = colors[intent] || colors.primary;
   const bgColor = `${accentColor}14`;
   const resolvedIcon = icon || INTENT_ICONS[intent] || INTENT_ICONS.info;
 
@@ -68,7 +68,7 @@ export default function Banner({
         styles.container,
         {
           backgroundColor: bgColor,
-          borderLeftWidth: 4,
+          borderLeftWidth: spacing.xs,
           borderLeftColor: accentColor,
           borderRadius: radius.md,
           padding: spacing.md,
@@ -79,7 +79,7 @@ export default function Banner({
       <View style={styles.row}>
         <Icon
           name={resolvedIcon}
-          size={22}
+          size={iconSizes.md}
           color={accentColor}
           style={{ marginRight: spacing.sm }}
         />
@@ -98,7 +98,7 @@ export default function Banner({
               style={{
                 fontSize: fontSizes.xs,
                 color: colors.muted,
-                marginTop: 4,
+                marginTop: spacing.xs,
               }}
             >
               {message}
@@ -119,8 +119,8 @@ export default function Banner({
           )}
         </View>
         {dismissible && (
-          <Pressable onPress={handleDismiss} style={{ padding: 4 }} accessibilityRole="button" accessibilityLabel="Dismiss">
-            <Icon name="close" size={18} color={colors.muted} />
+          <Pressable onPress={handleDismiss} style={{ padding: spacing.xs }} accessibilityRole="button" accessibilityLabel="Dismiss">
+            <Icon name="close" size={iconSizes.sm} color={colors.muted} />
           </Pressable>
         )}
       </View>

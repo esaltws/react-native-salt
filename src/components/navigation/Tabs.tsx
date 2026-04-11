@@ -11,8 +11,6 @@ import { useTheme } from "../../theme/ThemeContext";
 import Text from "../typography/Text";
 import { Size } from "../../types";
 
-const HEIGHT_MAP = { sm: 36, md: 44, lg: 52 };
-
 type TabItem = {
   key: string;
   label: string;
@@ -39,8 +37,9 @@ export default function Tabs({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, fontSizes, radius } = theme;
+  const { colors, spacing, fontSizes, radius, dimensions, sizeMap } = theme;
 
+  const HEIGHT_MAP = { sm: dimensions.sm, md: sizeMap.md, lg: sizeMap.xl };
   const height = HEIGHT_MAP[size];
   const fontSize = fontSizes[size === "lg" ? "md" : "sm"];
 
@@ -77,9 +76,9 @@ export default function Tabs({
               styles.badge,
               {
                 backgroundColor: colors.primary,
-                borderRadius: radius.xl ?? 12,
+                borderRadius: radius.xl,
                 marginLeft: spacing.xs,
-                paddingHorizontal: 6,
+                paddingHorizontal: spacing.sm,
                 paddingVertical: 1,
               },
             ]}
