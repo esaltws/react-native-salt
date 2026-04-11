@@ -1,7 +1,7 @@
 import { colors } from "./colors";
 import { spacing } from "./spacing";
 import { radius } from "./radius";
-import { fontSizes } from "./typography";
+import { fontSizes, iconSizes, sizeMap, dimensions } from "./typography";
 import { Theme } from "../types";
 
 export const darkTheme: Theme = {
@@ -10,5 +10,8 @@ export const darkTheme: Theme = {
   spacing,
   radius,
   fontSizes,
+  iconSizes,
+  sizeMap,
+  dimensions,
   fontLevel: 16,
 };
