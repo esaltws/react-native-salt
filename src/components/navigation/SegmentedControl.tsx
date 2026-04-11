@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { useTheme } from "../../theme/ThemeContext";
 import Text from "../typography/Text";
-import { Size } from "../../types";
+import { Size, FontSize } from "../../types";
 
 type SegmentItem = {
   key: string;
@@ -26,10 +26,10 @@ type Props = {
   testID?: string;
 };
 
-const SIZE_MAP: Record<Size, { py: number; px: number; font: number }> = {
-  sm: { py: 4, px: 10, font: 12 },
-  md: { py: 6, px: 14, font: 14 },
-  lg: { py: 8, px: 18, font: 16 },
+const COMPACT_MAP: Record<Size, { py: "xs" | "sm" | "md"; px: "sm" | "md" | "lg"; font: FontSize }> = {
+  sm: { py: "xs", px: "sm", font: "xs" },
+  md: { py: "sm", px: "md", font: "sm" },
+  lg: { py: "md", px: "lg", font: "md" },
 };
 
 export default function SegmentedControl({
@@ -43,8 +43,8 @@ export default function SegmentedControl({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, radius } = theme;
-  const sizeConfig = SIZE_MAP[size];
+  const { colors, spacing, radius, fontSizes } = theme;
+  const s = COMPACT_MAP[size];
 
   return (
     <View
