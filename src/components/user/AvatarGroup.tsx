@@ -27,12 +27,13 @@ export default function AvatarGroup({
   items,
   max = 4,
   size = "md",
-  overlap = 10,
+  overlap,
   style,
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, fontSizes, dimensions } = theme;
+  const { colors, spacing, fontSizes, dimensions } = theme;
+  const effectiveOverlap = overlap ?? spacing.md;
 
   const avatarDim = dimensions[AVATAR_DIM[size]];
   const overflowDim = dimensions[OVERFLOW_DIM[size]];
@@ -45,7 +46,7 @@ export default function AvatarGroup({
         <View
           key={item.key}
           style={{
-            marginLeft: index === 0 ? 0 : -overlap,
+            marginLeft: index === 0 ? 0 : -effectiveOverlap,
             zIndex: visible.length - index,
             borderWidth: 2,
             borderColor: colors.background,
@@ -71,7 +72,7 @@ export default function AvatarGroup({
               backgroundColor: colors.surface,
               borderWidth: 2,
               borderColor: colors.background,
-              marginLeft: -overlap,
+              marginLeft: -effectiveOverlap,
               zIndex: 0,
             },
           ]}

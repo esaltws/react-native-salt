@@ -85,7 +85,7 @@ export default function PermissionCard({
   const { colors, spacing, radius, fontSizes } = theme;
 
   const config = STATUS_CONFIG[status];
-  const statusColor = (colors as any)[config.color] || colors.muted;
+  const statusColor = colors[config.color as keyof typeof colors] || colors.muted;
   const isGranted = status === "granted";
   const isActionDisabled = disabled || isGranted;
   const resolvedActionText = actionText || config.actionDefault;
@@ -133,7 +133,7 @@ export default function PermissionCard({
             styles.statusBadge,
             {
               backgroundColor: statusColor + "1A", // 10% opacity
-              borderRadius: radius.xl ?? 12,
+              borderRadius: radius.xl,
               paddingHorizontal: spacing.sm,
               paddingVertical: 2,
             },

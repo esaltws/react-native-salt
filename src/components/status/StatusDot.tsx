@@ -19,7 +19,7 @@ export default function StatusDot({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors } = theme;
+  const { colors, spacing } = theme;
 
   const statusColors: Record<StatusType, string> = {
     online: colors.success,
@@ -28,9 +28,9 @@ export default function StatusDot({
   };
 
   const sizeValues: Record<Size, number> = {
-    sm: 8,
-    md: 10,
-    lg: 14,
+    sm: spacing.sm,
+    md: spacing.md,
+    lg: spacing.lg,
   };
 
   const dimension = sizeValues[size];

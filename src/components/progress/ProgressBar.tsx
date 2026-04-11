@@ -8,8 +8,6 @@ import {
 import { useTheme } from "../../theme/ThemeContext";
 import { Intent, Size } from "../../types";
 
-const HEIGHT_MAP = { sm: 4, md: 8, lg: 12 };
-
 type Props = {
   progress: number; // 0 to 1
   intent?: Intent;
@@ -28,8 +26,9 @@ export default function ProgressBar({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors } = theme;
+  const { colors, spacing } = theme;
 
+  const HEIGHT_MAP = { sm: spacing.xs, md: spacing.sm, lg: spacing.md };
   const clampedProgress = Math.min(1, Math.max(0, progress));
   const height = HEIGHT_MAP[size];
   const barColor = colors[intent];

@@ -31,7 +31,7 @@ export default function MessageBubble({
       testID={testID}
       style={[
         styles.wrapper,
-        { alignItems: isOwn ? "flex-end" : "flex-start" },
+        { alignItems: isOwn ? "flex-end" : "flex-start", marginBottom: spacing.xs },
         style,
       ]}
     >
@@ -74,7 +74,6 @@ export default function MessageBubble({
 const styles = StyleSheet.create({
   wrapper: {
     width: "100%",
-    marginBottom: 4,
   },
   bubble: {},
 });

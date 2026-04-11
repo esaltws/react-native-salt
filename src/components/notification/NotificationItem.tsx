@@ -69,9 +69,9 @@ export default function NotificationItem({
           style={[
             styles.dot,
             {
-              width: 8,
-              height: 8,
-              borderRadius: 4,
+              width: spacing.sm,
+              height: spacing.sm,
+              borderRadius: radius.sm,
               backgroundColor: accentColor,
               marginRight: spacing.sm,
               marginTop: 6,
@@ -141,7 +141,7 @@ export default function NotificationItem({
           style={{
             fontSize: fontSizes.xs,
             color: colors.muted,
-            marginTop: 4,
+            marginTop: spacing.xs,
             fontWeight: "500",
           }}
         >
@@ -151,7 +151,7 @@ export default function NotificationItem({
 
       {/* Dismiss */}
       {onDismiss && (
-        <Pressable onPress={onDismiss} hitSlop={8} style={{ padding: 4 }}>
+        <Pressable onPress={onDismiss} hitSlop={spacing.sm} style={{ padding: spacing.xs }}>
           <Icon name="close" size={iconSizes.sm} color={colors.muted} />
         </Pressable>
       )}

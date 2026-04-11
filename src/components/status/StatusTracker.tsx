@@ -20,7 +20,7 @@ type Props = {
 
 export default function StatusTracker({ steps, currentStep, style, testID }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing } = theme;
+  const { colors, spacing, radius, iconSizes, sizeMap } = theme;
 
   return (
     <View testID={testID} style={[{ gap: 0 }, style]}>
@@ -44,21 +44,21 @@ export default function StatusTracker({ steps, currentStep, style, testID }: Pro
                 style={[
                   styles.dot,
                   {
-                    width: 24,
-                    height: 24,
-                    borderRadius: 12,
+                    width: spacing.xxl,
+                    height: spacing.xxl,
+                    borderRadius: radius.lg,
                     backgroundColor: dotColor,
                   },
                 ]}
               >
                 {isCompleted ? (
-                  <Icon name="checkmark" size={14} color={colors.surface} />
+                  <Icon name="checkmark" size={iconSizes.xs} color={colors.surface} />
                 ) : isCurrent ? (
                   <View
                     style={{
-                      width: 8,
-                      height: 8,
-                      borderRadius: 4,
+                      width: spacing.sm,
+                      height: spacing.sm,
+                      borderRadius: radius.sm,
                       backgroundColor: colors.surface,
                     }}
                   />
@@ -74,14 +74,14 @@ export default function StatusTracker({ steps, currentStep, style, testID }: Pro
                         ? colors.success
                         : colors.border,
                       width: 2,
-                      minHeight: 32,
+                      minHeight: sizeMap.xs,
                     },
                   ]}
                 />
               ) : null}
             </View>
 
-            <View style={[styles.content, { marginLeft: spacing.md }]}>
+            <View style={[styles.content, { marginLeft: spacing.md, paddingBottom: spacing.lg }]}>
               <Title fontSize="sm" style={{ color: textColor }}>
                 {step.label}
               </Title>
@@ -119,6 +119,5 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    paddingBottom: 16,
   },
 });

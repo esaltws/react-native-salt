@@ -12,12 +12,13 @@ type Props = {
 
 export default function Skeleton({
   width = "100%",
-  height = 14,
+  height,
   radius,
   style,
   testID,
 }: Props) {
   const { theme } = useTheme();
+  const effectiveHeight = height ?? theme.fontSizes.sm;
 
   return (
     <View
@@ -25,7 +26,7 @@ export default function Skeleton({
       style={[
         {
           width,
-          height,
+          height: effectiveHeight,
           borderRadius: radius ?? theme.radius.md,
           backgroundColor: theme.mode === "dark"
             ? "rgba(255,255,255,0.08)"

@@ -49,9 +49,9 @@ export default function TypingIndicator({ style, testID }: Props) {
   }, [dot1, dot2, dot3]);
 
   const dotStyle = {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
+    width: spacing.sm,
+    height: spacing.sm,
+    borderRadius: radius.sm,
     backgroundColor: colors.muted,
     marginHorizontal: 2,
   };

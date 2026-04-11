@@ -71,12 +71,6 @@ const BRANDS: Record<SocialProvider, BrandConfig> = {
   },
 };
 
-const SIZE_MAP = {
-  sm: { height: 36, icon: 16, font: 13, px: 12 },
-  md: { height: 44, icon: 20, font: 15, px: 16 },
-  lg: { height: 52, icon: 24, font: 17, px: 20 },
-};
-
 export default function SocialButton({
   provider,
   onPress,
@@ -89,7 +83,13 @@ export default function SocialButton({
   style,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, radius } = theme;
+  const { colors, radius, spacing, fontSizes, iconSizes, sizeMap } = theme;
+
+  const SIZE_MAP = {
+    sm: { height: sizeMap.sm, icon: iconSizes.xs, font: fontSizes.sm, px: spacing.md },
+    md: { height: sizeMap.md, icon: iconSizes.sm, font: fontSizes.md, px: spacing.lg },
+    lg: { height: sizeMap.xl, icon: iconSizes.md, font: fontSizes.lg, px: spacing.xl },
+  };
 
   const brand = BRANDS[provider];
   const sizeConfig = SIZE_MAP[size];
@@ -144,7 +144,7 @@ export default function SocialButton({
                 color: textColor,
                 fontSize: sizeConfig.font,
                 fontWeight: "600",
-                marginLeft: 10,
+                marginLeft: spacing.md,
               }}
             >
               {displayLabel}

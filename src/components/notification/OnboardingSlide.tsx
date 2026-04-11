@@ -45,7 +45,7 @@ export default function OnboardingSlide({
   testID,
 }: Props) {
   const { theme } = useTheme();
-  const { colors, spacing, fontSizes } = theme;
+  const { colors, spacing, radius, fontSizes, sizeMap } = theme;
   const screen = Dimensions.get("window");
 
   return (
@@ -63,7 +63,7 @@ export default function OnboardingSlide({
     >
       {/* Skip */}
       {onSkip && (
-        <View style={styles.skipRow}>
+        <View style={[styles.skipRow, { right: spacing.lg }]}>
           <Button
             title={skipLabel}
             variant="text"
@@ -74,7 +74,7 @@ export default function OnboardingSlide({
       )}
 
       {/* Visual */}
-      <View style={styles.visualContainer}>
+      <View style={[styles.visualContainer, { marginBottom: sizeMap.xs }]}>
         {image ? (
           <Image
             source={image}
@@ -131,12 +131,12 @@ export default function OnboardingSlide({
             <View
               key={i}
               style={{
-                width: i === step ? 24 : 8,
-                height: 8,
-                borderRadius: 4,
+                width: i === step ? spacing.xxl : spacing.sm,
+                height: spacing.sm,
+                borderRadius: radius.sm,
                 backgroundColor:
                   i === step ? colors.primary : colors.border,
-                marginHorizontal: 4,
+                marginHorizontal: spacing.xs,
               }}
             />
           ))}
@@ -162,13 +162,11 @@ const styles = StyleSheet.create({
   skipRow: {
     position: "absolute",
     top: 50,
-    right: 16,
     zIndex: 10,
   },
   visualContainer: {
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 32,
   },
   iconCircle: {
     alignItems: "center",

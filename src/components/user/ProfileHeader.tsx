@@ -39,7 +39,7 @@ export default function ProfileHeader({
         <Avatar uri={avatar} name={name} size="lg" />
 
         {stats && stats.length > 0 && (
-          <View style={styles.statsRow}>
+          <View style={[styles.statsRow, { marginLeft: spacing.lg }]}>
             {stats.map((stat) => (
               <View key={stat.label} style={styles.statItem}>
                 <Title fontSize="lg" align="center">
@@ -80,7 +80,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flex: 1,
     justifyContent: "space-evenly",
-    marginLeft: 16,
   },
   statItem: {
     alignItems: "center",
