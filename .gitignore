@@ -1,6 +1,8 @@
 /node_modules
 .claude
 
+/docs
+
 # Build artifacts (package ships raw TS)
 src/**/*.js
 src/**/*.d.ts
