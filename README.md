@@ -8,6 +8,7 @@
 [![license](https://img.shields.io/npm/l/@esaltws/react-native-salt)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue)](https://www.typescriptlang.org/)
 [![salt-theme-gen](https://img.shields.io/npm/v/salt-theme-gen?label=salt-theme-gen%20%E2%80%93%20OKLCH%20color%20themes)](https://www.npmjs.com/package/salt-theme-gen)
+[![Demo APK](https://img.shields.io/badge/Demo-Download%20APK-green)](https://www.hasansarwer.com/application-28d76e80-4b1c-4bde-93ad-afd31848ef3b.apk)
 
 ---
 
