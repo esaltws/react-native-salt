@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, StyleProp, ViewStyle } from "react-native";
 import { useTheme } from "../../theme/ThemeContext";
 import Text from "../typography/Text";
@@ -39,6 +39,8 @@ export default function LineChart({
   const { theme } = useTheme();
   const { colors, spacing, fontSizes } = theme;
 
+  const [containerWidth, setContainerWidth] = useState(0);
+
   if (data.length < 2) return null;
 
   const lineColor =
@@ -66,7 +68,7 @@ export default function LineChart({
   }));
 
   return (
-    <View testID={testID} style={style}>
+    <View testID={testID} style={style} onLayout={(e) => setContainerWidth(e.nativeEvent.layout.width)}>
       <View style={[styles.chartContainer, { height }]}>
         {/* Grid */}
         {showGrid &&
@@ -96,19 +98,6 @@ export default function LineChart({
             </View>
           ))}
 
-        {/* Lines connecting dots */}
-        {points.map((point, i) => {
-          if (i === 0) return null;
-          const prev = points[i - 1];
-          const dx = point.x - prev.x;
-          const dy = point.y + chartPaddingTop - (prev.y + chartPaddingTop);
-          const length = Math.sqrt(dx * dx * 0.01 + dy * dy);
-          const angle = Math.atan2(dy, dx * 0.01 * (height / 100)) * (180 / Math.PI);
-
-          // We use View lines between dots
-          return null; // Line rendering is handled by dot positions + fill area
-        })}
-
         {/* Fill area */}
         <View style={[styles.fillArea, { top: chartPaddingTop }]}>
           {points.map((point, i) => {
@@ -137,37 +126,36 @@ export default function LineChart({
         </View>
 
         {/* Connecting lines between points */}
-        {points.map((point, i) => {
-          if (i === 0) return null;
-          const prev = points[i - 1];
-          // Simple line using a thin rotated View
-          const x1 = prev.x;
-          const y1 = prev.y + chartPaddingTop;
-          const x2 = point.x;
-          const y2 = point.y + chartPaddingTop;
+        {containerWidth > 0 &&
+          points.map((point, i) => {
+            if (i === 0) return null;
+            const prev = points[i - 1];
+            const x1 = prev.x;
+            const y1 = prev.y + chartPaddingTop;
+            const x2 = point.x;
+            const y2 = point.y + chartPaddingTop;
 
-          // Calculate actual pixel positions
-          // Width percent to actual needs layout, use percentage positioning
-          return (
-            <View
-              key={`line-${i}`}
-              style={{
-                position: "absolute",
-                left: `${x1}%` as any,
-                top: y1,
-                width: `${x2 - x1}%` as any,
-                height: 2,
-                backgroundColor: lineColor,
-                transform: [
-                  {
-                    rotate: `${Math.atan2(y2 - y1, 1) * (180 / Math.PI)}deg`,
-                  },
-                ],
-                transformOrigin: "left center",
-              }}
-            />
-          );
-        })}
+            const dxPx = ((x2 - x1) / 100) * containerWidth;
+            const dyPx = y2 - y1;
+            const length = Math.sqrt(dxPx * dxPx + dyPx * dyPx);
+            const angle = Math.atan2(dyPx, dxPx) * (180 / Math.PI);
+
+            return (
+              <View
+                key={`line-${i}`}
+                style={{
+                  position: "absolute",
+                  left: `${x1}%` as any,
+                  top: y1,
+                  width: length,
+                  height: 2,
+                  backgroundColor: lineColor,
+                  transform: [{ rotate: `${angle}deg` }],
+                  transformOrigin: "left center",
+                }}
+              />
+            );
+          })}
 
         {/* Value labels (rendered separately so they don't clip inside small dots) */}
         {showValues &&
