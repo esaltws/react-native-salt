@@ -12,7 +12,7 @@
 
 ---
 
-## Built for humans and AI
+## Built for humans and AI assistants
 
 Salt uses a **token-based design vocabulary** — spacing, color, radius, sizing are all named tokens from a finite set instead of raw pixel values. This makes it easy for both developers and AI coding assistants to generate consistent, correct UI code.
 

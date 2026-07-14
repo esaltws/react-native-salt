@@ -71,7 +71,7 @@ export function SaltProvider({ children, initialPreference = "system", fontLevel
 
   }, [preference, isThemeLoaded]);
 
-  const resolvedMode: ThemeMode =  preference === "system" ? (systemScheme === "dark" ? "dark" : "light") : preference;
+  const resolvedMode: ThemeMode = preference === "system" ? ((systemScheme ?? Appearance.getColorScheme() ?? "light") === "dark" ? "dark" : "light") : preference;
 
   useEffect(() => {
     if(!isThemeLoaded) return;
