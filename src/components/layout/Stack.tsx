@@ -1,9 +1,8 @@
-import React, { ReactNode, useEffect, useRef } from "react";
+import React, { ReactNode } from "react";
 import {
   View,
   StyleProp,
   ViewStyle,
-  LayoutAnimation,
   useWindowDimensions,
 } from "react-native";
 import { useTheme } from "../../theme/ThemeContext";
@@ -44,7 +43,6 @@ export default function Stack({
 }: Props) {
   const { theme } = useTheme();
   const { width } = useWindowDimensions();
-  const isFirstRender = useRef(true);
 
   // Responsive overrides
   const breakpoint = responsive?.breakpoint ?? 768;
@@ -54,14 +52,6 @@ export default function Stack({
 
   const gapValue =
     typeof finalGap === "number" ? finalGap : theme.spacing[finalGap] ?? theme.spacing.md;
-
-  // Animated layout transitions
-  useEffect(() => {
-    if (animated && !isFirstRender.current) {
-      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    }
-    isFirstRender.current = false;
-  });
 
   const items = React.Children.toArray(children);
   const isVertical = finalDirection === "vertical";
