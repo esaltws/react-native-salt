@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useMemo, useState, ReactNode, useEffect } from "react";
-import { Appearance, useColorScheme } from "react-native" 
+import { Appearance, useColorScheme } from "react-native";
 import { lightTheme as lightThemeDefault } from "./lightTheme";
 import { darkTheme as darkThemeDefault } from "./darkTheme";
 import { Theme, ThemeMode, ThemePreference, FontLevel, FontLevelPreset } from "../types";
@@ -73,12 +73,6 @@ export function SaltProvider({ children, initialPreference = "system", fontLevel
 
   const resolvedMode: ThemeMode = preference === "system" ? ((systemScheme ?? Appearance.getColorScheme() ?? "light") === "dark" ? "dark" : "light") : preference;
 
-  useEffect(() => {
-    if(!isThemeLoaded) return;
-    // Optional: keeps native UI elements aligned with your app preference
-    const scheme = preference === "system" ? "unspecified" : preference;
-    Appearance.setColorScheme(scheme as "light" | "dark" | "unspecified");
-  }, [preference, isThemeLoaded]);
 
   const value = useMemo(() => {
     const baseTheme = resolvedMode === "dark"
